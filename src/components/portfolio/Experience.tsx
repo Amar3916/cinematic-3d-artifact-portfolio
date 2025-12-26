@@ -2,7 +2,7 @@
 
 import { Canvas, useThree } from "@react-three/fiber";
 import { Suspense, useEffect, useRef } from "react";
-import { Environment, Float, Stars, ContactShadows } from "@react-three/drei";
+import { Environment, Float, Stars, ContactShadows, SoftShadows } from "@react-three/drei";
 import { PortfolioBook } from "./PortfolioBook";
 import { usePortfolioStore } from "@/lib/store";
 import gsap from "gsap";
@@ -17,7 +17,7 @@ function CameraController() {
     gsap.to(camera.position, {
       x: 0,
       y: 0,
-      z: currentPage === 0 ? 4 : 4.5,
+      z: currentPage === 0 ? 3.8 : 4.2,
       duration: 2,
       ease: "power3.inOut"
     });
@@ -32,71 +32,83 @@ function CameraController() {
 
 export function Experience() {
   return (
-    <div className="fixed inset-0 bg-[#050505]">
+    <div className="fixed inset-0 bg-[#020202]">
         <Canvas
           shadows
           camera={{ position: [0, 0, 5], fov: 45 }}
           dpr={[1, 2]}
-          gl={{ antialias: true, stencil: false, depth: true }}
+          gl={{ 
+            antialias: true, 
+            stencil: false, 
+            depth: true,
+            toneMapping: THREE.ReinhardToneMapping,
+            toneMappingExposure: 1.2
+          }}
         >
+          <SoftShadows size={25} samples={10} focus={0.5} />
           <CameraController />
-          <color attach="background" args={["#0a0a0a"]} />
-          <fog attach="fog" args={["#0a0a0a", 5, 12]} />
+          <color attach="background" args={["#000000"]} />
+          <fog attach="fog" args={["#000000", 4, 15]} />
           
           <Suspense fallback={null}>
-            <Environment preset="night" intensity={0.5} />
-            <ambientLight intensity={0.2} />
+            <Environment preset="night" intensity={0.4} />
+            <ambientLight intensity={0.15} />
             
+            {/* Dramatic Key Light */}
             <spotLight
-              position={[2, 5, 2]}
-              angle={0.4}
+              position={[5, 10, 5]}
+              angle={0.2}
               penumbra={1}
-              intensity={4}
+              intensity={1000}
               castShadow
               color="#fff"
+              shadow-mapSize={[1024, 1024]}
             />
             
-            <pointLight position={[-3, 2, 4]} intensity={2} color="#d4af37" />
-            <pointLight position={[3, -2, 4]} intensity={1} color="#4080ff" />
+            {/* Artifact Highlight Light (Left Side) */}
+            <pointLight position={[-3, 0.5, 3]} intensity={100} color="#d4af37" decay={2} />
+            
+            {/* Rim Light (Right Side) */}
+            <pointLight position={[4, 1, 3]} intensity={50} color="#4080ff" decay={2} />
 
-            <group position={[0, -0.2, 0]}>
+            <group position={[0, -0.1, 0]}>
               <Float 
-                speed={1.5} 
-                rotationIntensity={0.1} 
-                floatIntensity={0.2}
-                floatingRange={[-0.05, 0.05]}
+                speed={2} 
+                rotationIntensity={0.05} 
+                floatIntensity={0.15}
+                floatingRange={[-0.04, 0.04]}
               >
                 <PortfolioBook />
               </Float>
             </group>
 
-            {/* Premium Floor */}
-            <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2.5, 0]} receiveShadow>
-              <planeGeometry args={[50, 50]} />
+            {/* Premium Obsidian Floor with Reflection (Simulated) */}
+            <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3, 0]} receiveShadow>
+              <planeGeometry args={[100, 100]} />
               <meshStandardMaterial 
-                color="#050505" 
-                roughness={0.1} 
-                metalness={0.8}
+                color="#020202" 
+                roughness={0.05} 
+                metalness={0.9}
               />
             </mesh>
 
-
           <Stars 
-            radius={50} 
+            radius={100} 
             depth={50} 
-            count={3000} 
+            count={5000} 
             factor={4} 
             saturation={0} 
             fade 
-            speed={0.5} 
+            speed={0.3} 
           />
           
           <ContactShadows
-            position={[0, -2, 0]}
-            opacity={0.3}
-            scale={15}
-            blur={2.5}
+            position={[0, -2.5, 0]}
+            opacity={0.4}
+            scale={20}
+            blur={3}
             far={10}
+            color="#000"
           />
         </Suspense>
       </Canvas>
