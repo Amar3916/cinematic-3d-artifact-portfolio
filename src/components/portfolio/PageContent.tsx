@@ -7,7 +7,195 @@ import { usePortfolioStore } from "@/lib/store";
 interface PageContentProps {
   index: number;
   side: "front" | "back";
+  nextPageIndex?: number;
 }
+
+export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
+  if (side === "back") {
+    return (
+      <group>
+        <mesh position={[0, 0, 0]}>
+          <planeGeometry args={[2.2, 3]} />
+          <meshStandardMaterial color="#f0f0f0" roughness={1} />
+        </mesh>
+        
+        {/* Large Cinematic 3D Element for the Left Page */}
+        <group position={[0, 0, 0.4]} scale={1.5}>
+          {get3DElements(nextPageIndex ?? index + 1)}
+        </group>
+      </group>
+    );
+  }
+
+  // Cover Content Special Case
+  if (index === 0 && side === "front") {
+    return (
+      <group>
+        <mesh position={[0, 0, 0]}>
+          <planeGeometry args={[2.2, 3]} />
+          <meshStandardMaterial color="#1a1a1a" roughness={0.3} metalness={0.8} />
+        </mesh>
+        <Html transform position={[0, 0, 0.02]} distanceFactor={1.5} className="pointer-events-none">
+          <div className="w-[440px] h-[600px] flex flex-col justify-center items-center text-[#d4af37] border-4 border-[#d4af37]/20 m-4">
+            <h1 className="text-6xl font-serif font-bold text-center px-10 leading-tight tracking-tighter uppercase">
+              The AI<br/>Architect
+            </h1>
+            <div className="w-20 h-[2px] bg-[#d4af37] my-8" />
+            <p className="text-xs tracking-[0.6em] uppercase font-sans font-light">B. Amarendra Nadh</p>
+          </div>
+        </Html>
+      </group>
+    );
+  }
+
+  return (
+    <group>
+      <mesh position={[0, 0, 0]}>
+        <planeGeometry args={[2.2, 3]} />
+        <meshStandardMaterial color="#fcfcfc" roughness={1} />
+      </mesh>
+
+      <Html
+        transform
+        distanceFactor={1.5}
+        position={[0, 0, 0.01]}
+        className="select-none pointer-events-none"
+        occlude="blending"
+      >
+        <div className="w-[440px] h-[600px] p-12 flex flex-col font-serif text-[#1a1a1a]">
+          {getContent(index)}
+        </div>
+      </Html>
+    </group>
+  );
+}
+
+function get3DElements(index: number) {
+  switch (index) {
+    case 1: // Summary / Genesis
+      return (
+        <Float speed={3} rotationIntensity={2}>
+          <group>
+            <mesh>
+              <sphereGeometry args={[0.2, 32, 32]} />
+              <meshStandardMaterial color="#4080ff" emissive="#4080ff" emissiveIntensity={2} wireframe />
+            </mesh>
+            <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
+              <torusGeometry args={[0.3, 0.01, 16, 100]} />
+              <meshStandardMaterial color="#4080ff" transparent opacity={0.5} />
+            </mesh>
+            <mesh rotation={[-Math.PI / 4, Math.PI / 4, 0]}>
+              <torusGeometry args={[0.4, 0.01, 16, 100]} />
+              <meshStandardMaterial color="#4080ff" transparent opacity={0.3} />
+            </mesh>
+          </group>
+        </Float>
+      );
+    case 2: // Skills / Arsenal
+      return (
+        <group>
+          {[-0.3, 0, 0.3].map((x, i) => (
+            <Float key={i} speed={2 + i} rotationIntensity={1}>
+              <mesh position={[x, i * 0.1 - 0.1, 0]} rotation={[i, i, i]}>
+                <octahedronGeometry args={[0.15, 0]} />
+                <meshStandardMaterial 
+                  color={i === 0 ? "#61dafb" : i === 1 ? "#339933" : "#f7df1e"} 
+                  metalness={0.8} 
+                  roughness={0.2} 
+                />
+              </mesh>
+            </Float>
+          ))}
+        </group>
+      );
+    case 3: // Projects / Artifacts
+      return (
+        <group scale={1.2}>
+          <Float speed={1.5} rotationIntensity={0.5}>
+            <mesh position={[0, 0, 0]}>
+              <boxGeometry args={[0.4, 0.3, 0.05]} />
+              <meshStandardMaterial color="#222" metalness={0.9} roughness={0.1} />
+            </mesh>
+            <mesh position={[0, 0, 0.03]}>
+              <planeGeometry args={[0.35, 0.25]} />
+              <meshStandardMaterial color="#ff0000" emissive="#ff0000" emissiveIntensity={2} />
+            </mesh>
+            {/* Pulsing glow ring */}
+            <mesh rotation={[Math.PI / 2, 0, 0]}>
+              <torusGeometry args={[0.5, 0.005, 16, 100]} />
+              <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={5} />
+            </mesh>
+          </Float>
+        </group>
+      );
+    case 4: // Experience / Chronicles
+      return (
+        <Float speed={1} rotationIntensity={1}>
+          <group>
+            <mesh>
+              <sphereGeometry args={[0.25, 32, 32]} />
+              <meshStandardMaterial color="#d4af37" metalness={1} roughness={0.1} />
+            </mesh>
+            <mesh rotation={[Math.PI/2, 0, 0]}>
+              <ringGeometry args={[0.3, 0.35, 64]} />
+              <meshStandardMaterial color="#d4af37" side={THREE.DoubleSide} />
+            </mesh>
+          </group>
+        </Float>
+      );
+    case 5: // Education / Foundation
+      return (
+        <Float speed={2} rotationIntensity={0.5}>
+          <group>
+            {[...Array(4)].map((_, i) => (
+              <mesh key={i} position={[0, i * 0.08 - 0.12, 0]}>
+                <boxGeometry args={[0.4 - i * 0.05, 0.05, 0.3 - i * 0.05]} />
+                <meshStandardMaterial color="#f5f5f0" roughness={0.5} />
+              </mesh>
+            ))}
+          </group>
+        </Float>
+      );
+    case 6: // Achievements / Laurels
+      return (
+        <Float speed={4} floatIntensity={2}>
+          <group>
+            <mesh position={[0, 0.1, 0]}>
+              <coneGeometry args={[0.15, 0.3, 32]} />
+              <meshStandardMaterial color="#d4af37" metalness={1} roughness={0.1} />
+            </mesh>
+            <mesh position={[0, -0.1, 0]}>
+              <cylinderGeometry args={[0.1, 0.1, 0.05, 32]} />
+              <meshStandardMaterial color="#1a1a1a" />
+            </mesh>
+          </group>
+        </Float>
+      );
+    case 7: // Certifications
+      return (
+        <group>
+          {[...Array(3)].map((_, i) => (
+            <mesh key={i} position={[0, 0, i * -0.1]} rotation={[0, 0, i * 0.2]}>
+              <planeGeometry args={[0.4, 0.3]} />
+              <meshStandardMaterial color="#fff" transparent opacity={0.6} side={THREE.DoubleSide} />
+            </mesh>
+          ))}
+        </group>
+      );
+    case 8: // Contact
+      return (
+        <Float speed={2} rotationIntensity={2}>
+          <mesh>
+            <dodecahedronGeometry args={[0.2, 0]} />
+            <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={1} wireframe />
+          </mesh>
+        </Float>
+      );
+    default:
+      return null;
+  }
+}
+
 
 export function PageContent({ index, side }: PageContentProps) {
   if (side === "back") {
