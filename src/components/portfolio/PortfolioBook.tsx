@@ -1,14 +1,44 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { usePortfolioStore } from "@/lib/store";
 import * as THREE from "three";
 import { BookPage } from "./BookPage";
 
+const playPageTurnSound = () => {
+  if (typeof window === "undefined") return;
+  const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+  
+  const oscillator = audioContext.createOscillator();
+  const gainNode = audioContext.createGain();
+
+  oscillator.type = "sine";
+  oscillator.frequency.setValueAtTime(150, audioContext.currentTime);
+  oscillator.frequency.exponentialRampToValueAtTime(40, audioContext.currentTime + 0.2);
+
+  gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+  gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+
+  oscillator.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+
+  oscillator.start();
+  oscillator.stop(audioContext.currentTime + 0.2);
+};
+
 export function PortfolioBook() {
   const { currentPage, totalPages } = usePortfolioStore();
   const group = useRef<THREE.Group>(null);
+  const firstRender = useRef(true);
+
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    playPageTurnSound();
+  }, [currentPage]);
 
   // Rotation logic for the whole book
   useFrame((state) => {
