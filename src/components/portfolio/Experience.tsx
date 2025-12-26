@@ -25,32 +25,41 @@ function CameraController() {
       const isPortrait = size.width < size.height;
       const aspect = size.width / size.height;
       
-      // Calculate responsive Z distance
-      // Base distance increases as aspect ratio decreases (narrower screen)
-      let baseZ = currentPage === 0 ? 4.2 : 5.0;
+      // Target position
+      let targetZ = currentPage === 0 ? 4.5 : 5.2;
+      let targetX = 0;
+      let targetY = 0;
       
       if (isPortrait) {
-        // Increase distance for portrait to keep book in view
-        baseZ = (currentPage === 0 ? 4.5 : 5.5) / Math.min(1, aspect * 1.5);
-      } else if (aspect < 1.6) {
-        // Slightly increase for squarer landscapes
-        baseZ *= 1.2 / aspect;
+        // In portrait, we need much more distance to see the book
+        // Adjust based on aspect to keep it centered and visible
+        targetZ = (currentPage === 0 ? 5.5 : 6.5) / Math.min(1, aspect * 1.2);
+        // Slightly tilt for better mobile viewing
+        targetY = 0.2;
+      } else if (aspect < 1.5) {
+        // Squarer screens (tablets in landscape)
+        targetZ = 5.5 / aspect;
       }
 
       // Cinematic camera movements
       gsap.to(camera.position, {
-        x: 0,
-        y: 0,
-        z: baseZ,
-        duration: 2,
+        x: targetX,
+        y: targetY,
+        z: targetZ,
+        duration: 1.5,
         ease: "power3.inOut"
       });
       
-      // Always look at center
-      const target = new THREE.Vector3(0, 0, 0);
-      camera.lookAt(target);
+      // Dynamic FOV adjustment for narrow screens
+      if (camera instanceof THREE.PerspectiveCamera) {
+        const targetFov = isPortrait ? 50 : 45;
+        gsap.to(camera, {
+          fov: targetFov,
+          duration: 1.5,
+          onUpdate: () => camera.updateProjectionMatrix()
+        });
+      }
     }, [currentPage, camera, size]);
-
 
   return null;
 }
