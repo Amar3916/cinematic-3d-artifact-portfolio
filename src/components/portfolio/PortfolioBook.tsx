@@ -55,11 +55,11 @@ export function PortfolioBook() {
     <group ref={group}>
       {/* Book Spine */}
       <mesh position={[0, 0, 0]}>
-        <boxGeometry args={[0.12, 3.02, 0.12]} />
+        <boxGeometry args={[0.12, 3.82, 0.12]} />
         <meshStandardMaterial color="#1a130f" roughness={0.4} metalness={0.5} />
         {/* Spine Details */}
         {[...Array(5)].map((_, i) => (
-          <mesh key={i} position={[0, i * 0.5 - 1, 0.061]}>
+          <mesh key={i} position={[0, i * 0.7 - 1.4, 0.061]}>
             <boxGeometry args={[0.08, 0.01, 0.01]} />
             <meshStandardMaterial color="#d4af37" metalness={1} roughness={0.1} />
           </mesh>
