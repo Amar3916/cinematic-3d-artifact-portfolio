@@ -69,7 +69,7 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
                     <p className="text-[18px] tracking-[0.5em] uppercase font-sans font-black text-white drop-shadow-md mb-2">
                       Amarendra Nadh
                     </p>
-                    <p className="text-[10px] tracking-[0.4em] uppercase font-sans font-bold text-[#d4af37] bg-black/40 px-4 py-2 border border-[#d4af37]/30">
+                    <p className="text-[11px] tracking-[0.2em] uppercase font-sans font-bold text-[#d4af37] bg-black/40 px-4 py-2 border border-[#d4af37]/30">
                       Portfolio — Vol. 2025
                     </p>
                   </div>
@@ -318,11 +318,11 @@ function getContent(index: number) {
       return (
         <div className="flex-1 flex flex-col">
           <div className="mb-8">
-            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Genesis</h2>
+            <h2 className="text-[11px] uppercase tracking-[0.4em] text-[#d4af37] mb-2 font-sans font-bold">Genesis</h2>
             <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Professional Summary</h3>
           </div>
           <div className="space-y-6">
-            <p className="text-[16px] leading-[1.6] text-justify text-white/80 first-letter:text-5xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-[#d4af37] first-letter:font-serif">
+            <p className="text-[16px] leading-[1.6] text-justify text-white/90 first-letter:text-5xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-[#d4af37] first-letter:font-serif">
               Dynamic Agentic AI Engineer and Full-Stack Developer passionate about building intelligent, 
               autonomous systems and scalable automation workflows. Adept at integrating AI reasoning 
               with real-world tools to deliver production-ready applications that redefine human-machine interaction.
@@ -331,7 +331,7 @@ function getContent(index: number) {
               {["Agentic AI", "LangChain", "MERN Stack", "n8n Automation"].map(tag => (
                 <div key={tag} className="flex items-center gap-3">
                   <div className="w-1.5 h-1.5 bg-[#d4af37] rotate-45" />
-                  <span className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-white/60">{tag}</span>
+                  <span className="text-[12px] uppercase tracking-[0.1em] font-sans font-bold text-white/80">{tag}</span>
                 </div>
               ))}
             </div>
@@ -342,29 +342,29 @@ function getContent(index: number) {
       return (
         <div className="flex-1">
           <div className="mb-8">
-            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Arsenal</h2>
+            <h2 className="text-[11px] uppercase tracking-[0.4em] text-[#d4af37] mb-2 font-sans font-bold">Arsenal</h2>
             <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Core Skills</h3>
           </div>
           <div className="space-y-6 mt-6">
             <div>
-              <h4 className="text-[10px] uppercase tracking-[0.4em] text-white/40 mb-2 font-sans font-bold">Languages</h4>
+              <h4 className="text-[11px] uppercase tracking-[0.2em] text-white/70 mb-2 font-sans font-bold">Languages</h4>
               <p className="text-lg font-medium tracking-tight text-white/90">C, Python, Java (OOP)</p>
             </div>
             <div>
-              <h4 className="text-[10px] uppercase tracking-[0.4em] text-white/40 mb-2 font-sans font-bold">Web Development</h4>
+              <h4 className="text-[11px] uppercase tracking-[0.2em] text-white/70 mb-2 font-sans font-bold">Web Development</h4>
               <p className="text-lg font-medium tracking-tight text-white/90">HTML, CSS, React.js, Node.js, Express.js, MongoDB (MERN)</p>
             </div>
             <div>
-              <h4 className="text-[10px] uppercase tracking-[0.4em] text-[#d4af37] mb-2 font-sans font-bold">AI & Machine Learning</h4>
+              <h4 className="text-[11px] uppercase tracking-[0.2em] text-[#d4af37] mb-2 font-sans font-bold">AI & Machine Learning</h4>
               <p className="text-xl font-bold tracking-tight text-[#d4af37]">Local LLMs, Agentic AI, LangChain, LangGraph, AI Automation</p>
             </div>
             <div>
-              <h4 className="text-[10px] uppercase tracking-[0.4em] text-white/40 mb-2 font-sans font-bold">Tools & Integrations</h4>
-              <p className="text-[14px] font-medium text-white/80 leading-relaxed">n8n, VS Code, Postman, Notion, LLM Studio, Canva, REST APIs, Webhooks</p>
+              <h4 className="text-[11px] uppercase tracking-[0.2em] text-white/70 mb-2 font-sans font-bold">Tools & Integrations</h4>
+              <p className="text-[14px] font-medium text-white/90 leading-relaxed">n8n, VS Code, Postman, Notion, LLM Studio, Canva, REST APIs, Webhooks</p>
             </div>
             <div>
-              <h4 className="text-[10px] uppercase tracking-[0.4em] text-white/40 mb-2 font-sans font-bold">Others</h4>
-              <p className="text-[14px] font-medium text-white/80 leading-relaxed">Digital Marketing, Workflow Automation, Cloud Deployment Basics</p>
+              <h4 className="text-[11px] uppercase tracking-[0.2em] text-white/70 mb-2 font-sans font-bold">Others</h4>
+              <p className="text-[14px] font-medium text-white/90 leading-relaxed">Digital Marketing, Workflow Automation, Cloud Deployment Basics</p>
             </div>
           </div>
         </div>
@@ -373,7 +373,7 @@ function getContent(index: number) {
       return (
         <div className="flex-1">
           <div className="mb-6">
-            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Artifacts</h2>
+            <h2 className="text-[11px] uppercase tracking-[0.4em] text-[#d4af37] mb-2 font-sans font-bold">Artifacts</h2>
             <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Key Projects</h3>
           </div>
           <div className="space-y-6 mt-4 pb-10">
@@ -389,9 +389,9 @@ function getContent(index: number) {
                 <div className="absolute left-[-4px] top-1.5 w-2 h-2 rounded-full bg-[#d4af37]/30 border border-[#d4af37]" />
                 <div className="flex justify-between items-baseline mb-1">
                   <h4 className="text-[15px] font-bold uppercase tracking-wide text-white/90">{proj.title}</h4>
-                  <span className="text-[10px] text-[#d4af37] font-bold font-sans">{proj.year}</span>
+                  <span className="text-[11px] text-[#d4af37] font-bold font-sans">{proj.year}</span>
                 </div>
-                <p className="text-[12px] leading-relaxed text-white/60 font-medium">{proj.desc}</p>
+                <p className="text-[13px] leading-relaxed text-white/80 font-medium">{proj.desc}</p>
               </div>
             ))}
           </div>
@@ -401,27 +401,27 @@ function getContent(index: number) {
       return (
         <div className="flex-1">
           <div className="mb-8">
-            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Chronicles</h2>
+            <h2 className="text-[11px] uppercase tracking-[0.4em] text-[#d4af37] mb-2 font-sans font-bold">Chronicles</h2>
             <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Experience</h3>
           </div>
           <div className="space-y-8 mt-6">
             <div className="relative pl-8 border-l-[2px] border-white/10 hover:border-[#d4af37] transition-colors">
               <div className="absolute left-[-6px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_#d4af37]" />
               <h4 className="text-[18px] font-bold text-white/90">Founder — Digital Marketing Startup</h4>
-              <p className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-sans mt-2 mb-3 font-bold">Jan 2022 – Present</p>
-              <p className="text-[13px] leading-relaxed text-white/70 font-medium text-justify">Launched and scaled marketing operations; the content strategy led to a 60% increase in client engagement.</p>
+              <p className="text-[11px] uppercase tracking-[0.2em] text-white/70 font-sans mt-2 mb-3 font-bold">Jan 2022 – Present</p>
+              <p className="text-[15px] leading-relaxed text-white/90 font-medium text-justify">Launched and scaled marketing operations; the content strategy led to a 60% increase in client engagement.</p>
             </div>
             <div className="relative pl-8 border-l-[2px] border-white/10 hover:border-[#d4af37] transition-colors">
               <div className="absolute left-[-6px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_#d4af37]" />
               <h4 className="text-[18px] font-bold text-white/90 uppercase leading-tight">Secretary, E-Cell — Vignan University</h4>
-              <p className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-sans mt-2 mb-3 font-bold">Aug 2023 – Present</p>
-              <p className="text-[13px] leading-relaxed text-white/70 font-medium text-justify">Organized 20+ technical and outreach events. Spearheaded social media campaigns resulting in a 70% boost in reach.</p>
+              <p className="text-[11px] uppercase tracking-[0.2em] text-white/70 font-sans mt-2 mb-3 font-bold">Aug 2023 – Present</p>
+              <p className="text-[15px] leading-relaxed text-white/90 font-medium text-justify">Organized 20+ technical and outreach events. Spearheaded social media campaigns resulting in a 70% boost in reach.</p>
             </div>
             <div className="relative pl-8 border-l-[2px] border-white/10 hover:border-[#d4af37] transition-colors">
               <div className="absolute left-[-6px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_#d4af37]" />
               <h4 className="text-[18px] font-bold text-white/90 uppercase leading-tight">MERN & AI Automation Architect</h4>
-              <p className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-sans mt-2 mb-3 font-bold">2023 – 2024</p>
-              <p className="text-[13px] leading-relaxed text-white/70 font-medium text-justify">Built and deployed full-stack apps in 24-hour hackathons. Led teams to build Farmer Support and University Admin portals.</p>
+              <p className="text-[11px] uppercase tracking-[0.2em] text-white/70 font-sans mt-2 mb-3 font-bold">2023 – 2024</p>
+              <p className="text-[15px] leading-relaxed text-white/90 font-medium text-justify">Built and deployed full-stack apps in 24-hour hackathons. Led teams to build Farmer Support and University Admin portals.</p>
             </div>
           </div>
         </div>
@@ -430,32 +430,32 @@ function getContent(index: number) {
       return (
         <div className="flex-1">
           <div className="mb-8">
-            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Foundation</h2>
+            <h2 className="text-[11px] uppercase tracking-[0.4em] text-[#d4af37] mb-2 font-sans font-bold">Foundation</h2>
             <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Education</h3>
           </div>
           <div className="space-y-10 mt-8">
             <div>
               <div className="flex justify-between items-start mb-2">
                 <h4 className="text-xl font-bold uppercase tracking-tight text-white/90">B.Tech in CSE</h4>
-                <span className="text-[10px] text-white/40 uppercase tracking-[0.3em] font-sans font-bold">2022 – 2026</span>
+                <span className="text-[11px] text-white/70 uppercase tracking-[0.2em] font-sans font-bold">2022 – 2026</span>
               </div>
-              <p className="text-[14px] text-white/50 mb-4 font-medium tracking-tight italic">Vignan's Foundation for Science, Technology and Research</p>
+              <p className="text-[14px] text-white/80 mb-4 font-medium tracking-tight italic">Vignan's Foundation for Science, Technology and Research</p>
               <span className="text-[12px] bg-white text-black px-4 py-1.5 font-sans font-bold border-l-4 border-[#d4af37]">CGPA: 8.0/10</span>
             </div>
             <div>
               <div className="flex justify-between items-start mb-2">
                 <h4 className="text-xl font-bold uppercase tracking-tight text-white/90">Intermediate (MPC)</h4>
-                <span className="text-[10px] text-white/40 uppercase tracking-[0.3em] font-sans font-bold">2020 – 2022</span>
+                <span className="text-[11px] text-white/70 uppercase tracking-[0.2em] font-sans font-bold">2020 – 2022</span>
               </div>
-              <p className="text-[14px] text-white/50 mb-4 font-medium tracking-tight italic">NRI Junior College, Tenali</p>
+              <p className="text-[14px] text-white/80 mb-4 font-medium tracking-tight italic">NRI Junior College, Tenali</p>
               <span className="text-[12px] bg-white text-black px-4 py-1.5 font-sans font-bold border-l-4 border-[#d4af37]">Percentage: 70.1%</span>
             </div>
             <div>
               <div className="flex justify-between items-start mb-2">
                 <h4 className="text-xl font-bold uppercase tracking-tight text-white/90">10th Grade (SSC)</h4>
-                <span className="text-[10px] text-white/40 uppercase tracking-[0.3em] font-sans font-bold">2019 – 2020</span>
+                <span className="text-[11px] text-white/70 uppercase tracking-[0.2em] font-sans font-bold">2019 – 2020</span>
               </div>
-              <p className="text-[14px] text-white/50 mb-4 font-medium tracking-tight italic">Dr. KKR Gowtham School, Tenali</p>
+              <p className="text-[14px] text-white/80 mb-4 font-medium tracking-tight italic">Dr. KKR Gowtham School, Tenali</p>
               <span className="text-[12px] bg-white text-black px-4 py-1.5 font-sans font-bold border-l-4 border-[#d4af37]">GPA: 10.0/10</span>
             </div>
           </div>
@@ -465,7 +465,7 @@ function getContent(index: number) {
       return (
         <div className="flex-1">
           <div className="mb-8">
-            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Laurels</h2>
+            <h2 className="text-[11px] uppercase tracking-[0.4em] text-[#d4af37] mb-2 font-sans font-bold">Laurels</h2>
             <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Achievements</h3>
           </div>
           <ul className="space-y-6 mt-6">
@@ -480,7 +480,7 @@ function getContent(index: number) {
                 <span className="text-[#d4af37] text-2xl leading-none">✦</span>
                 <div>
                   <p className="text-[17px] font-bold leading-tight text-white/90 mb-1">{item.title}</p>
-                  <p className="text-[10px] text-white/40 font-sans uppercase tracking-[0.2em] font-bold">{item.subtitle}</p>
+                  <p className="text-[11px] text-white/70 font-sans uppercase tracking-[0.1em] font-bold">{item.subtitle}</p>
                 </div>
               </li>
             ))}
@@ -491,7 +491,7 @@ function getContent(index: number) {
       return (
         <div className="flex-1">
           <div className="mb-8">
-            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Credentials</h2>
+            <h2 className="text-[11px] uppercase tracking-[0.4em] text-[#d4af37] mb-2 font-sans font-bold">Credentials</h2>
             <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Certifications</h3>
           </div>
           <div className="grid grid-cols-2 gap-3 mt-6">
@@ -503,12 +503,12 @@ function getContent(index: number) {
               "NPTEL: HR Analytics"
             ].map((cert, i) => (
               <div key={cert} className="p-4 bg-white/[0.03] border-l-2 border-[#d4af37]/20 hover:border-[#d4af37] hover:bg-[#d4af37]/10 transition-all group backdrop-blur-sm border border-white/5 flex flex-col justify-center">
-                <p className="text-[12px] font-bold leading-tight tracking-tight uppercase group-hover:text-[#d4af37] transition-colors text-white/80">{cert}</p>
+                <p className="text-[12px] font-bold leading-tight tracking-tight uppercase group-hover:text-[#d4af37] transition-colors text-white/90">{cert}</p>
               </div>
             ))}
           </div>
           <div className="mt-10 pt-8 border-t border-white/5">
-             <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-4 font-sans font-bold">Lexicon</h2>
+             <h2 className="text-[11px] uppercase tracking-[0.4em] text-[#d4af37] mb-4 font-sans font-bold">Lexicon</h2>
              <div className="space-y-4">
                {[
                  { lang: "English", level: "Intermediate (B1 Certified)" },
@@ -517,7 +517,7 @@ function getContent(index: number) {
                ].map(l => (
                  <div key={l.lang} className="flex justify-between items-center">
                    <span className="text-[14px] font-bold text-white/90 uppercase tracking-wider">{l.lang}</span>
-                   <span className="text-[10px] text-[#d4af37] font-sans font-bold uppercase tracking-tight">{l.level}</span>
+                   <span className="text-[11px] text-[#d4af37] font-sans font-bold uppercase tracking-tight">{l.level}</span>
                  </div>
                ))}
              </div>
@@ -528,12 +528,12 @@ function getContent(index: number) {
       return (
         <div className="flex-1 flex flex-col justify-center items-center text-center">
           <div className="mb-10">
-            <h2 className="text-[11px] uppercase tracking-[0.8em] text-[#d4af37] mb-6 font-sans font-bold">Initiation</h2>
+            <h2 className="text-[11px] uppercase tracking-[0.5em] text-[#d4af37] mb-6 font-sans font-bold">Initiation</h2>
             <h3 className="text-5xl font-bold tracking-tighter leading-[1] text-white/90">Let's build<br/>intelligence.</h3>
           </div>
           <div className="space-y-8 w-full max-w-[300px]">
               <div className="space-y-3">
-                <p className="text-[9px] text-white/30 uppercase tracking-[0.4em] font-sans font-bold">Contact Sequence</p>
+                <p className="text-[11px] text-white/60 uppercase tracking-[0.2em] font-sans font-bold">Contact Sequence</p>
                 <a 
                   href="mailto:221fa04394@gmail.com"
                   onClick={(e) => {
@@ -557,7 +557,7 @@ function getContent(index: number) {
                       window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://www.linkedin.com/in/amarendra-nadh-bollimuntha-99a171179/" } }, "*");
                     }}
                     onPointerDown={(e) => e.stopPropagation()}
-                    className="text-[10px] uppercase tracking-[0.3em] font-sans font-bold text-white/40 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer"
+                    className="text-[11px] uppercase tracking-[0.2em] font-sans font-bold text-white/70 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer"
                   >
                     LinkedIn
                   </a>
@@ -570,14 +570,14 @@ function getContent(index: number) {
                       window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://github.com/Amar3916" } }, "*");
                     }}
                     onPointerDown={(e) => e.stopPropagation()}
-                    className="text-[10px] uppercase tracking-[0.3em] font-sans font-bold text-white/40 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer"
+                    className="text-[11px] uppercase tracking-[0.2em] font-sans font-bold text-white/70 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer"
                   >
                     GitHub
                   </a>
                 </div>
           </div>
           <div className="mt-16">
-            <p className="text-[9px] text-white/10 uppercase tracking-[0.6em] font-sans font-bold">Terminal Protocol — 2025</p>
+            <p className="text-[11px] text-white/30 uppercase tracking-[0.3em] font-sans font-bold">Terminal Protocol — 2025</p>
           </div>
         </div>
       );
