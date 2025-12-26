@@ -536,13 +536,24 @@ function getContent(index: number) {
               <p className="text-lg font-bold tracking-tight text-white hover:text-[#d4af37] transition-colors cursor-pointer">221fa04394@gmail.com</p>
               <p className="text-lg font-bold tracking-tight text-white">+91 9618562549</p>
             </div>
-            <div className="flex gap-8 justify-center pt-8 border-t border-white/10">
-              {["LinkedIn", "GitHub", "Twitter"].map(link => (
-                <span key={link} className="text-[10px] uppercase tracking-[0.3em] font-sans font-bold text-white/40 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer">
-                  {link}
-                </span>
-              ))}
-            </div>
+              <div className="flex gap-8 justify-center pt-8 border-t border-white/10">
+                <a 
+                  href="https://www.linkedin.com/in/amarendra-nadh-bollimuntha-99a171179/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-[10px] uppercase tracking-[0.3em] font-sans font-bold text-white/40 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer"
+                >
+                  LinkedIn
+                </a>
+                <a 
+                  href="https://github.com/Amar3916" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-[10px] uppercase tracking-[0.3em] font-sans font-bold text-white/40 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer"
+                >
+                  GitHub
+                </a>
+              </div>
           </div>
           <div className="mt-16">
             <p className="text-[9px] text-white/10 uppercase tracking-[0.6em] font-sans font-bold">Terminal Protocol — 2025</p>
