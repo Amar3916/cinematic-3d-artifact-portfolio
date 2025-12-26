@@ -22,21 +22,21 @@ export function UIOverlay() {
   ];
 
   return (
-    <div className="absolute inset-0 pointer-events-none flex flex-col justify-between p-12 z-10">
-      <div className="flex justify-between items-start">
+    <div className="absolute inset-0 pointer-events-none flex flex-col justify-between p-4 md:p-12 z-10">
+      <div className="flex flex-col md:flex-row justify-between items-start gap-4">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="bg-black/40 backdrop-blur-xl border border-white/10 p-6 rounded-sm pointer-events-auto"
+          className="bg-black/60 backdrop-blur-xl border border-white/10 p-4 md:p-6 rounded-sm pointer-events-auto"
         >
-          <h1 className="text-white font-serif text-2xl tracking-[0.2em] uppercase">B. AMARENDRA NADH</h1>
+          <h1 className="text-white font-serif text-lg md:text-2xl tracking-[0.2em] uppercase">B. AMARENDRA NADH</h1>
           <div className="flex items-center gap-3 mt-1">
             <div className="h-[1px] w-4 bg-[#d4af37]" />
-            <p className="text-[#d4af37] text-[12px] tracking-[0.2em] uppercase font-bold">Agentic AI Engineer</p>
+            <p className="text-[#d4af37] text-[10px] md:text-[12px] tracking-[0.2em] uppercase font-bold">Agentic AI Engineer</p>
           </div>
         </motion.div>
 
-          <div className="flex gap-3 pointer-events-auto bg-black/40 p-4 backdrop-blur-xl rounded-full border border-white/10 relative">
+          <div className="flex gap-2 md:gap-3 pointer-events-auto bg-black/60 p-3 md:p-4 backdrop-blur-xl rounded-full border border-white/10 relative overflow-x-auto max-w-full no-scrollbar">
             {chapters.map((chapter, index) => {
               const isActive = currentPage === index;
               return (
