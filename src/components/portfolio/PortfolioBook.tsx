@@ -8,9 +8,68 @@ import { BookPage } from "./BookPage";
 
 const playPageTurnSound = () => {
   if (typeof window === "undefined") return;
-  const audio = new Audio("https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3");
-  audio.volume = 0.4;
-  audio.play().catch(e => console.log("Audio play blocked", e));
+  
+  try {
+    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioContextClass) return;
+    
+    const ctx = new AudioContextClass();
+    const duration = 0.6;
+    
+    // 1. Paper Friction (High-pass filtered noise)
+    const bufferSize = ctx.sampleRate * duration;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = Math.random() * 2 - 1;
+    }
+    
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+    
+    const noiseFilter = ctx.createBiquadFilter();
+    noiseFilter.type = "highpass";
+    noiseFilter.frequency.setValueAtTime(1000, ctx.currentTime);
+    noiseFilter.frequency.exponentialRampToValueAtTime(3000, ctx.currentTime + duration);
+    
+    const noiseGain = ctx.createGain();
+    noiseGain.gain.setValueAtTime(0, ctx.currentTime);
+    noiseGain.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 0.1);
+    noiseGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+    
+    noise.connect(noiseFilter);
+    noiseFilter.connect(noiseGain);
+    noiseGain.connect(ctx.destination);
+    
+    // 2. The "Thump" (Low frequency sine sweep)
+    const osc = ctx.createOscillator();
+    const oscGain = ctx.createGain();
+    
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(150, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + duration);
+    
+    oscGain.gain.setValueAtTime(0, ctx.currentTime);
+    oscGain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 0.05);
+    oscGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+    
+    osc.connect(oscGain);
+    oscGain.connect(ctx.destination);
+    
+    noise.start();
+    osc.start();
+    
+    noise.stop(ctx.currentTime + duration);
+    osc.stop(ctx.currentTime + duration);
+    
+    // Cleanup context
+    setTimeout(() => {
+      if (ctx.state !== 'closed') ctx.close();
+    }, (duration + 0.1) * 1000);
+    
+  } catch (e) {
+    console.error("Sound synthesis failed", e);
+  }
 };
 
 export function PortfolioBook() {
