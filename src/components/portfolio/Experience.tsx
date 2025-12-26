@@ -2,11 +2,20 @@
 
 import { Canvas, useThree } from "@react-three/fiber";
 import { Suspense, useEffect, useRef } from "react";
-import { Environment, Float, Stars, ContactShadows, SoftShadows } from "@react-three/drei";
+import { Environment, Float, Stars, ContactShadows, SoftShadows, Html } from "@react-three/drei";
 import { PortfolioBook } from "./PortfolioBook";
 import { usePortfolioStore } from "@/lib/store";
+import { LoadingScreen } from "./LoadingScreen";
 import gsap from "gsap";
 import * as THREE from "three";
+
+function Loader() {
+  return (
+    <Html center>
+      <LoadingScreen />
+    </Html>
+  );
+}
 
 function CameraController() {
   const { camera } = useThree();
