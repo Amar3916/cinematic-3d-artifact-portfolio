@@ -19,11 +19,11 @@ export function InteractiveElement({ children, position, scale = 1 }: Interactiv
   const [isReturning, setIsReturning] = useState(false);
   
   const homePosition = new THREE.Vector3(...position);
-  const velocity = useRef(new THREE.Vector3(0, 0, 0));
-  const angularVelocity = useRef(new THREE.Euler(0, 0, 0));
-  const lastMousePos = useRef(new THREE.Vector2());
-  const dragPlane = useRef(new THREE.Plane());
-
+    const velocity = useRef(new THREE.Vector3(0, 0, 0));
+    const angularVelocity = useRef(new THREE.Vector3(0, 0, 0));
+    const lastMousePos = useRef(new THREE.Vector2());
+    const dragPlane = useRef(new THREE.Plane());
+  
     useFrame((state) => {
       if (!meshRef.current) return;
   
@@ -52,8 +52,8 @@ export function InteractiveElement({ children, position, scale = 1 }: Interactiv
         meshRef.current.rotation.x -= deltaY * 8;
   
         // Update angular velocity for the "throw" with smoothing
-        angularVelocity.current.y = THREE.MathUtils.lerp(angularVelocity.current.y, deltaX * 12, 0.2);
-        angularVelocity.current.x = THREE.MathUtils.lerp(angularVelocity.current.x, -deltaY * 12, 0.2);
+        angularVelocity.current.y = THREE.MathUtils.lerp(angularVelocity.current.y, deltaX * 0.5, 0.2);
+        angularVelocity.current.x = THREE.MathUtils.lerp(angularVelocity.current.x, -deltaY * 0.5, 0.2);
         
         lastMousePos.current.set(mouse.x, mouse.y);
       } else if (!isReturning) {
@@ -65,12 +65,10 @@ export function InteractiveElement({ children, position, scale = 1 }: Interactiv
         meshRef.current.rotation.x += angularVelocity.current.x;
         meshRef.current.rotation.y += angularVelocity.current.y;
         
-        angularVelocity.current.x *= 0.97;
-        angularVelocity.current.y *= 0.97;
-        angularVelocity.current.z *= 0.97;
+        angularVelocity.current.multiplyScalar(0.97);
   
         // Subtle ambient rotation when stationary
-        if (angularVelocity.current.lengthSq() < 0.0001) {
+        if (angularVelocity.current.lengthSq() < 0.00001) {
           meshRef.current.rotation.y += 0.003;
         }
   
