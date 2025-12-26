@@ -42,20 +42,31 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
       <group>
         <mesh position={[0, 0, 0]}>
           <planeGeometry args={[2.2, 3]} />
-          <meshStandardMaterial color="#0c0c0c" roughness={0.2} metalness={0.9} />
+          <meshStandardMaterial color="#0c0c0c" roughness={0.1} metalness={0.9} />
         </mesh>
-        <Html transform position={[0, 0, 0.021]} distanceFactor={1.5} className="pointer-events-none">
-          <div className="w-[440px] h-[600px] flex flex-col justify-center items-center text-[#d4af37] border-[16px] border-[#d4af37]/20 bg-gradient-to-br from-black/60 to-transparent backdrop-blur-sm p-10">
-            <div className="border-2 border-[#d4af37]/40 p-12 flex flex-col items-center w-full h-full justify-center">
-              <h1 className="text-7xl font-serif font-bold text-center leading-[0.85] tracking-tighter uppercase mb-8 drop-shadow-[0_4px_12px_rgba(212,175,55,0.3)]">
-                THE AI<br/>ARCHITECT
+        
+        {/* Cover Title Glow */}
+        <mesh position={[0, 0.5, 0.01]}>
+          <planeGeometry args={[1.8, 1]} />
+          <meshStandardMaterial color="#d4af37" transparent opacity={0.1} emissive="#d4af37" emissiveIntensity={0.5} />
+        </mesh>
+
+        <Html transform position={[0, 0, 0.025]} distanceFactor={1.5} className="pointer-events-none">
+          <div className="w-[440px] h-[600px] flex flex-col justify-center items-center text-[#d4af37] border-[20px] border-[#d4af37]/20 bg-gradient-to-br from-black/80 via-black/40 to-transparent backdrop-blur-md p-10">
+            <div className="border-4 border-[#d4af37]/40 p-12 flex flex-col items-center w-full h-full justify-center relative overflow-hidden">
+              {/* Decorative Corner */}
+              <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-[#d4af37]" />
+              <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-[#d4af37]" />
+              
+              <h1 className="text-8xl font-serif font-black text-center leading-[0.8] tracking-tighter uppercase mb-10 drop-shadow-[0_0_30px_rgba(212,175,55,0.6)] text-white">
+                THE AI<br/><span className="text-[#d4af37]">ARCHITECT</span>
               </h1>
-              <div className="w-32 h-[2px] bg-[#d4af37] mb-12 shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
-              <div className="space-y-4 text-center">
-                <p className="text-[14px] tracking-[0.6em] uppercase font-sans font-bold text-[#d4af37] opacity-100 mb-1">
-                  B. Amarendra Nadh
+              <div className="w-48 h-[3px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-12" />
+              <div className="space-y-6 text-center">
+                <p className="text-[20px] tracking-[0.5em] uppercase font-sans font-black text-white drop-shadow-md mb-2">
+                  Amarendra Nadh
                 </p>
-                <p className="text-[10px] tracking-[0.4em] uppercase font-sans font-medium text-[#d4af37] opacity-80">
+                <p className="text-[12px] tracking-[0.4em] uppercase font-sans font-bold text-[#d4af37] bg-black/40 px-4 py-2 border border-[#d4af37]/30">
                   Portfolio — Vol. 2025
                 </p>
               </div>
@@ -74,14 +85,21 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
         <meshStandardMaterial color="#ffffff" roughness={1} />
       </mesh>
 
+      {/* If it's the professional summary page, we can add a small 3D element on the right too if needed */}
+      {index === 1 && side === "front" && (
+        <group position={[0.6, 0.8, 0.05]} scale={0.6}>
+           {get3DElements(1)}
+        </group>
+      )}
+
       <Html
         transform
         distanceFactor={1.5}
-        position={[0, 0, 0.011]}
+        position={[0, 0, 0.015]}
         className="select-none pointer-events-none"
         occlude="blending"
       >
-        <div className="w-[440px] h-[600px] p-16 flex flex-col font-serif text-[#111] bg-white/60 backdrop-blur-md">
+        <div className="w-[440px] h-[600px] p-16 flex flex-col font-serif text-[#111] bg-white/40 backdrop-blur-xl border-l border-white/20">
           {getContent(index)}
         </div>
       </Html>
