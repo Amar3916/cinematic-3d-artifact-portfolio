@@ -126,6 +126,18 @@ export function InteractiveElement({ children, position, scale = 1 }: Interactiv
     }
   };
 
+  const handleWheel = (e: any) => {
+    e.stopPropagation();
+    if (isReturning) return;
+
+    // Apply scroll to angular velocity for a smooth spin
+    const scrollSensitivity = 0.002;
+    angularVelocity.current.y += e.deltaY * scrollSensitivity;
+    angularVelocity.current.x += e.deltaX * scrollSensitivity;
+    
+    // Wake up if it was returnHome-ing (though isReturning check above handles it)
+  };
+
   return (
     <group
       ref={meshRef}
@@ -133,6 +145,9 @@ export function InteractiveElement({ children, position, scale = 1 }: Interactiv
       scale={scale}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
+      onWheel={handleWheel}
+      onPointerOver={() => { document.body.style.cursor = 'grab'; }}
+      onPointerOut={() => { document.body.style.cursor = 'default'; }}
     >
       {children}
     </group>
