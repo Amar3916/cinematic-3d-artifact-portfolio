@@ -44,22 +44,30 @@ export function BookPage({ index, currentPage }: BookPageProps) {
 
   return (
     <group ref={group} position={[0, 0, zPos]}>
-      {/* Page Base */}
-      <mesh position={[1.1, 0, 0]} castShadow receiveShadow>
-        <boxGeometry args={[2.2, 3, 0.02]} />
-        <meshStandardMaterial 
-          color={isCover ? "#1a1a1a" : "#f5f5f0"} 
-          roughness={isCover ? 0.2 : 1}
-          metalness={isCover ? 0.8 : 0}
-        />
-        {/* Cover Design */}
-        {isCover && (
-          <mesh position={[0, 0, 0.011]}>
-            <planeGeometry args={[2, 2.8]} />
-            <meshStandardMaterial color="#d4af37" transparent opacity={0.1} />
-          </mesh>
-        )}
-      </mesh>
+        {/* Page Base */}
+        <mesh position={[1.1, 0, 0]} castShadow receiveShadow>
+          <boxGeometry args={[2.2, 3, 0.04]} />
+          <meshStandardMaterial 
+            color={isCover ? "#1a130f" : "#fefefe"} 
+            roughness={isCover ? 0.4 : 0.8}
+            metalness={isCover ? 0.3 : 0}
+          />
+          {/* Cover Design - Gold Engravings */}
+          {isCover && (
+            <group position={[0, 0, 0.021]}>
+              {/* Border */}
+              <mesh>
+                <ringGeometry args={[0.95, 1, 4, 1, Math.PI / 4]} />
+                <meshStandardMaterial color="#d4af37" metalness={1} roughness={0.1} />
+              </mesh>
+              <mesh position={[0, 0, 0.001]}>
+                <planeGeometry args={[1.8, 2.6]} />
+                <meshStandardMaterial color="#d4af37" transparent opacity={0.05} />
+              </mesh>
+            </group>
+          )}
+        </mesh>
+
 
       {/* Front Side: Show content if this page is on the right */}
       {isVisible && !isOpen && (
