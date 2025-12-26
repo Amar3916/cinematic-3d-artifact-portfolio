@@ -6,12 +6,20 @@ import { usePortfolioStore } from "@/lib/store";
 import * as THREE from "three";
 import { BookPage } from "./BookPage";
 
+let pageTurnAudio: HTMLAudioElement | null = null;
+
+if (typeof window !== "undefined") {
+  pageTurnAudio = new Audio("https://www.soundjay.com/misc/sounds/page-flip-01a.mp3");
+  pageTurnAudio.load();
+}
+
 const playPageTurnSound = () => {
-  if (typeof window === "undefined") return;
+  if (!pageTurnAudio) return;
   
-  const audio = new Audio("https://www.soundjay.com/misc/sounds/page-flip-01a.mp3");
-  audio.volume = 0.4;
-  audio.play().catch(e => console.error("Audio playback failed:", e));
+  // Clone to allow overlapping sounds if clicking fast
+  const sound = pageTurnAudio.cloneNode() as HTMLAudioElement;
+  sound.volume = 0.5;
+  sound.play().catch(e => console.warn("Audio playback blocked or failed:", e));
 };
 
 export function PortfolioBook() {
