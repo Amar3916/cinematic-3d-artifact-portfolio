@@ -18,15 +18,30 @@ function Loader() {
 }
 
 function CameraController() {
-  const { camera } = useThree();
+  const { camera, size } = useThree();
   const currentPage = usePortfolioStore((state) => state.currentPage);
 
     useEffect(() => {
+      const isPortrait = size.width < size.height;
+      const aspect = size.width / size.height;
+      
+      // Calculate responsive Z distance
+      // Base distance increases as aspect ratio decreases (narrower screen)
+      let baseZ = currentPage === 0 ? 4.2 : 5.0;
+      
+      if (isPortrait) {
+        // Increase distance for portrait to keep book in view
+        baseZ = (currentPage === 0 ? 4.5 : 5.5) / Math.min(1, aspect * 1.5);
+      } else if (aspect < 1.6) {
+        // Slightly increase for squarer landscapes
+        baseZ *= 1.2 / aspect;
+      }
+
       // Cinematic camera movements
       gsap.to(camera.position, {
         x: 0,
         y: 0,
-        z: currentPage === 0 ? 4.2 : 5.0,
+        z: baseZ,
         duration: 2,
         ease: "power3.inOut"
       });
@@ -34,7 +49,7 @@ function CameraController() {
       // Always look at center
       const target = new THREE.Vector3(0, 0, 0);
       camera.lookAt(target);
-    }, [currentPage, camera]);
+    }, [currentPage, camera, size]);
 
 
   return null;
