@@ -318,21 +318,21 @@ function getContent(index: number) {
     case 1:
       return (
         <div className="flex-1 flex flex-col">
-          <div className="mb-14">
-            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-4 font-sans font-bold">Genesis</h2>
-            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-8">Professional Summary</h3>
+          <div className="mb-8">
+            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Genesis</h2>
+            <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Professional Summary</h3>
           </div>
-          <div className="space-y-10">
-            <p className="text-lg leading-[1.75] text-justify text-white/80 first-letter:text-6xl first-letter:font-bold first-letter:mr-4 first-letter:float-left first-letter:text-[#d4af37] first-letter:font-serif">
+          <div className="space-y-6">
+            <p className="text-[16px] leading-[1.6] text-justify text-white/80 first-letter:text-5xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-[#d4af37] first-letter:font-serif">
               Dynamic Agentic AI Engineer and Full-Stack Developer passionate about building intelligent, 
               autonomous systems and scalable automation workflows. Adept at integrating AI reasoning 
               with real-world tools to deliver production-ready applications that redefine human-machine interaction.
             </p>
-            <div className="grid grid-cols-2 gap-y-6 pt-10 border-t border-white/5">
+            <div className="grid grid-cols-2 gap-y-4 pt-6 border-t border-white/5">
               {["Agentic AI", "LangChain", "MERN Stack", "n8n Automation"].map(tag => (
-                <div key={tag} className="flex items-center gap-4">
-                  <div className="w-2 h-2 bg-[#d4af37] rotate-45" />
-                  <span className="text-[11px] uppercase tracking-[0.2em] font-sans font-bold text-white/60">{tag}</span>
+                <div key={tag} className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-[#d4af37] rotate-45" />
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-white/60">{tag}</span>
                 </div>
               ))}
             </div>
@@ -342,22 +342,22 @@ function getContent(index: number) {
     case 2:
       return (
         <div className="flex-1">
-          <div className="mb-14">
-            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-4 font-sans font-bold">Arsenal</h2>
-            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-8">Core Skills</h3>
+          <div className="mb-8">
+            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Arsenal</h2>
+            <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Core Skills</h3>
           </div>
-          <div className="space-y-12 mt-10">
+          <div className="space-y-8 mt-6">
             <div className="group">
-              <h4 className="text-[10px] uppercase tracking-[0.4em] text-white/30 mb-5 font-sans font-bold">Foundations</h4>
-              <p className="text-xl font-medium tracking-tight text-white/90">Python, Java (OOP), C, JavaScript (ES6+)</p>
+              <h4 className="text-[9px] uppercase tracking-[0.4em] text-white/30 mb-3 font-sans font-bold">Foundations</h4>
+              <p className="text-lg font-medium tracking-tight text-white/90">Python, Java (OOP), C, JavaScript (ES6+)</p>
             </div>
             <div className="group">
-              <h4 className="text-[10px] uppercase tracking-[0.4em] text-white/30 mb-5 font-sans font-bold">Architecture</h4>
-              <p className="text-xl font-medium tracking-tight text-white/90">MERN Stack (React, Node.js, Express, MongoDB)</p>
+              <h4 className="text-[9px] uppercase tracking-[0.4em] text-white/30 mb-3 font-sans font-bold">Architecture</h4>
+              <p className="text-lg font-medium tracking-tight text-white/90">MERN Stack (React, Node.js, Express, MongoDB)</p>
             </div>
             <div className="group">
-              <h4 className="text-[10px] uppercase tracking-[0.4em] text-[#d4af37] mb-5 font-sans font-bold">Intelligence</h4>
-              <p className="text-2xl font-bold tracking-tight text-[#d4af37] drop-shadow-sm">Agentic AI, LangChain, LangGraph, AI Automation</p>
+              <h4 className="text-[9px] uppercase tracking-[0.4em] text-[#d4af37] mb-3 font-sans font-bold">Intelligence</h4>
+              <p className="text-xl font-bold tracking-tight text-[#d4af37] drop-shadow-sm">Agentic AI, LangChain, LangGraph, AI Automation</p>
             </div>
           </div>
         </div>
@@ -365,20 +365,20 @@ function getContent(index: number) {
     case 3:
       return (
         <div className="flex-1">
-          <div className="mb-12">
-            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-4 font-sans font-bold">Artifacts</h2>
-            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-8">Key Projects</h3>
+          <div className="mb-8">
+            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Artifacts</h2>
+            <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Key Projects</h3>
           </div>
-          <div className="space-y-12 mt-10">
+          <div className="space-y-6 mt-6">
             {[
               { title: "Automated YouTube Workflow", desc: "Automated 70% of video preparation using n8n and custom LLM agents." },
               { title: "WebNavigator AI Agent", desc: "Autonomous navigation agent; reduced manual research time by 60%." },
               { title: "Vignan Marketplace", desc: "Full-stack student platform with real-time chat and secure JWT auth." }
             ].map((proj, i) => (
-              <div key={i} className="relative pl-10">
-                <div className="absolute left-0 top-1 w-3 h-3 bg-[#d4af37]/30 border border-[#d4af37]" />
-                <h4 className="text-lg font-bold uppercase tracking-wider mb-3 text-white/90">{proj.title}</h4>
-                <p className="text-[13px] leading-relaxed text-white/60 italic font-medium">{proj.desc}</p>
+              <div key={i} className="relative pl-8">
+                <div className="absolute left-0 top-1 w-2.5 h-2.5 bg-[#d4af37]/30 border border-[#d4af37]" />
+                <h4 className="text-[16px] font-bold uppercase tracking-wider mb-2 text-white/90">{proj.title}</h4>
+                <p className="text-[12px] leading-relaxed text-white/60 italic font-medium">{proj.desc}</p>
               </div>
             ))}
           </div>
@@ -387,22 +387,22 @@ function getContent(index: number) {
     case 4:
       return (
         <div className="flex-1">
-          <div className="mb-14">
-            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-4 font-sans font-bold">Chronicles</h2>
-            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-8">Experience</h3>
+          <div className="mb-8">
+            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Chronicles</h2>
+            <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Experience</h3>
           </div>
-          <div className="space-y-14 mt-10">
-            <div className="relative pl-10 border-l-[3px] border-white/10 hover:border-[#d4af37] transition-colors">
-              <div className="absolute left-[-7px] top-1.5 w-3 h-3 rounded-full bg-[#d4af37] shadow-[0_0_8px_#d4af37]" />
-              <h4 className="text-lg font-bold text-white/90">Founder — Digital Marketing Startup</h4>
-              <p className="text-[10px] uppercase tracking-[0.3em] text-white/40 font-sans mt-3 mb-4 font-bold">Jan 2022 – Present</p>
-              <p className="text-[13px] leading-relaxed text-white/70 font-medium">Scaled marketing operations; content strategy led to a 60% increase in client engagement and conversion.</p>
+          <div className="space-y-8 mt-6">
+            <div className="relative pl-8 border-l-[2px] border-white/10 hover:border-[#d4af37] transition-colors">
+              <div className="absolute left-[-6px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_#d4af37]" />
+              <h4 className="text-[16px] font-bold text-white/90">Founder — Digital Marketing Startup</h4>
+              <p className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-sans mt-2 mb-3 font-bold">Jan 2022 – Present</p>
+              <p className="text-[12px] leading-relaxed text-white/70 font-medium">Scaled marketing operations; content strategy led to a 60% increase in client engagement.</p>
             </div>
-            <div className="relative pl-10 border-l-[3px] border-white/10 hover:border-[#d4af37] transition-colors">
-              <div className="absolute left-[-7px] top-1.5 w-3 h-3 rounded-full bg-[#d4af37] shadow-[0_0_8px_#d4af37]" />
-              <h4 className="text-lg font-bold text-white/90 uppercase">Secretary, E-Cell</h4>
-              <p className="text-[10px] uppercase tracking-[0.3em] text-white/40 font-sans mt-3 mb-4 font-bold">Aug 2023 – Present</p>
-              <p className="text-[13px] leading-relaxed text-white/70 font-medium">Organized 20+ technical events. Spearheaded digital campaigns resulting in 70% boost in regional reach.</p>
+            <div className="relative pl-8 border-l-[2px] border-white/10 hover:border-[#d4af37] transition-colors">
+              <div className="absolute left-[-6px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_#d4af37]" />
+              <h4 className="text-[16px] font-bold text-white/90 uppercase">Secretary, E-Cell</h4>
+              <p className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-sans mt-2 mb-3 font-bold">Aug 2023 – Present</p>
+              <p className="text-[12px] leading-relaxed text-white/70 font-medium">Organized 20+ technical events. Spearheaded digital campaigns resulting in 70% boost in reach.</p>
             </div>
           </div>
         </div>
@@ -410,25 +410,25 @@ function getContent(index: number) {
     case 5:
       return (
         <div className="flex-1">
-          <div className="mb-14">
-            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-4 font-sans font-bold">Foundation</h2>
-            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-8">Education</h3>
+          <div className="mb-8">
+            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Foundation</h2>
+            <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Education</h3>
           </div>
-          <div className="space-y-16 mt-14">
+          <div className="space-y-10 mt-8">
             <div>
-              <h4 className="text-xl font-bold uppercase tracking-widest mb-3 text-white/90">B.Tech in CSE</h4>
-              <p className="text-sm text-white/50 mb-6 font-medium tracking-tight">Vignan's Foundation for Science & Tech</p>
-              <div className="flex items-center gap-6">
-                <span className="text-[12px] bg-white text-black px-4 py-1.5 font-sans font-bold">CGPA: 8.0</span>
-                <span className="text-[11px] text-white/40 uppercase tracking-[0.3em] font-sans font-bold">2022 – 2026</span>
+              <h4 className="text-lg font-bold uppercase tracking-widest mb-2 text-white/90">B.Tech in CSE</h4>
+              <p className="text-[13px] text-white/50 mb-4 font-medium tracking-tight">Vignan's Foundation for Science & Tech</p>
+              <div className="flex items-center gap-4">
+                <span className="text-[11px] bg-white text-black px-3 py-1 font-sans font-bold">CGPA: 8.0</span>
+                <span className="text-[10px] text-white/40 uppercase tracking-[0.3em] font-sans font-bold">2022 – 2026</span>
               </div>
             </div>
             <div>
-              <h4 className="text-xl font-bold uppercase tracking-widest mb-3 text-white/90">Intermediate (MPC)</h4>
-              <p className="text-sm text-white/50 mb-6 font-medium tracking-tight">NRI Junior College, Tenali</p>
-              <div className="flex items-center gap-6">
-                <span className="text-[12px] bg-white text-black px-4 py-1.5 font-sans font-bold">70.1%</span>
-                <span className="text-[11px] text-white/40 uppercase tracking-[0.3em] font-sans font-bold">2020 – 2022</span>
+              <h4 className="text-lg font-bold uppercase tracking-widest mb-2 text-white/90">Intermediate (MPC)</h4>
+              <p className="text-[13px] text-white/50 mb-4 font-medium tracking-tight">NRI Junior College, Tenali</p>
+              <div className="flex items-center gap-4">
+                <span className="text-[11px] bg-white text-black px-3 py-1 font-sans font-bold">70.1%</span>
+                <span className="text-[10px] text-white/40 uppercase tracking-[0.3em] font-sans font-bold">2020 – 2022</span>
               </div>
             </div>
           </div>
@@ -437,21 +437,21 @@ function getContent(index: number) {
     case 6:
       return (
         <div className="flex-1">
-          <div className="mb-14">
-            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-4 font-sans font-bold">Laurels</h2>
-            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-8">Achievements</h3>
+          <div className="mb-8">
+            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Laurels</h2>
+            <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Achievements</h3>
           </div>
-          <ul className="space-y-10 mt-10">
+          <ul className="space-y-6 mt-6">
             {[
               { title: "2× Winner – Cisco ThingQbator", subtitle: "National level innovation excellence" },
-              { title: "Local LLM Orchestration", subtitle: "Optimized inference, reduced API costs by 40%" },
-              { title: "Educational Platforms", subtitle: "Deployed solutions adopted by 150+ students" }
+              { title: "Local LLM Orchestration", subtitle: "Optimized inference, reduced costs by 40%" },
+              { title: "Educational Platforms", subtitle: "Deployed solutions for 150+ students" }
             ].map((item, i) => (
-              <li key={i} className="flex gap-8 items-start">
-                <span className="text-[#d4af37] text-3xl leading-none">✦</span>
+              <li key={i} className="flex gap-6 items-start">
+                <span className="text-[#d4af37] text-2xl leading-none">✦</span>
                 <div>
-                  <p className="text-xl font-bold leading-tight text-white/90 mb-2">{item.title}</p>
-                  <p className="text-[11px] text-white/40 font-sans uppercase tracking-[0.25em] font-bold">{item.subtitle}</p>
+                  <p className="text-[17px] font-bold leading-tight text-white/90 mb-1">{item.title}</p>
+                  <p className="text-[10px] text-white/40 font-sans uppercase tracking-[0.2em] font-bold">{item.subtitle}</p>
                 </div>
               </li>
             ))}
@@ -461,16 +461,16 @@ function getContent(index: number) {
     case 7:
       return (
         <div className="flex-1">
-          <div className="mb-12">
-            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-4 font-sans font-bold">Credentials</h2>
-            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-8">Certifications</h3>
+          <div className="mb-8">
+            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Credentials</h2>
+            <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Certifications</h3>
           </div>
-          <div className="grid grid-cols-2 gap-6 mt-10">
+          <div className="grid grid-cols-2 gap-4 mt-6">
             {["CCNA 1, 2, 3", "Cybersecurity", "Data Visualization", "HR Analytics"].map((cert, i) => (
-              <div key={cert} className="p-7 bg-white/[0.03] border-l-4 border-white/5 hover:border-[#d4af37] hover:bg-[#d4af37]/10 transition-all group aspect-square flex flex-col justify-between backdrop-blur-sm border border-white/5">
-                <span className="text-[10px] text-white/20 font-sans font-bold tracking-tight uppercase">License_00{i+1}</span>
-                <p className="text-[14px] font-bold leading-tight tracking-tight uppercase group-hover:text-[#d4af37] transition-colors text-white/80">{cert}</p>
-                <div className="w-8 h-[2px] bg-[#d4af37] opacity-20 group-hover:opacity-100 group-hover:w-full transition-all" />
+              <div key={cert} className="p-5 bg-white/[0.03] border-l-4 border-white/5 hover:border-[#d4af37] hover:bg-[#d4af37]/10 transition-all group aspect-square flex flex-col justify-between backdrop-blur-sm border border-white/5">
+                <span className="text-[9px] text-white/20 font-sans font-bold tracking-tight uppercase">License_00{i+1}</span>
+                <p className="text-[13px] font-bold leading-tight tracking-tight uppercase group-hover:text-[#d4af37] transition-colors text-white/80">{cert}</p>
+                <div className="w-6 h-[1px] bg-[#d4af37] opacity-20 group-hover:opacity-100 group-hover:w-full transition-all" />
               </div>
             ))}
           </div>
@@ -479,26 +479,26 @@ function getContent(index: number) {
     case 8:
       return (
         <div className="flex-1 flex flex-col justify-center items-center text-center">
-          <div className="mb-16">
-            <h2 className="text-[11px] uppercase tracking-[1em] text-[#d4af37] mb-8 font-sans font-bold">Initiation</h2>
-            <h3 className="text-6xl font-bold tracking-tighter leading-[1] text-white/90">Let's build<br/>intelligence.</h3>
+          <div className="mb-10">
+            <h2 className="text-[11px] uppercase tracking-[0.8em] text-[#d4af37] mb-6 font-sans font-bold">Initiation</h2>
+            <h3 className="text-5xl font-bold tracking-tighter leading-[1] text-white/90">Let's build<br/>intelligence.</h3>
           </div>
-          <div className="space-y-10 w-full max-w-[320px]">
-            <div className="space-y-4">
-              <p className="text-[10px] text-white/30 uppercase tracking-[0.4em] font-sans font-bold">Contact Sequence</p>
-              <p className="text-xl font-bold tracking-tight text-white">221fa04394@gmail.com</p>
-              <p className="text-xl font-bold tracking-tight text-white">+91 9618562549</p>
+          <div className="space-y-8 w-full max-w-[300px]">
+            <div className="space-y-3">
+              <p className="text-[9px] text-white/30 uppercase tracking-[0.4em] font-sans font-bold">Contact Sequence</p>
+              <p className="text-lg font-bold tracking-tight text-white">221fa04394@gmail.com</p>
+              <p className="text-lg font-bold tracking-tight text-white">+91 9618562549</p>
             </div>
-            <div className="flex gap-10 justify-center pt-10 border-t border-white/10">
+            <div className="flex gap-8 justify-center pt-8 border-t border-white/10">
               {["LinkedIn", "GitHub"].map(link => (
-                <span key={link} className="text-[11px] uppercase tracking-[0.3em] font-sans font-bold text-white/40 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer">
+                <span key={link} className="text-[10px] uppercase tracking-[0.3em] font-sans font-bold text-white/40 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer">
                   {link}
                 </span>
               ))}
             </div>
           </div>
-          <div className="mt-24">
-            <p className="text-[10px] text-white/10 uppercase tracking-[0.8em] font-sans font-bold">Terminal Protocol — 2025</p>
+          <div className="mt-16">
+            <p className="text-[9px] text-white/10 uppercase tracking-[0.6em] font-sans font-bold">Terminal Protocol — 2025</p>
           </div>
         </div>
       );
