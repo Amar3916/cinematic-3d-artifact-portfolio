@@ -1,11 +1,13 @@
 "use client";
 
 import { usePortfolioStore } from "@/lib/store";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight, User } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 export function UIOverlay() {
   const { currentPage, totalPages, nextPage, prevPage, setPage } = usePortfolioStore();
+  const [hoveredChapter, setHoveredChapter] = useState<number | null>(null);
 
   const chapters = [
     "Cover",
