@@ -15,24 +15,25 @@ interface BookPageProps {
 export function BookPage({ index, currentPage }: BookPageProps) {
   const group = useRef<THREE.Group>(null);
   
-  // A page is "open" if its index is less than or equal to the current page
-  const isOpen = index <= currentPage;
-  
-  // A page is visible if:
-  // 1. It's the current page (back side visible on left)
-  // 2. It's the next page (front side visible on right)
-  const isVisible = index === currentPage || index === currentPage + 1;
-  
-  const isCover = index === 0;
-  
-  // Z-fighting prevention
-  const zPos = isVisible ? 0.05 : index * 0.005;
-
-  useEffect(() => {
-    if (!group.current) return;
+    // A page is "open" if its index is less than the current page
+    const isOpen = index < currentPage;
     
-    // Page 0 is the cover, it flips when currentPage > 0
-    const targetRotation = currentPage >= index && index !== 0 ? -Math.PI : (index === 0 && currentPage > 0 ? -Math.PI : 0);
+    // A page is visible if:
+    // 1. It's the current page (front side visible on right)
+    // 2. It's the previous page (back side visible on left)
+    const isVisible = index === currentPage || index === currentPage - 1;
+    
+    const isCover = index === 0;
+    
+    // Z-fighting prevention
+    const zPos = isVisible ? 0.1 : index * 0.005;
+  
+    useEffect(() => {
+      if (!group.current) return;
+      
+      // Rotate if the page has been flipped (index < currentPage)
+      const targetRotation = index < currentPage ? -Math.PI : 0;
+
     
     gsap.to(group.current.rotation, {
       y: targetRotation,
