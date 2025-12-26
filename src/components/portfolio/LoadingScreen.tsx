@@ -35,8 +35,8 @@ export function LoadingScreen() {
           transition={{ delay: 0.5 }}
           className="mt-8 flex flex-col items-center gap-2"
         >
-          <span className="text-[10px] tracking-[0.8em] text-[#d4af37] uppercase font-bold">Initializing</span>
-          <span className="text-white/20 text-[8px] tracking-[0.4em] uppercase">AI Architect Portfolio</span>
+          <span className="text-[12px] tracking-[0.6em] text-[#d4af37] uppercase font-bold">Initializing</span>
+          <span className="text-white/60 text-[10px] tracking-[0.4em] uppercase font-bold">AI Architect Portfolio</span>
         </motion.div>
       </motion.div>
     </div>
