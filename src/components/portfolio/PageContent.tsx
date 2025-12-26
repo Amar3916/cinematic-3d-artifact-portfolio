@@ -58,18 +58,18 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
                 <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-[#d4af37]" />
                 <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-[#d4af37]" />
                 
-                <h1 className="text-6xl font-serif font-black text-center leading-[1.05] tracking-tight uppercase mb-8 drop-shadow-[0_0_30px_rgba(212,175,55,0.6)] text-white">
-                  THE AI<br/><span className="text-[#d4af37]">ARCHITECT</span>
-                </h1>
-                <div className="w-40 h-[3px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-10" />
-                <div className="space-y-4 text-center">
-                  <p className="text-[20px] tracking-[0.5em] uppercase font-sans font-black text-white drop-shadow-md mb-2">
-                    Amarendra Nadh
-                  </p>
-                  <p className="text-[11px] tracking-[0.4em] uppercase font-sans font-bold text-[#d4af37] bg-black/40 px-4 py-2 border border-[#d4af37]/30">
-                    Portfolio — Vol. 2025
-                  </p>
-                </div>
+                  <h1 className="text-5xl font-serif font-black text-center leading-[1.05] tracking-tight uppercase mb-6 drop-shadow-[0_0_30px_rgba(212,175,55,0.6)] text-white">
+                    THE AI<br/><span className="text-[#d4af37]">ARCHITECT</span>
+                  </h1>
+                  <div className="w-32 h-[3px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-8" />
+                  <div className="space-y-4 text-center">
+                    <p className="text-[18px] tracking-[0.5em] uppercase font-sans font-black text-white drop-shadow-md mb-2">
+                      Amarendra Nadh
+                    </p>
+                    <p className="text-[10px] tracking-[0.4em] uppercase font-sans font-bold text-[#d4af37] bg-black/40 px-4 py-2 border border-[#d4af37]/30">
+                      Portfolio — Vol. 2025
+                    </p>
+                  </div>
               </div>
             </div>
           </Html>
