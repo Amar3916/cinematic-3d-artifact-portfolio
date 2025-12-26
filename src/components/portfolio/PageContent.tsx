@@ -18,13 +18,13 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
       <group>
         <mesh position={[0, 0, 0]}>
           <planeGeometry args={[2.2, 3]} />
-          <meshStandardMaterial color="#f8f8f6" roughness={1} />
+          <meshStandardMaterial color="#0a0a0a" roughness={0.1} metalness={0.8} />
         </mesh>
         
         {/* Decorative elements on the left page */}
         <mesh position={[0, 0, 0.01]}>
           <planeGeometry args={[1.8, 2.6]} />
-          <meshStandardMaterial color="#d4af37" transparent opacity={0.03} />
+          <meshStandardMaterial color="#d4af37" transparent opacity={0.02} />
         </mesh>
 
         <group position={[0, 0, 0.4]} scale={1.8}>
