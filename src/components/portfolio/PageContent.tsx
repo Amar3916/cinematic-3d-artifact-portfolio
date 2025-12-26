@@ -345,44 +345,58 @@ function getContent(index: number) {
             <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Arsenal</h2>
             <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Core Skills</h3>
           </div>
-          <div className="space-y-8 mt-6">
-            <div className="group">
-              <h4 className="text-[9px] uppercase tracking-[0.4em] text-white/30 mb-3 font-sans font-bold">Foundations</h4>
-              <p className="text-lg font-medium tracking-tight text-white/90">Python, Java (OOP), C, JavaScript (ES6+)</p>
+          <div className="space-y-6 mt-6">
+            <div>
+              <h4 className="text-[10px] uppercase tracking-[0.4em] text-white/40 mb-2 font-sans font-bold">Languages</h4>
+              <p className="text-lg font-medium tracking-tight text-white/90">C, Python, Java (OOP)</p>
             </div>
-            <div className="group">
-              <h4 className="text-[9px] uppercase tracking-[0.4em] text-white/30 mb-3 font-sans font-bold">Architecture</h4>
-              <p className="text-lg font-medium tracking-tight text-white/90">MERN Stack (React, Node.js, Express, MongoDB)</p>
+            <div>
+              <h4 className="text-[10px] uppercase tracking-[0.4em] text-white/40 mb-2 font-sans font-bold">Web Development</h4>
+              <p className="text-lg font-medium tracking-tight text-white/90">HTML, CSS, React.js, Node.js, Express.js, MongoDB (MERN)</p>
             </div>
-            <div className="group">
-              <h4 className="text-[9px] uppercase tracking-[0.4em] text-[#d4af37] mb-3 font-sans font-bold">Intelligence</h4>
-              <p className="text-xl font-bold tracking-tight text-[#d4af37] drop-shadow-sm">Agentic AI, LangChain, LangGraph, AI Automation</p>
+            <div>
+              <h4 className="text-[10px] uppercase tracking-[0.4em] text-[#d4af37] mb-2 font-sans font-bold">AI & Machine Learning</h4>
+              <p className="text-xl font-bold tracking-tight text-[#d4af37]">Local LLMs, Agentic AI, LangChain, LangGraph, AI Automation</p>
+            </div>
+            <div>
+              <h4 className="text-[10px] uppercase tracking-[0.4em] text-white/40 mb-2 font-sans font-bold">Tools & Integrations</h4>
+              <p className="text-[14px] font-medium text-white/80 leading-relaxed">n8n, VS Code, Postman, Notion, LLM Studio, Canva, REST APIs, Webhooks</p>
+            </div>
+            <div>
+              <h4 className="text-[10px] uppercase tracking-[0.4em] text-white/40 mb-2 font-sans font-bold">Others</h4>
+              <p className="text-[14px] font-medium text-white/80 leading-relaxed">Digital Marketing, Workflow Automation, Cloud Deployment Basics</p>
             </div>
           </div>
         </div>
       );
-        case 3:
-          return (
-            <div className="flex-1">
-              <div className="mb-4">
-                <h2 className="text-[9px] uppercase tracking-[0.6em] text-[#d4af37] mb-1 font-sans font-bold">Artifacts</h2>
-                <h3 className="text-2xl font-bold tracking-tighter border-b border-white/5 pb-2">Key Projects</h3>
+    case 3:
+      return (
+        <div className="flex-1">
+          <div className="mb-6">
+            <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Artifacts</h2>
+            <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Key Projects</h3>
+          </div>
+          <div className="space-y-6 mt-4 pb-10">
+            {[
+              { title: "Automated YouTube Workflow", year: "2024", desc: "Devised content pipeline automating 70% of video prep using n8n and LLM agents; saved 10+ hours/week." },
+              { title: "Speech Emotion Recognition (AI)", year: "2024", desc: "Trained audio classification model (MFCC, SVM) to detect 6 emotions with 85%+ accuracy." },
+              { title: "Vignan Marketplace (MERN)", year: "2024", desc: "Student marketplace with secure JWT login and real-time chat (<300ms latency)." },
+              { title: "WebNavigator (AI Agent)", year: "2025", desc: "Autonomous web navigation agent using LangChain; reduced research time by 60%." },
+              { title: "Finance ERP Module (MERN)", year: "2023", desc: "Digitized paperwork workflows, reducing manual processes by 40%." },
+              { title: "Network Simulation", year: "2023", desc: "Configured enterprise network topologies with VLAN and OSPF using Packet Tracer." }
+            ].map((proj, i) => (
+              <div key={i} className="relative pl-6 border-l border-[#d4af37]/20 hover:border-[#d4af37] transition-colors pb-4">
+                <div className="absolute left-[-4px] top-1.5 w-2 h-2 rounded-full bg-[#d4af37]/30 border border-[#d4af37]" />
+                <div className="flex justify-between items-baseline mb-1">
+                  <h4 className="text-[15px] font-bold uppercase tracking-wide text-white/90">{proj.title}</h4>
+                  <span className="text-[10px] text-[#d4af37] font-bold font-sans">{proj.year}</span>
+                </div>
+                <p className="text-[12px] leading-relaxed text-white/60 font-medium">{proj.desc}</p>
               </div>
-              <div className="space-y-4 mt-2">
-                {[
-                  { title: "Automated YouTube Workflow", desc: "Automated 70% of video prep using n8n and LLM agents." },
-                  { title: "WebNavigator AI", desc: "Autonomous navigation agent; reduced research time by 60%." },
-                  { title: "Vignan Marketplace", desc: "Full-stack student platform with real-time chat and JWT." }
-                ].map((proj, i) => (
-                  <div key={i} className="relative pl-6">
-                    <div className="absolute left-0 top-1 w-1.5 h-1.5 bg-[#d4af37]/30 border border-[#d4af37]" />
-                    <h4 className="text-[12px] font-bold uppercase tracking-wider mb-0.5 text-white/90">{proj.title}</h4>
-                    <p className="text-[10px] leading-relaxed text-white/60 italic font-medium">{proj.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          );
+            ))}
+          </div>
+        </div>
+      );
     case 4:
       return (
         <div className="flex-1">
@@ -393,15 +407,21 @@ function getContent(index: number) {
           <div className="space-y-8 mt-6">
             <div className="relative pl-8 border-l-[2px] border-white/10 hover:border-[#d4af37] transition-colors">
               <div className="absolute left-[-6px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_#d4af37]" />
-              <h4 className="text-[16px] font-bold text-white/90">Founder — Digital Marketing Startup</h4>
+              <h4 className="text-[18px] font-bold text-white/90">Founder — Digital Marketing Startup</h4>
               <p className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-sans mt-2 mb-3 font-bold">Jan 2022 – Present</p>
-              <p className="text-[12px] leading-relaxed text-white/70 font-medium">Scaled marketing operations; content strategy led to a 60% increase in client engagement.</p>
+              <p className="text-[13px] leading-relaxed text-white/70 font-medium text-justify">Launched and scaled marketing operations; the content strategy led to a 60% increase in client engagement.</p>
             </div>
             <div className="relative pl-8 border-l-[2px] border-white/10 hover:border-[#d4af37] transition-colors">
               <div className="absolute left-[-6px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_#d4af37]" />
-              <h4 className="text-[16px] font-bold text-white/90 uppercase">Secretary, E-Cell</h4>
+              <h4 className="text-[18px] font-bold text-white/90 uppercase leading-tight">Secretary, E-Cell — Vignan University</h4>
               <p className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-sans mt-2 mb-3 font-bold">Aug 2023 – Present</p>
-              <p className="text-[12px] leading-relaxed text-white/70 font-medium">Organized 20+ technical events. Spearheaded digital campaigns resulting in 70% boost in reach.</p>
+              <p className="text-[13px] leading-relaxed text-white/70 font-medium text-justify">Organized 20+ technical and outreach events. Spearheaded social media campaigns resulting in a 70% boost in reach.</p>
+            </div>
+            <div className="relative pl-8 border-l-[2px] border-white/10 hover:border-[#d4af37] transition-colors">
+              <div className="absolute left-[-6px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_#d4af37]" />
+              <h4 className="text-[18px] font-bold text-white/90 uppercase leading-tight">MERN & AI Automation Architect</h4>
+              <p className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-sans mt-2 mb-3 font-bold">2023 – 2024</p>
+              <p className="text-[13px] leading-relaxed text-white/70 font-medium text-justify">Built and deployed full-stack apps in 24-hour hackathons. Led teams to build Farmer Support and University Admin portals.</p>
             </div>
           </div>
         </div>
@@ -415,20 +435,28 @@ function getContent(index: number) {
           </div>
           <div className="space-y-10 mt-8">
             <div>
-              <h4 className="text-lg font-bold uppercase tracking-widest mb-2 text-white/90">B.Tech in CSE</h4>
-              <p className="text-[13px] text-white/50 mb-4 font-medium tracking-tight">Vignan's Foundation for Science & Tech</p>
-              <div className="flex items-center gap-4">
-                <span className="text-[11px] bg-white text-black px-3 py-1 font-sans font-bold">CGPA: 8.0</span>
+              <div className="flex justify-between items-start mb-2">
+                <h4 className="text-xl font-bold uppercase tracking-tight text-white/90">B.Tech in CSE</h4>
                 <span className="text-[10px] text-white/40 uppercase tracking-[0.3em] font-sans font-bold">2022 – 2026</span>
               </div>
+              <p className="text-[14px] text-white/50 mb-4 font-medium tracking-tight italic">Vignan's Foundation for Science, Technology and Research</p>
+              <span className="text-[12px] bg-white text-black px-4 py-1.5 font-sans font-bold border-l-4 border-[#d4af37]">CGPA: 8.0/10</span>
             </div>
             <div>
-              <h4 className="text-lg font-bold uppercase tracking-widest mb-2 text-white/90">Intermediate (MPC)</h4>
-              <p className="text-[13px] text-white/50 mb-4 font-medium tracking-tight">NRI Junior College, Tenali</p>
-              <div className="flex items-center gap-4">
-                <span className="text-[11px] bg-white text-black px-3 py-1 font-sans font-bold">70.1%</span>
+              <div className="flex justify-between items-start mb-2">
+                <h4 className="text-xl font-bold uppercase tracking-tight text-white/90">Intermediate (MPC)</h4>
                 <span className="text-[10px] text-white/40 uppercase tracking-[0.3em] font-sans font-bold">2020 – 2022</span>
               </div>
+              <p className="text-[14px] text-white/50 mb-4 font-medium tracking-tight italic">NRI Junior College, Tenali</p>
+              <span className="text-[12px] bg-white text-black px-4 py-1.5 font-sans font-bold border-l-4 border-[#d4af37]">Percentage: 70.1%</span>
+            </div>
+            <div>
+              <div className="flex justify-between items-start mb-2">
+                <h4 className="text-xl font-bold uppercase tracking-tight text-white/90">10th Grade (SSC)</h4>
+                <span className="text-[10px] text-white/40 uppercase tracking-[0.3em] font-sans font-bold">2019 – 2020</span>
+              </div>
+              <p className="text-[14px] text-white/50 mb-4 font-medium tracking-tight italic">Dr. KKR Gowtham School, Tenali</p>
+              <span className="text-[12px] bg-white text-black px-4 py-1.5 font-sans font-bold border-l-4 border-[#d4af37]">GPA: 10.0/10</span>
             </div>
           </div>
         </div>
@@ -442,9 +470,11 @@ function getContent(index: number) {
           </div>
           <ul className="space-y-6 mt-6">
             {[
-              { title: "2× Winner – Cisco ThingQbator", subtitle: "National level innovation excellence" },
-              { title: "Local LLM Orchestration", subtitle: "Optimized inference, reduced costs by 40%" },
-              { title: "Educational Platforms", subtitle: "Deployed solutions for 150+ students" }
+              { title: "2× Winner – Cisco ThingQbator", subtitle: "Excellence in technical innovation and design" },
+              { title: "Digital Marketing Startup Founder", subtitle: "Launched and scaled operational content strategy" },
+              { title: "Local LLM Orchestration", subtitle: "Hosted DeepSeek/OpenAI locally, cutting costs by 40%" },
+              { title: "Educational Platforms", subtitle: "Created solutions adopted by 150+ students" },
+              { title: "Open-Source Contributor", subtitle: "AI & ML projects and MERN stack web applications" }
             ].map((item, i) => (
               <li key={i} className="flex gap-6 items-start">
                 <span className="text-[#d4af37] text-2xl leading-none">✦</span>
@@ -464,14 +494,33 @@ function getContent(index: number) {
             <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Credentials</h2>
             <h3 className="text-4xl font-bold tracking-tighter border-b-2 border-white/5 pb-4">Certifications</h3>
           </div>
-          <div className="grid grid-cols-2 gap-4 mt-6">
-            {["CCNA 1, 2, 3", "Cybersecurity", "Data Visualization", "HR Analytics"].map((cert, i) => (
-              <div key={cert} className="p-5 bg-white/[0.03] border-l-4 border-white/5 hover:border-[#d4af37] hover:bg-[#d4af37]/10 transition-all group aspect-square flex flex-col justify-between backdrop-blur-sm border border-white/5">
-                <span className="text-[9px] text-white/20 font-sans font-bold tracking-tight uppercase">License_00{i+1}</span>
-                <p className="text-[13px] font-bold leading-tight tracking-tight uppercase group-hover:text-[#d4af37] transition-colors text-white/80">{cert}</p>
-                <div className="w-6 h-[1px] bg-[#d4af37] opacity-20 group-hover:opacity-100 group-hover:w-full transition-all" />
+          <div className="grid grid-cols-2 gap-3 mt-6">
+            {[
+              "Tata STRIVE: Visualization",
+              "Deloitte: Cybersecurity",
+              "Cisco: CCNA 1, 2, 3",
+              "NPTEL: Data Visualization",
+              "NPTEL: HR Analytics"
+            ].map((cert, i) => (
+              <div key={cert} className="p-4 bg-white/[0.03] border-l-2 border-[#d4af37]/20 hover:border-[#d4af37] hover:bg-[#d4af37]/10 transition-all group backdrop-blur-sm border border-white/5 flex flex-col justify-center">
+                <p className="text-[12px] font-bold leading-tight tracking-tight uppercase group-hover:text-[#d4af37] transition-colors text-white/80">{cert}</p>
               </div>
             ))}
+          </div>
+          <div className="mt-10 pt-8 border-t border-white/5">
+             <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-4 font-sans font-bold">Lexicon</h2>
+             <div className="space-y-4">
+               {[
+                 { lang: "English", level: "Intermediate (B1 Certified)" },
+                 { lang: "Telugu", level: "Native" },
+                 { lang: "Hindi", level: "Intermediate" }
+               ].map(l => (
+                 <div key={l.lang} className="flex justify-between items-center">
+                   <span className="text-[14px] font-bold text-white/90 uppercase tracking-wider">{l.lang}</span>
+                   <span className="text-[10px] text-[#d4af37] font-sans font-bold uppercase tracking-tight">{l.level}</span>
+                 </div>
+               ))}
+             </div>
           </div>
         </div>
       );
@@ -485,11 +534,11 @@ function getContent(index: number) {
           <div className="space-y-8 w-full max-w-[300px]">
             <div className="space-y-3">
               <p className="text-[9px] text-white/30 uppercase tracking-[0.4em] font-sans font-bold">Contact Sequence</p>
-              <p className="text-lg font-bold tracking-tight text-white">221fa04394@gmail.com</p>
+              <p className="text-lg font-bold tracking-tight text-white hover:text-[#d4af37] transition-colors cursor-pointer">221fa04394@gmail.com</p>
               <p className="text-lg font-bold tracking-tight text-white">+91 9618562549</p>
             </div>
             <div className="flex gap-8 justify-center pt-8 border-t border-white/10">
-              {["LinkedIn", "GitHub"].map(link => (
+              {["LinkedIn", "GitHub", "Twitter"].map(link => (
                 <span key={link} className="text-[10px] uppercase tracking-[0.3em] font-sans font-bold text-white/40 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer">
                   {link}
                 </span>
@@ -501,6 +550,10 @@ function getContent(index: number) {
           </div>
         </div>
       );
+    default:
+      return null;
+  }
+}
     default:
       return null;
   }
