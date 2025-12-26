@@ -361,28 +361,28 @@ function getContent(index: number) {
           </div>
         </div>
       );
-      case 3:
-        return (
-          <div className="flex-1">
-            <div className="mb-6">
-              <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#d4af37] mb-2 font-sans font-bold">Artifacts</h2>
-              <h3 className="text-3xl font-bold tracking-tighter border-b border-white/5 pb-3">Key Projects</h3>
+        case 3:
+          return (
+            <div className="flex-1">
+              <div className="mb-4">
+                <h2 className="text-[9px] uppercase tracking-[0.6em] text-[#d4af37] mb-1 font-sans font-bold">Artifacts</h2>
+                <h3 className="text-2xl font-bold tracking-tighter border-b border-white/5 pb-2">Key Projects</h3>
+              </div>
+              <div className="space-y-4 mt-2">
+                {[
+                  { title: "Automated YouTube Workflow", desc: "Automated 70% of video prep using n8n and LLM agents." },
+                  { title: "WebNavigator AI", desc: "Autonomous navigation agent; reduced research time by 60%." },
+                  { title: "Vignan Marketplace", desc: "Full-stack student platform with real-time chat and JWT." }
+                ].map((proj, i) => (
+                  <div key={i} className="relative pl-6">
+                    <div className="absolute left-0 top-1 w-1.5 h-1.5 bg-[#d4af37]/30 border border-[#d4af37]" />
+                    <h4 className="text-[12px] font-bold uppercase tracking-wider mb-0.5 text-white/90">{proj.title}</h4>
+                    <p className="text-[10px] leading-relaxed text-white/60 italic font-medium">{proj.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="space-y-5 mt-4">
-              {[
-                { title: "Automated YouTube Workflow", desc: "Automated 70% of video prep using n8n and LLM agents." },
-                { title: "WebNavigator AI", desc: "Autonomous navigation agent; reduced research time by 60%." },
-                { title: "Vignan Marketplace", desc: "Full-stack student platform with real-time chat and JWT." }
-              ].map((proj, i) => (
-                <div key={i} className="relative pl-7">
-                  <div className="absolute left-0 top-1 w-2 h-2 bg-[#d4af37]/30 border border-[#d4af37]" />
-                  <h4 className="text-[14px] font-bold uppercase tracking-wider mb-1 text-white/90">{proj.title}</h4>
-                  <p className="text-[11px] leading-relaxed text-white/60 italic font-medium">{proj.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
+          );
     case 4:
       return (
         <div className="flex-1">
