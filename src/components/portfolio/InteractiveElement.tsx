@@ -128,14 +128,18 @@ export function InteractiveElement({ children, position, scale = 1 }: Interactiv
 
   const handleWheel = (e: any) => {
     e.stopPropagation();
-    if (isReturning) return;
+    
+    if (isReturning) {
+      setIsReturning(false);
+      gsap.killTweensOf(meshRef.current?.position);
+      gsap.killTweensOf(meshRef.current?.rotation);
+    }
 
     // Apply scroll to angular velocity for a smooth spin
+    // Increase sensitivity for a more responsive feel
     const scrollSensitivity = 0.002;
     angularVelocity.current.y += e.deltaY * scrollSensitivity;
     angularVelocity.current.x += e.deltaX * scrollSensitivity;
-    
-    // Wake up if it was returnHome-ing (though isReturning check above handles it)
   };
 
   return (
@@ -146,8 +150,8 @@ export function InteractiveElement({ children, position, scale = 1 }: Interactiv
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       onWheel={handleWheel}
-      onPointerOver={() => { document.body.style.cursor = 'grab'; }}
-      onPointerOut={() => { document.body.style.cursor = 'default'; }}
+      onPointerEnter={() => { document.body.style.cursor = 'grab'; }}
+      onPointerLeave={() => { document.body.style.cursor = 'default'; }}
     >
       {children}
     </group>
