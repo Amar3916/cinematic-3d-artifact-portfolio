@@ -36,21 +36,50 @@ export function UIOverlay() {
           </div>
         </motion.div>
 
-          <div className="flex gap-3 pointer-events-auto bg-black/20 p-4 backdrop-blur-md rounded-full border border-white/5">
+          <div className="flex gap-3 pointer-events-auto bg-black/40 p-4 backdrop-blur-xl rounded-full border border-white/10 relative">
             {chapters.map((chapter, index) => {
               const isActive = currentPage === index;
               return (
-                <button
+                <div
                   key={chapter}
-                  onClick={() => setPage(index)}
-                  className={`w-1.5 h-1.5 rounded-full transition-all duration-700 ${
-                    isActive ? "bg-[#d4af37] scale-[2] shadow-[0_0_10px_#d4af37]" : "bg-white/20 hover:bg-white/50"
-                  }`}
-                  title={chapter}
-                />
+                  className="relative flex flex-col items-center"
+                  onMouseEnter={() => setHoveredChapter(index)}
+                  onMouseLeave={() => setHoveredChapter(null)}
+                >
+                  <button
+                    onClick={() => setPage(index)}
+                    className={`w-1.5 h-1.5 rounded-full transition-all duration-500 relative ${
+                      isActive ? "bg-[#d4af37] scale-[2.5]" : "bg-white/20 hover:bg-white/50"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="active-dot"
+                        className="absolute inset-0 rounded-full bg-[#d4af37] blur-[4px] opacity-60"
+                      />
+                    )}
+                  </button>
+
+                  <AnimatePresence>
+                    {hoveredChapter === index && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 5, scale: 0.9 }}
+                        className="absolute top-10 whitespace-nowrap bg-black/90 border border-[#d4af37]/30 px-3 py-1.5 rounded-sm"
+                      >
+                        <span className="text-[9px] text-[#d4af37] tracking-[0.3em] uppercase font-bold">
+                          {chapter}
+                        </span>
+                        <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-black border-l border-t border-[#d4af37]/30 rotate-45" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               );
             })}
           </div>
+
         </div>
 
         <div className="flex justify-between items-center pointer-events-auto">
