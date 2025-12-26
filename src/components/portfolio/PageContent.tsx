@@ -36,75 +36,81 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
 
   // FRONT SIDE: The Right Page (Text Content or Cover)
   
-  // 1. Cover Page Special Case
-  if (index === 0 && side === "front") {
+    // 1. Cover Page Special Case
+    if (index === 0 && side === "front") {
+      return (
+        <group>
+          <mesh position={[0, 0, 0]}>
+            <planeGeometry args={[2.2, 3]} />
+            <meshStandardMaterial color="#0c0c0c" roughness={0.1} metalness={0.9} />
+          </mesh>
+          
+          {/* Cover Title Glow */}
+          <mesh position={[0, 0.5, 0.01]}>
+            <planeGeometry args={[1.8, 1]} />
+            <meshStandardMaterial color="#d4af37" transparent opacity={0.1} emissive="#d4af37" emissiveIntensity={0.5} />
+          </mesh>
+  
+          <Html transform position={[0, 0, 0.025]} distanceFactor={1.5} className="pointer-events-none">
+            <div className="w-[440px] h-[600px] flex flex-col justify-center items-center text-[#d4af37] border-[20px] border-[#d4af37]/20 bg-gradient-to-br from-black/80 via-black/40 to-transparent backdrop-blur-md p-10">
+              <div className="border-4 border-[#d4af37]/40 p-8 flex flex-col items-center w-full h-full justify-center relative overflow-hidden">
+                {/* Decorative Corner */}
+                <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-[#d4af37]" />
+                <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-[#d4af37]" />
+                
+                <h1 className="text-7xl font-serif font-black text-center leading-[1.1] tracking-tighter uppercase mb-10 drop-shadow-[0_0_30px_rgba(212,175,55,0.6)] text-white">
+                  THE AI<br/><span className="text-[#d4af37]">ARCHITECT</span>
+                </h1>
+                <div className="w-48 h-[3px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-12" />
+                <div className="space-y-6 text-center">
+                  <p className="text-[22px] tracking-[0.5em] uppercase font-sans font-black text-white drop-shadow-md mb-2">
+                    Amarendra Nadh
+                  </p>
+                  <p className="text-[12px] tracking-[0.4em] uppercase font-sans font-bold text-[#d4af37] bg-black/40 px-4 py-2 border border-[#d4af37]/30">
+                    Portfolio — Vol. 2025
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Html>
+        </group>
+      );
+    }
+  
+    // 2. Standard Content Page (Updated to Premium Dark Theme)
     return (
       <group>
         <mesh position={[0, 0, 0]}>
           <planeGeometry args={[2.2, 3]} />
-          <meshStandardMaterial color="#0c0c0c" roughness={0.1} metalness={0.9} />
+          <meshStandardMaterial color="#0a0a0a" roughness={0.1} metalness={0.8} />
         </mesh>
-        
-        {/* Cover Title Glow */}
-        <mesh position={[0, 0.5, 0.01]}>
-          <planeGeometry args={[1.8, 1]} />
-          <meshStandardMaterial color="#d4af37" transparent opacity={0.1} emissive="#d4af37" emissiveIntensity={0.5} />
+  
+        {/* Page Highlight */}
+        <mesh position={[0, 0, 0.005]}>
+          <planeGeometry args={[2, 2.8]} />
+          <meshStandardMaterial color="#d4af37" transparent opacity={0.02} />
         </mesh>
-
-        <Html transform position={[0, 0, 0.025]} distanceFactor={1.5} className="pointer-events-none">
-          <div className="w-[440px] h-[600px] flex flex-col justify-center items-center text-[#d4af37] border-[20px] border-[#d4af37]/20 bg-gradient-to-br from-black/80 via-black/40 to-transparent backdrop-blur-md p-10">
-            <div className="border-4 border-[#d4af37]/40 p-12 flex flex-col items-center w-full h-full justify-center relative overflow-hidden">
-              {/* Decorative Corner */}
-              <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-[#d4af37]" />
-              <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-[#d4af37]" />
-              
-              <h1 className="text-8xl font-serif font-black text-center leading-[0.8] tracking-tighter uppercase mb-10 drop-shadow-[0_0_30px_rgba(212,175,55,0.6)] text-white">
-                THE AI<br/><span className="text-[#d4af37]">ARCHITECT</span>
-              </h1>
-              <div className="w-48 h-[3px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-12" />
-              <div className="space-y-6 text-center">
-                <p className="text-[20px] tracking-[0.5em] uppercase font-sans font-black text-white drop-shadow-md mb-2">
-                  Amarendra Nadh
-                </p>
-                <p className="text-[12px] tracking-[0.4em] uppercase font-sans font-bold text-[#d4af37] bg-black/40 px-4 py-2 border border-[#d4af37]/30">
-                  Portfolio — Vol. 2025
-                </p>
-              </div>
-            </div>
+  
+        {/* Professional Summary Page Special Layout */}
+        {index === 1 && side === "front" && (
+          <group position={[0.7, 0.8, 0.05]} scale={0.7}>
+             {get3DElements(1)}
+          </group>
+        )}
+  
+        <Html
+          transform
+          distanceFactor={1.5}
+          position={[0, 0, 0.015]}
+          className="select-none pointer-events-none"
+          occlude="blending"
+        >
+          <div className="w-[440px] h-[600px] p-16 flex flex-col font-serif text-white bg-black/80 backdrop-blur-2xl border-l border-white/5 shadow-2xl">
+            {getContent(index)}
           </div>
         </Html>
       </group>
     );
-  }
-
-  // 2. Standard Content Page
-  return (
-    <group>
-      <mesh position={[0, 0, 0]}>
-        <planeGeometry args={[2.2, 3]} />
-        <meshStandardMaterial color="#ffffff" roughness={1} />
-      </mesh>
-
-      {/* If it's the professional summary page, we can add a small 3D element on the right too if needed */}
-      {index === 1 && side === "front" && (
-        <group position={[0.6, 0.8, 0.05]} scale={0.6}>
-           {get3DElements(1)}
-        </group>
-      )}
-
-      <Html
-        transform
-        distanceFactor={1.5}
-        position={[0, 0, 0.015]}
-        className="select-none pointer-events-none"
-        occlude="blending"
-      >
-        <div className="w-[440px] h-[600px] p-16 flex flex-col font-serif text-[#111] bg-white/40 backdrop-blur-xl border-l border-white/20">
-          {getContent(index)}
-        </div>
-      </Html>
-    </group>
-  );
 }
 
 function get3DElements(index: number) {
