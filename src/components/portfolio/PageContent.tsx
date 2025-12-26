@@ -208,16 +208,15 @@ function get3DElements(index: number) {
           <group>
             <mesh>
               <sphereGeometry args={[0.25, 64, 64]} />
-              <meshStandardMaterial color="#d4af37" metalness={1} roughness={0.05} />
+              <meshStandardMaterial color="#d4af37" metalness={1} roughness={0} emissive="#d4af37" emissiveIntensity={0.5} />
             </mesh>
-            <mesh rotation={[Math.PI / 2, 0, 0]}>
-              <torusGeometry args={[0.4, 0.015, 32, 200]} />
-              <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={3} />
-            </mesh>
-            <mesh rotation={[Math.PI / 2, Math.PI / 4, 0]}>
-              <torusGeometry args={[0.5, 0.005, 32, 200]} />
-              <meshStandardMaterial color="#ffffff" transparent opacity={0.2} />
-            </mesh>
+            {[0.4, 0.5, 0.6].map((radius, i) => (
+              <mesh key={i} rotation={[Math.PI / 2, i * 0.5, 0]}>
+                <torusGeometry args={[radius, 0.005, 32, 200]} />
+                <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={2} transparent opacity={0.4} />
+              </mesh>
+            ))}
+            <pointLight position={[0, 0, 0]} color="#d4af37" intensity={4} distance={2} />
           </group>
         </InteractiveElement>
       );
@@ -227,8 +226,14 @@ function get3DElements(index: number) {
           <group>
             {[...Array(6)].map((_, i) => (
               <mesh key={i} position={[0, i * 0.08 - 0.2, 0]} rotation={[0, i * 0.1, 0]}>
-                <boxGeometry args={[0.55 - i * 0.05, 0.06, 0.45 - i * 0.05]} />
-                <meshStandardMaterial color={i % 2 === 0 ? "#fcfcfc" : "#d4af37"} metalness={i % 2 === 0 ? 0 : 0.8} roughness={0.2} />
+                <boxGeometry args={[0.6 - i * 0.05, 0.06, 0.45 - i * 0.05]} />
+                <meshStandardMaterial 
+                  color={i % 2 === 0 ? "#ffffff" : "#d4af37"} 
+                  metalness={i % 2 === 0 ? 0.2 : 1} 
+                  roughness={0.1}
+                  emissive={i % 2 === 0 ? "#ffffff" : "#d4af37"}
+                  emissiveIntensity={i % 2 === 0 ? 0.1 : 0.5}
+                />
               </mesh>
             ))}
           </group>
@@ -238,25 +243,37 @@ function get3DElements(index: number) {
       return (
         <InteractiveElement position={[0, 0, 0]}>
           <group>
-            <mesh position={[0, 0.1, 0]}>
-              <coneGeometry args={[0.22, 0.45, 4]} />
-              <meshStandardMaterial color="#d4af37" metalness={1} roughness={0} emissive="#d4af37" emissiveIntensity={0.8} />
+            <mesh position={[0, 0.15, 0]}>
+              <octahedronGeometry args={[0.25, 0]} />
+              <meshStandardMaterial color="#d4af37" metalness={1} roughness={0} emissive="#d4af37" emissiveIntensity={1} />
             </mesh>
-            <mesh position={[0, -0.18, 0]}>
-              <cylinderGeometry args={[0.18, 0.2, 0.1, 32]} />
-              <meshStandardMaterial color="#0a0a0a" metalness={1} roughness={0.2} />
+            <mesh position={[0, -0.15, 0]}>
+              <cylinderGeometry args={[0.2, 0.22, 0.1, 32]} />
+              <meshStandardMaterial color="#0a0a0a" metalness={1} roughness={0.1} />
             </mesh>
+            <pointLight position={[0, 0.2, 0]} color="#d4af37" intensity={5} distance={1} />
           </group>
         </InteractiveElement>
       );
     case 7: // Certifications - Glass Slates
       return (
         <group>
-          {[-0.2, 0, 0.2].map((x, i) => (
+          {[-0.3, 0, 0.3].map((x, i) => (
             <InteractiveElement key={i} position={[x, i * 0.1 - 0.1, i * -0.1]}>
               <mesh rotation={[0.2, 0, 0]}>
                 <boxGeometry args={[0.4, 0.3, 0.01]} />
-                <meshStandardMaterial color="#ffffff" transparent opacity={0.4} metalness={0.9} roughness={0} />
+                <meshStandardMaterial 
+                  color="#ffffff" 
+                  transparent 
+                  opacity={0.3} 
+                  metalness={1} 
+                  roughness={0}
+                  envMapIntensity={2}
+                />
+              </mesh>
+              <mesh position={[0, 0, 0.006]}>
+                <planeGeometry args={[0.35, 0.25]} />
+                <meshStandardMaterial color="#d4af37" transparent opacity={0.1} />
               </mesh>
             </InteractiveElement>
           ))}
@@ -267,20 +284,21 @@ function get3DElements(index: number) {
         <InteractiveElement position={[0, 0, 0]}>
           <group>
             <mesh>
-              <dodecahedronGeometry args={[0.3, 0]} />
+              <dodecahedronGeometry args={[0.35, 0]} />
               <meshStandardMaterial 
                 color="#d4af37" 
                 emissive="#d4af37" 
-                emissiveIntensity={4} 
+                emissiveIntensity={5} 
                 wireframe 
                 transparent 
-                opacity={1}
+                opacity={0.8}
               />
             </mesh>
             <mesh>
-              <sphereGeometry args={[0.1, 32, 32]} />
-              <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={10} />
+              <sphereGeometry args={[0.12, 32, 32]} />
+              <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={15} metalness={1} roughness={0} />
             </mesh>
+            <pointLight position={[0, 0, 0]} color="#d4af37" intensity={10} distance={3} />
           </group>
         </InteractiveElement>
       );
