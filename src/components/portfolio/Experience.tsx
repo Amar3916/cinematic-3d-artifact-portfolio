@@ -46,12 +46,14 @@ export function Experience() {
           shadows
           camera={{ position: [0, 0, 5], fov: 45 }}
           dpr={[1, 2]}
+          performance={{ min: 0.5 }}
           gl={{ 
             antialias: true, 
             stencil: false, 
             depth: true,
             toneMapping: THREE.ReinhardToneMapping,
-            toneMappingExposure: 1.2
+            toneMappingExposure: 1.2,
+            powerPreference: "high-performance"
           }}
         >
           <SoftShadows size={25} samples={10} focus={0.5} />
@@ -59,7 +61,7 @@ export function Experience() {
           <color attach="background" args={["#000000"]} />
           <fog attach="fog" args={["#000000", 4, 15]} />
           
-          <Suspense fallback={null}>
+          <Suspense fallback={<Loader />}>
             <Environment preset="night" intensity={0.4} />
             <ambientLight intensity={0.15} />
             
