@@ -210,46 +210,109 @@ function get3DElements(index: number) {
   switch (index) {
     case 0:
       return (
-        <Float speed={2}>
+        <Float speed={2} rotationIntensity={1} floatIntensity={1}>
           <mesh>
-            <sphereGeometry args={[0.05, 32, 32]} />
+            <sphereGeometry args={[0.08, 32, 32]} />
+            <meshStandardMaterial 
+              color="#d4af37" 
+              emissive="#d4af37" 
+              emissiveIntensity={4} 
+              roughness={0} 
+              metalness={1} 
+            />
+          </mesh>
+          <mesh rotation={[Math.PI / 2, 0, 0]}>
+            <torusGeometry args={[0.15, 0.005, 16, 100]} />
+            <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={2} />
+          </mesh>
+          <mesh rotation={[0, Math.PI / 2, 0]}>
+            <torusGeometry args={[0.2, 0.005, 16, 100]} />
             <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={2} />
           </mesh>
         </Float>
       );
     case 1:
-      // Neural network lines
+      // AI Neural network core
       return (
         <group>
-          {[...Array(5)].map((_, i) => (
-            <mesh key={i} position={[Math.random() - 0.5, Math.random() - 0.5, 0]}>
-              <sphereGeometry args={[0.02, 16, 16]} />
-              <meshStandardMaterial color="#888" />
+          <mesh>
+            <icosahedronGeometry args={[0.1, 1]} />
+            <meshStandardMaterial color="#4080ff" wireframe />
+          </mesh>
+          {[...Array(12)].map((_, i) => (
+            <mesh key={i} position={[
+              Math.sin(i) * 0.2,
+              Math.cos(i) * 0.2,
+              Math.sin(i * 2) * 0.1
+            ]}>
+              <sphereGeometry args={[0.01, 8, 8]} />
+              <meshStandardMaterial color="#4080ff" emissive="#4080ff" emissiveIntensity={2} />
             </mesh>
           ))}
         </group>
       );
     case 2:
-      // Floating glyphs
+      // Modular skill blocks
       return (
         <group>
-           <mesh position={[-0.3, 0.4, 0]}>
-            <boxGeometry args={[0.1, 0.1, 0.1]} />
-            <meshStandardMaterial color="#61dafb" />
-          </mesh>
-          <mesh position={[0.3, -0.4, 0]}>
-            <sphereGeometry args={[0.06, 16, 16]} />
-            <meshStandardMaterial color="#4caf50" />
-          </mesh>
+          {[-0.3, 0, 0.3].map((x, i) => (
+            <Float key={i} speed={2} delay={i * 0.5}>
+              <mesh position={[x, Math.sin(x) * 0.2, 0]}>
+                <boxGeometry args={[0.1, 0.1, 0.1]} />
+                <meshStandardMaterial color={i === 0 ? "#61dafb" : i === 1 ? "#339933" : "#f7df1e"} />
+              </mesh>
+            </Float>
+          ))}
         </group>
       );
     case 3:
-      // Project diorama (simplified)
+      // Project Diorama: YouTube robot arm + screen
       return (
-        <mesh>
-          <torusGeometry args={[0.2, 0.02, 16, 100]} />
-          <meshStandardMaterial color="#ff0000" />
-        </mesh>
+        <group scale={0.5}>
+          {/* Base */}
+          <mesh position={[0, -0.2, 0]}>
+            <cylinderGeometry args={[0.2, 0.2, 0.05, 32]} />
+            <meshStandardMaterial color="#333" />
+          </mesh>
+          {/* Screen */}
+          <mesh position={[0, 0.2, -0.1]} rotation={[-0.2, 0, 0]}>
+            <boxGeometry args={[0.4, 0.25, 0.02]} />
+            <meshStandardMaterial color="#ff0000" emissive="#ff0000" emissiveIntensity={0.5} />
+          </mesh>
+          {/* Arm segments */}
+          <mesh position={[0, 0, 0]} rotation={[0, 0, 0.5]}>
+            <capsuleGeometry args={[0.02, 0.2, 4, 8]} />
+            <meshStandardMaterial color="#666" />
+          </mesh>
+        </group>
+      );
+    case 4:
+      // Startup/Experience globe
+      return (
+        <group rotation={[0.4, 0, 0]}>
+          <mesh>
+            <sphereGeometry args={[0.15, 16, 16]} />
+            <meshStandardMaterial color="#222" wireframe opacity={0.3} transparent />
+          </mesh>
+          <mesh>
+            <sphereGeometry args={[0.1, 32, 32]} />
+            <meshStandardMaterial color="#ffd700" emissive="#ffd700" emissiveIntensity={1} />
+          </mesh>
+        </group>
+      );
+    case 6:
+      // Trophy
+      return (
+        <Float speed={3} floatIntensity={2}>
+          <mesh position={[0, 0.1, 0]}>
+            <cylinderGeometry args={[0.05, 0.02, 0.2, 32]} />
+            <meshStandardMaterial color="#d4af37" metalness={1} roughness={0.1} />
+          </mesh>
+          <mesh position={[0, -0.1, 0]}>
+            <cylinderGeometry args={[0.08, 0.1, 0.05, 32]} />
+            <meshStandardMaterial color="#333" />
+          </mesh>
+        </Float>
       );
     default:
       return null;
