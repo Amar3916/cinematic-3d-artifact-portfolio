@@ -554,7 +554,3 @@ function getContent(index: number) {
       return null;
   }
 }
-    default:
-      return null;
-  }
-}
