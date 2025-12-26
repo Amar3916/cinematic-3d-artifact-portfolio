@@ -113,6 +113,7 @@ export function InteractiveElement({ children, position, scale = 1 }: Interactiv
     setIsDragging(true);
     setIsReturning(false);
     velocity.current.set(0, 0, 0);
+    lastMousePos.current.set(mouse.x, mouse.y);
   };
 
   const handlePointerUp = (e: any) => {
