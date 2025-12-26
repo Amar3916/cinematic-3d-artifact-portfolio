@@ -20,6 +20,7 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
           <meshStandardMaterial color="#f2f2f0" roughness={1} />
         </mesh>
         
+        {/* Cinematic 3D Element for the Left Page */}
         <group position={[0, 0, 0.5]} scale={1.8}>
           {get3DElements(dioramaIndex)}
         </group>
@@ -28,6 +29,8 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
   }
 
   // FRONT SIDE: The Right Page (Text Content or Cover)
+  
+  // 1. Cover Page Special Case
   if (index === 0 && side === "front") {
     return (
       <group>
@@ -49,6 +52,7 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
     );
   }
 
+  // 2. Standard Content Page
   return (
     <group>
       <mesh position={[0, 0, 0]}>
@@ -123,6 +127,7 @@ function get3DElements(index: number) {
               <planeGeometry args={[0.45, 0.3]} />
               <meshStandardMaterial color="#ff0000" emissive="#ff0000" emissiveIntensity={3} />
             </mesh>
+            {/* Robot arm base */}
             <mesh position={[0, -0.2, 0]}>
               <cylinderGeometry args={[0.15, 0.2, 0.05, 32]} />
               <meshStandardMaterial color="#333" metalness={1} />
@@ -289,7 +294,7 @@ function getContent(index: number) {
             <div className="relative pl-8">
               <div className="absolute left-0 top-2 w-2 h-2 bg-[#d4af37]" />
               <h4 className="text-base font-bold uppercase tracking-wider mb-2">Vignan Marketplace</h4>
-              <p className="text-xs leading-relaxed opacity-60 italic">Full-stack student platform with real-time chat and secure JWT auth.</p>
+              <p className="text-xs leading-relaxed opacity-70 italic font-medium">Full-stack student platform with real-time chat and secure JWT auth.</p>
             </div>
           </div>
         </div>
