@@ -1,7 +1,7 @@
 "use client";
 
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
-import { Suspense, useEffect, useRef, useState } from "react";
 import { Environment, Float, Stars, ContactShadows, SoftShadows, Html } from "@react-three/drei";
 import { PortfolioBook } from "./PortfolioBook";
 import { usePortfolioStore } from "@/lib/store";
