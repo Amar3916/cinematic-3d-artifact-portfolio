@@ -13,45 +13,61 @@ interface InteractiveElementProps {
 
 export function InteractiveElement({ children, position, scale = 1 }: InteractiveElementProps) {
   const meshRef = useRef<THREE.Group>(null);
-  const { viewport, mouse, raycaster, camera } = useThree();
+  const { mouse, camera, scene } = useThree();
   
   const [isDragging, setIsDragging] = useState(false);
   const [isReturning, setIsReturning] = useState(false);
   
   const homePosition = new THREE.Vector3(...position);
-  const targetPosition = useRef(new THREE.Vector3(...position));
   const velocity = useRef(new THREE.Vector3(0, 0, 0));
-  const lastMousePos = useRef(new THREE.Vector2(0, 0));
+  const angularVelocity = useRef(new THREE.Euler(0, 0, 0));
+  const lastPos = useRef(new THREE.Vector3());
+  const dragPlane = useRef(new THREE.Plane());
 
   useFrame((state) => {
     if (!meshRef.current) return;
 
     if (isDragging) {
-      // Follow mouse
-      const vector = new THREE.Vector3(mouse.x, mouse.y, 0.5);
-      vector.unproject(camera);
-      const dir = vector.sub(camera.position).normalize();
-      const distance = -camera.position.z / dir.z;
-      const pos = camera.position.clone().add(dir.multiplyScalar(distance));
-      
-      // Calculate velocity
-      velocity.current.lerp(pos.clone().sub(meshRef.current.position), 0.2);
-      meshRef.current.position.copy(pos);
-      
-      // Gentle rotation while dragging
-      meshRef.current.rotation.x += velocity.current.y * 0.1;
-      meshRef.current.rotation.y += velocity.current.x * 0.1;
-    } else if (!isReturning) {
-      // Apply velocity and friction
-      meshRef.current.position.add(velocity.current);
-      velocity.current.multiplyScalar(0.95);
-      
-      // Auto-rotation
-      meshRef.current.rotation.y += 0.01;
+      // Create a plane at the object's depth facing the camera
+      const normal = new THREE.Vector3(0, 0, 1).applyQuaternion(camera.quaternion);
+      dragPlane.current.setFromNormalAndCoplanarPoint(normal, meshRef.current.position);
 
-      // If it goes too far or velocity is low, return home
+      const raycaster = state.raycaster;
+      raycaster.setFromCamera(mouse, camera);
+      
+      const intersection = new THREE.Vector3();
+      if (raycaster.ray.intersectPlane(dragPlane.current, intersection)) {
+        // Calculate velocity based on movement
+        const currentPos = meshRef.current.position.clone();
+        velocity.current.subVectors(intersection, currentPos).multiplyScalar(0.8);
+        meshRef.current.position.copy(intersection);
+        
+        // Update angular velocity based on movement
+        angularVelocity.current.x = -velocity.current.y * 2;
+        angularVelocity.current.y = velocity.current.x * 2;
+      }
+    } else if (!isReturning) {
+      // Apply translation velocity and friction
+      meshRef.current.position.add(velocity.current);
+      velocity.current.multiplyScalar(0.96);
+      
+      // Apply angular velocity and friction
+      meshRef.current.rotation.x += angularVelocity.current.x;
+      meshRef.current.rotation.y += angularVelocity.current.y;
+      meshRef.current.rotation.z += angularVelocity.current.z;
+      
+      angularVelocity.current.x *= 0.96;
+      angularVelocity.current.y *= 0.96;
+      angularVelocity.current.z *= 0.96;
+
+      // Subtle ambient rotation
+      meshRef.current.rotation.y += 0.005;
+
+      // If it goes too far or stops moving, return home
       const dist = meshRef.current.position.distanceTo(homePosition);
-      if (dist > 5 || (velocity.current.length() < 0.001 && dist > 0.1)) {
+      const speed = velocity.current.length();
+      
+      if (dist > 8 || (speed < 0.001 && dist > 0.05)) {
         returnHome();
       }
     }
@@ -61,13 +77,14 @@ export function InteractiveElement({ children, position, scale = 1 }: Interactiv
     if (isReturning || !meshRef.current) return;
     setIsReturning(true);
     velocity.current.set(0, 0, 0);
+    angularVelocity.current.set(0, 0, 0);
 
     gsap.to(meshRef.current.position, {
       x: homePosition.x,
       y: homePosition.y,
       z: homePosition.z,
-      duration: 1.2,
-      ease: "elastic.out(1, 0.6)",
+      duration: 1.5,
+      ease: "elastic.out(1, 0.5)",
       onComplete: () => setIsReturning(false)
     });
 
@@ -75,20 +92,28 @@ export function InteractiveElement({ children, position, scale = 1 }: Interactiv
       x: 0,
       y: 0,
       z: 0,
-      duration: 1.2,
+      duration: 1.5,
       ease: "power2.out"
     });
   };
 
   const handlePointerDown = (e: any) => {
     e.stopPropagation();
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
     setIsDragging(true);
     setIsReturning(false);
     velocity.current.set(0, 0, 0);
   };
 
-  const handlePointerUp = () => {
+  const handlePointerUp = (e: any) => {
+    e.stopPropagation();
+    (e.target as HTMLElement).releasePointerCapture(e.pointerId);
     setIsDragging(false);
+    
+    // Check for "throw" - if velocity is high enough, let it fly
+    if (velocity.current.length() < 0.01) {
+      returnHome();
+    }
   };
 
   return (
@@ -98,7 +123,6 @@ export function InteractiveElement({ children, position, scale = 1 }: Interactiv
       scale={scale}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
-      onPointerLeave={handlePointerUp}
     >
       {children}
     </group>
