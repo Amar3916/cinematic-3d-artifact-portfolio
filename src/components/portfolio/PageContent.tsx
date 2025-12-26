@@ -18,17 +18,17 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
     return (
       <group>
         <mesh position={[0, 0, 0]}>
-          <planeGeometry args={[2.2, 3]} />
+          <planeGeometry args={[2.8, 3.8]} />
           <meshStandardMaterial color="#0a0a0a" roughness={0.1} metalness={0.8} />
         </mesh>
         
         {/* Decorative elements on the left page */}
         <mesh position={[0, 0, 0.01]}>
-          <planeGeometry args={[1.8, 2.6]} />
+          <planeGeometry args={[2.4, 3.4]} />
           <meshStandardMaterial color="#d4af37" transparent opacity={0.02} />
         </mesh>
 
-        <group position={[0, 0, 0]} scale={1.8}>
+        <group position={[0, 0, 0]} scale={2.2}>
           <AnimatedArtifact pageIndex={dioramaIndex}>
             {get3DElements(dioramaIndex)}
           </AnimatedArtifact>
@@ -44,32 +44,32 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
       return (
         <group>
           <mesh position={[0, 0, 0]}>
-            <planeGeometry args={[2.2, 3]} />
+            <planeGeometry args={[2.8, 3.8]} />
             <meshStandardMaterial color="#0c0c0c" roughness={0.1} metalness={0.9} />
           </mesh>
           
           {/* Cover Title Glow */}
           <mesh position={[0, 0.5, 0.01]}>
-            <planeGeometry args={[1.8, 1]} />
+            <planeGeometry args={[2.4, 1.2]} />
             <meshStandardMaterial color="#d4af37" transparent opacity={0.1} emissive="#d4af37" emissiveIntensity={0.5} />
           </mesh>
   
-          <Html transform position={[0, 0, 0.025]} distanceFactor={1.5} className="pointer-events-none">
-            <div className="w-[440px] h-[600px] flex flex-col justify-center items-center text-[#d4af37] border-[20px] border-[#d4af37]/20 bg-gradient-to-br from-black/80 via-black/40 to-transparent backdrop-blur-md p-8">
-              <div className="border-4 border-[#d4af37]/40 p-6 flex flex-col items-center w-full h-full justify-center relative overflow-hidden">
+          <Html transform position={[0, 0, 0.025]} distanceFactor={1.8} className="pointer-events-none">
+            <div className="w-[600px] h-[800px] flex flex-col justify-center items-center text-[#d4af37] border-[25px] border-[#d4af37]/20 bg-gradient-to-br from-black/80 via-black/40 to-transparent backdrop-blur-md p-10">
+              <div className="border-[6px] border-[#d4af37]/40 p-10 flex flex-col items-center w-full h-full justify-center relative overflow-hidden">
                 {/* Decorative Corner */}
-                <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-[#d4af37]" />
-                <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-[#d4af37]" />
+                <div className="absolute top-6 left-6 w-12 h-12 border-t-2 border-l-2 border-[#d4af37]" />
+                <div className="absolute bottom-6 right-6 w-12 h-12 border-b-2 border-r-2 border-[#d4af37]" />
                 
-                  <h1 className="text-5xl font-serif font-black text-center leading-[1.05] tracking-tight uppercase mb-6 drop-shadow-[0_0_30px_rgba(212,175,55,0.6)] text-white">
+                  <h1 className="text-7xl font-serif font-black text-center leading-[1.05] tracking-tight uppercase mb-8 drop-shadow-[0_0_40px_rgba(212,175,55,0.7)] text-white">
                     THE AI<br/><span className="text-[#d4af37]">ARCHITECT</span>
                   </h1>
-                  <div className="w-32 h-[3px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-8" />
-                  <div className="space-y-4 text-center">
-                    <p className="text-[18px] tracking-[0.5em] uppercase font-sans font-black text-white drop-shadow-md mb-2">
+                  <div className="w-48 h-[4px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-10" />
+                  <div className="space-y-6 text-center">
+                    <p className="text-[28px] tracking-[0.5em] uppercase font-sans font-black text-white drop-shadow-md mb-3">
                       Amarendra Nadh
                     </p>
-                    <p className="text-[11px] tracking-[0.2em] uppercase font-sans font-bold text-[#d4af37] bg-black/40 px-4 py-2 border border-[#d4af37]/30">
+                    <p className="text-[14px] tracking-[0.3em] uppercase font-sans font-bold text-[#d4af37] bg-black/40 px-6 py-3 border border-[#d4af37]/30">
                       Portfolio — Vol. 2025
                     </p>
                   </div>
@@ -84,31 +84,31 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
     return (
       <group>
         <mesh position={[0, 0, 0]}>
-          <planeGeometry args={[2.2, 3]} />
+          <planeGeometry args={[2.8, 3.8]} />
           <meshStandardMaterial color="#0a0a0a" roughness={0.1} metalness={0.8} />
         </mesh>
   
         {/* Page Highlight */}
         <mesh position={[0, 0, 0.005]}>
-          <planeGeometry args={[2, 2.8]} />
+          <planeGeometry args={[2.6, 3.6]} />
           <meshStandardMaterial color="#d4af37" transparent opacity={0.02} />
         </mesh>
   
         {/* Professional Summary Page Special Layout */}
         {index === 1 && side === "front" && (
-          <group position={[0.7, 0.8, 0.05]} scale={0.7}>
+          <group position={[0.9, 1.0, 0.05]} scale={0.9}>
              {get3DElements(1)}
           </group>
         )}
   
             <Html
               transform
-              distanceFactor={1.5}
+              distanceFactor={1.8}
               position={[0, 0, 0.015]}
               className="pointer-events-auto"
               pointerEvents="auto"
             >
-              <div className="w-[440px] h-[600px] p-10 flex flex-col font-serif text-white bg-black/80 backdrop-blur-2xl border-l border-white/5 shadow-2xl overflow-y-auto custom-scrollbar">
+              <div className="w-[600px] h-[800px] p-12 flex flex-col font-serif text-white bg-black/80 backdrop-blur-2xl border-l border-white/5 shadow-2xl overflow-y-auto custom-scrollbar">
                 {getContent(index)}
               </div>
             </Html>
