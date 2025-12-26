@@ -109,46 +109,60 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
 
 function get3DElements(index: number) {
   switch (index) {
-    case 1: // Professional Summary - Brain/Core
+    case 1: // Professional Summary - Neural Core
       return (
         <InteractiveElement position={[0, 0, 0]}>
           <group>
+            {/* Inner Core */}
             <mesh>
-              <icosahedronGeometry args={[0.25, 3]} />
+              <sphereGeometry args={[0.2, 32, 32]} />
               <meshStandardMaterial 
                 color="#d4af37" 
                 metalness={1} 
-                roughness={0.05} 
-                envMapIntensity={2}
+                roughness={0} 
+                emissive="#d4af37"
+                emissiveIntensity={2}
               />
             </mesh>
-            <mesh rotation={[Math.PI / 4, 0, 0]}>
-              <torusGeometry args={[0.38, 0.008, 16, 100]} />
-              <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={2} transparent opacity={0.6} />
-            </mesh>
-            <mesh rotation={[-Math.PI / 4, Math.PI / 2, 0]}>
-              <torusGeometry args={[0.45, 0.005, 16, 100]} />
-              <meshStandardMaterial color="#d4af37" transparent opacity={0.3} />
-            </mesh>
-            <pointLight position={[0, 0, 0]} color="#d4af37" intensity={5} distance={1} />
+            {/* Glowing Rings */}
+            {[0, 1, 2].map((i) => (
+              <mesh key={i} rotation={[Math.PI * Math.random(), Math.PI * Math.random(), 0]}>
+                <torusGeometry args={[0.35 + i * 0.05, 0.005, 16, 100]} />
+                <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={5} transparent opacity={0.6} />
+              </mesh>
+            ))}
+            {/* Floating Particles */}
+            {[...Array(12)].map((_, i) => (
+              <mesh key={i} position={[
+                Math.sin(i * 0.5) * 0.4,
+                Math.cos(i * 0.5) * 0.4,
+                Math.sin(i * 0.8) * 0.2
+              ]}>
+                <sphereGeometry args={[0.01, 8, 8]} />
+                <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={10} />
+              </mesh>
+            ))}
+            <pointLight position={[0, 0, 0]} color="#d4af37" intensity={8} distance={2} />
           </group>
         </InteractiveElement>
       );
     case 2: // Skills - Crystalline Power
       return (
         <group>
-          {[-0.4, 0, 0.4].map((x, i) => (
+          {[-0.5, 0, 0.5].map((x, i) => (
             <InteractiveElement key={i} position={[x, 0, 0]}>
               <mesh rotation={[i * 0.5, i, 0]}>
-                <octahedronGeometry args={[0.2, 0]} />
+                <octahedronGeometry args={[0.22, 0]} />
                 <meshStandardMaterial 
                   color={i === 0 ? "#00f2ff" : i === 1 ? "#d4af37" : "#ff00ea"} 
                   metalness={1} 
-                  roughness={0}
+                  roughness={0.05}
+                  envMapIntensity={2}
                   emissive={i === 0 ? "#00f2ff" : i === 1 ? "#d4af37" : "#ff00ea"}
-                  emissiveIntensity={1.5}
+                  emissiveIntensity={2}
                 />
               </mesh>
+              <pointLight color={i === 0 ? "#00f2ff" : i === 1 ? "#d4af37" : "#ff00ea"} intensity={2} distance={1} />
             </InteractiveElement>
           ))}
         </group>
@@ -159,13 +173,31 @@ function get3DElements(index: number) {
           <InteractiveElement position={[0, 0, 0]}>
             <group>
               <mesh position={[0, 0, 0]}>
-                <boxGeometry args={[0.4, 0.6, 0.05]} />
-                <meshStandardMaterial color="#111" metalness={0.9} roughness={0.1} />
+                <boxGeometry args={[0.45, 0.7, 0.08]} />
+                <meshStandardMaterial color="#050505" metalness={1} roughness={0.1} />
               </mesh>
-              <mesh position={[0, 0, 0.03]}>
-                <planeGeometry args={[0.36, 0.56]} />
-                <meshStandardMaterial color="#00ff00" emissive="#00ff00" emissiveIntensity={4} />
+              {/* Screen Glow */}
+              <mesh position={[0, 0, 0.041]}>
+                <planeGeometry args={[0.4, 0.65]} />
+                <meshStandardMaterial 
+                  color="#d4af37" 
+                  emissive="#d4af37" 
+                  emissiveIntensity={2} 
+                  transparent 
+                  opacity={0.9}
+                />
               </mesh>
+              {/* Floating Data Bits */}
+              {[...Array(8)].map((_, i) => (
+                <mesh key={i} position={[
+                  (Math.random() - 0.5) * 0.6,
+                  (Math.random() - 0.5) * 1,
+                  0.1
+                ]}>
+                  <boxGeometry args={[0.02, 0.02, 0.02]} />
+                  <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={5} />
+                </mesh>
+              ))}
             </group>
           </InteractiveElement>
         </group>
