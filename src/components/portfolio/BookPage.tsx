@@ -5,7 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { Html, Text } from "@react-three/drei";
 import gsap from "gsap";
-import { PageContent } from "./PageContent";
+import { PageContent } from "@/components/portfolio/PageContent";
 
 interface BookPageProps {
   index: number;
