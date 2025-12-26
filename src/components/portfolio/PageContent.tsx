@@ -85,29 +85,29 @@ function get3DElements(index: number) {
   switch (index) {
     case 1: // Genesis / Summary
       return (
-        <Float speed={2} rotationIntensity={2}>
+        <InteractiveElement position={[0, 0, 0]}>
           <group>
             <mesh>
-              <icosahedronGeometry args={[0.2, 2]} />
-              <meshStandardMaterial color="#4080ff" emissive="#4080ff" emissiveIntensity={2} wireframe />
+              <icosahedronGeometry args={[0.25, 2]} />
+              <meshStandardMaterial color="#d4af37" metalness={1} roughness={0} />
             </mesh>
             <mesh rotation={[Math.PI / 4, 0, 0]}>
               <torusGeometry args={[0.35, 0.005, 16, 100]} />
-              <meshStandardMaterial color="#4080ff" transparent opacity={0.5} />
+              <meshStandardMaterial color="#d4af37" transparent opacity={0.5} />
             </mesh>
             <mesh rotation={[0, Math.PI / 3, 0]}>
               <torusGeometry args={[0.45, 0.005, 16, 100]} />
-              <meshStandardMaterial color="#4080ff" transparent opacity={0.2} />
+              <meshStandardMaterial color="#d4af37" transparent opacity={0.2} />
             </mesh>
           </group>
-        </Float>
+        </InteractiveElement>
       );
     case 2: // Arsenal / Skills
       return (
         <group>
           {[-0.35, 0, 0.35].map((x, i) => (
-            <Float key={i} speed={2 + i} rotationIntensity={1.5} floatIntensity={2}>
-              <mesh position={[x, Math.sin(x + i) * 0.1, 0]} rotation={[i, i, i]}>
+            <InteractiveElement key={i} position={[x, Math.sin(x + i) * 0.1, 0]}>
+              <mesh rotation={[i, i, i]}>
                 <octahedronGeometry args={[0.18, 0]} />
                 <meshStandardMaterial 
                   color={i === 0 ? "#61dafb" : i === 1 ? "#339933" : "#f7df1e"} 
@@ -117,14 +117,14 @@ function get3DElements(index: number) {
                   emissiveIntensity={0.5}
                 />
               </mesh>
-            </Float>
+            </InteractiveElement>
           ))}
         </group>
       );
     case 3: // Artifacts / Projects
       return (
-        <group scale={1.2}>
-          <Float speed={1.5} rotationIntensity={0.5}>
+        <InteractiveElement position={[0, 0, 0]}>
+          <group scale={1.2}>
             <mesh position={[0, 0.1, 0]}>
               <boxGeometry args={[0.5, 0.35, 0.05]} />
               <meshStandardMaterial color="#111" metalness={0.9} roughness={0.1} />
@@ -133,17 +133,16 @@ function get3DElements(index: number) {
               <planeGeometry args={[0.45, 0.3]} />
               <meshStandardMaterial color="#ff0000" emissive="#ff0000" emissiveIntensity={3} />
             </mesh>
-            {/* Robot arm base */}
             <mesh position={[0, -0.2, 0]}>
               <cylinderGeometry args={[0.15, 0.2, 0.05, 32]} />
               <meshStandardMaterial color="#333" metalness={1} />
             </mesh>
-          </Float>
-        </group>
+          </group>
+        </InteractiveElement>
       );
     case 4: // Chronicles / Experience
       return (
-        <Float speed={1.2} rotationIntensity={2}>
+        <InteractiveElement position={[0, 0, 0]}>
           <group>
             <mesh>
               <sphereGeometry args={[0.3, 32, 32]} />
@@ -153,16 +152,12 @@ function get3DElements(index: number) {
               <torusGeometry args={[0.4, 0.01, 16, 100]} />
               <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={1} />
             </mesh>
-            <mesh rotation={[Math.PI / 4, 0, 0]}>
-              <torusGeometry args={[0.5, 0.005, 16, 100]} />
-              <meshStandardMaterial color="#d4af37" transparent opacity={0.3} />
-            </mesh>
           </group>
-        </Float>
+        </InteractiveElement>
       );
     case 5: // Foundation / Education
       return (
-        <Float speed={2} rotationIntensity={0.8} floatIntensity={1.5}>
+        <InteractiveElement position={[0, 0, 0]}>
           <group>
             {[...Array(5)].map((_, i) => (
               <mesh key={i} position={[0, i * 0.08 - 0.2, 0]} rotation={[0, i * 0.1, 0]}>
@@ -175,11 +170,11 @@ function get3DElements(index: number) {
               <meshStandardMaterial color="#1a1a1a" />
             </mesh>
           </group>
-        </Float>
+        </InteractiveElement>
       );
     case 6: // Laurels / Achievements
       return (
-        <Float speed={3} rotationIntensity={3}>
+        <InteractiveElement position={[0, 0, 0]}>
           <group>
             <mesh position={[0, 0.1, 0]}>
               <coneGeometry args={[0.2, 0.4, 32]} />
@@ -190,28 +185,24 @@ function get3DElements(index: number) {
               <meshStandardMaterial color="#222" />
             </mesh>
           </group>
-        </Float>
+        </InteractiveElement>
       );
     case 7: // Credentials / Certifications
       return (
         <group>
           {[...Array(3)].map((_, i) => (
-            <Float key={i} speed={2} delay={i * 0.5}>
-              <mesh position={[0, 0, i * -0.15]} rotation={[0, 0, i * 0.15]}>
+            <InteractiveElement key={i} position={[0, 0, i * -0.15]}>
+              <mesh rotation={[0, 0, i * 0.15]}>
                 <planeGeometry args={[0.6, 0.4]} />
                 <meshStandardMaterial color="#fff" side={THREE.DoubleSide} transparent opacity={0.8} />
-                <mesh position={[0, 0, 0.001]}>
-                  <planeGeometry args={[0.5, 0.3]} />
-                  <meshStandardMaterial color="#d4af37" transparent opacity={0.1} />
-                </mesh>
               </mesh>
-            </Float>
+            </InteractiveElement>
           ))}
         </group>
       );
     case 8: // Initiation / Contact
       return (
-        <Float speed={4} rotationIntensity={4} floatIntensity={2}>
+        <InteractiveElement position={[0, 0, 0]}>
           <mesh>
             <dodecahedronGeometry args={[0.3, 0]} />
             <meshStandardMaterial 
@@ -223,7 +214,7 @@ function get3DElements(index: number) {
               opacity={0.8}
             />
           </mesh>
-        </Float>
+        </InteractiveElement>
       );
     default:
       return null;
