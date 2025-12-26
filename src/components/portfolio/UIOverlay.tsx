@@ -63,21 +63,20 @@ export function UIOverlay() {
             <span className="text-[10px] uppercase tracking-[0.3em] font-bold hidden sm:block">Previous Chapter</span>
           </button>
 
-            <div className="flex flex-col items-center gap-2">
-              <div className="h-12 w-[1px] bg-gradient-to-b from-transparent via-[#d4af37]/50 to-transparent" />
-              <div className="text-white/40 text-[10px] font-bold tracking-[0.6em] uppercase flex items-center gap-4">
-                {currentPage === 0 ? (
-                  <span className="text-[#d4af37] text-lg font-serif tracking-widest">Cover</span>
-                ) : (
-                  <>
+              <div className="flex flex-col items-center gap-2">
+                <div className="h-12 w-[1px] bg-gradient-to-b from-transparent via-[#d4af37]/50 to-transparent" />
+                <div className="text-white/40 text-[10px] font-bold tracking-[0.6em] uppercase flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     <span>Chapter</span>
-                    <span className="text-[#d4af37] text-lg font-serif tracking-normal">{currentPage}</span>
-                  </>
-                )}
-                <span className="opacity-20">/</span>
-                <span>{totalPages - 1}</span>
+                    <span className="text-[#d4af37] text-lg font-serif tracking-normal">{currentPage + 1}</span>
+                  </div>
+                  {currentPage === 0 && (
+                    <span className="text-[#d4af37]/60 text-[8px] tracking-[0.4em] border-l border-white/10 pl-4">Cover</span>
+                  )}
+                  <span className="opacity-20">/</span>
+                  <span>{totalPages}</span>
+                </div>
               </div>
-            </div>
 
           <button
             onClick={nextPage}
