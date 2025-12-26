@@ -49,9 +49,9 @@ export function BookPage({ index, currentPage }: BookPageProps) {
         <mesh position={[1.1, 0, 0]} castShadow receiveShadow>
           <boxGeometry args={[2.2, 3, 0.04]} />
           <meshStandardMaterial 
-            color={isCover ? "#1a130f" : "#fefefe"} 
-            roughness={isCover ? 0.4 : 0.8}
-            metalness={isCover ? 0.3 : 0}
+            color="#0c0c0c" 
+            roughness={0.2}
+            metalness={0.8}
           />
           {/* Cover Design - Gold Engravings */}
           {isCover && (
@@ -59,7 +59,7 @@ export function BookPage({ index, currentPage }: BookPageProps) {
               {/* Border */}
               <mesh>
                 <ringGeometry args={[0.95, 1, 4, 1, Math.PI / 4]} />
-                <meshStandardMaterial color="#d4af37" metalness={1} roughness={0.1} />
+                <meshStandardMaterial color="#d4af37" metalness={1} roughness={0.1} emissive="#d4af37" emissiveIntensity={0.2} />
               </mesh>
               <mesh position={[0, 0, 0.001]}>
                 <planeGeometry args={[1.8, 2.6]} />
