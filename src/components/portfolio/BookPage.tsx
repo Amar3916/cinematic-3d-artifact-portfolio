@@ -46,8 +46,8 @@ export function BookPage({ index, currentPage }: BookPageProps) {
   return (
     <group ref={group} position={[0, 0, zPos]}>
         {/* Page Base */}
-        <mesh position={[1.1, 0, 0]} castShadow receiveShadow>
-          <boxGeometry args={[2.2, 3, 0.04]} />
+        <mesh position={[1.4, 0, 0]} castShadow receiveShadow>
+          <boxGeometry args={[2.8, 3.8, 0.04]} />
           <meshStandardMaterial 
             color="#0c0c0c" 
             roughness={0.2}
@@ -58,11 +58,11 @@ export function BookPage({ index, currentPage }: BookPageProps) {
             <group position={[0, 0, 0.021]}>
               {/* Border */}
               <mesh>
-                <ringGeometry args={[0.95, 1, 4, 1, Math.PI / 4]} />
+                <ringGeometry args={[1.2, 1.3, 4, 1, Math.PI / 4]} />
                 <meshStandardMaterial color="#d4af37" metalness={1} roughness={0.1} emissive="#d4af37" emissiveIntensity={0.2} />
               </mesh>
               <mesh position={[0, 0, 0.001]}>
-                <planeGeometry args={[1.8, 2.6]} />
+                <planeGeometry args={[2.2, 3.2]} />
                 <meshStandardMaterial color="#d4af37" transparent opacity={0.05} />
               </mesh>
             </group>
@@ -72,14 +72,14 @@ export function BookPage({ index, currentPage }: BookPageProps) {
 
       {/* Front Side: Show content if this page is on the right */}
       {isVisible && !isOpen && (
-        <group position={[1.1, 0, 0.011]}>
+        <group position={[1.4, 0, 0.011]}>
           <PageContent index={index} side="front" />
         </group>
       )}
 
       {/* Back Side: Show objects if this page is on the left */}
       {isVisible && isOpen && (
-        <group position={[1.1, 0, -0.011]} rotation={[0, Math.PI, 0]}>
+        <group position={[1.4, 0, -0.011]} rotation={[0, Math.PI, 0]}>
           <PageContent index={index} side="back" nextPageIndex={index + 1} />
         </group>
       )}
