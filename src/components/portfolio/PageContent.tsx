@@ -532,29 +532,49 @@ function getContent(index: number) {
             <h3 className="text-5xl font-bold tracking-tighter leading-[1] text-white/90">Let's build<br/>intelligence.</h3>
           </div>
           <div className="space-y-8 w-full max-w-[300px]">
-            <div className="space-y-3">
-              <p className="text-[9px] text-white/30 uppercase tracking-[0.4em] font-sans font-bold">Contact Sequence</p>
-              <p className="text-lg font-bold tracking-tight text-white hover:text-[#d4af37] transition-colors cursor-pointer">221fa04394@gmail.com</p>
-              <p className="text-lg font-bold tracking-tight text-white">+91 9618562549</p>
-            </div>
-              <div className="flex gap-8 justify-center pt-8 border-t border-white/10">
+              <div className="space-y-3">
+                <p className="text-[9px] text-white/30 uppercase tracking-[0.4em] font-sans font-bold">Contact Sequence</p>
                 <a 
-                  href="https://www.linkedin.com/in/amarendra-nadh-bollimuntha-99a171179/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-[10px] uppercase tracking-[0.3em] font-sans font-bold text-white/40 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer"
+                  href="mailto:221fa04394@gmail.com"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "mailto:221fa04394@gmail.com" } }, "*");
+                  }}
+                  onPointerDown={(e) => e.stopPropagation()}
+                  className="text-lg font-bold tracking-tight text-white hover:text-[#d4af37] transition-colors cursor-pointer block"
                 >
-                  LinkedIn
+                  221fa04394@gmail.com
                 </a>
-                <a 
-                  href="https://github.com/Amar3916" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-[10px] uppercase tracking-[0.3em] font-sans font-bold text-white/40 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer"
-                >
-                  GitHub
-                </a>
+                <p className="text-lg font-bold tracking-tight text-white">+91 9618562549</p>
               </div>
+                <div className="flex gap-8 justify-center pt-8 border-t border-white/10">
+                  <a 
+                    href="https://www.linkedin.com/in/amarendra-nadh-bollimuntha-99a171179/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://www.linkedin.com/in/amarendra-nadh-bollimuntha-99a171179/" } }, "*");
+                    }}
+                    onPointerDown={(e) => e.stopPropagation()}
+                    className="text-[10px] uppercase tracking-[0.3em] font-sans font-bold text-white/40 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer"
+                  >
+                    LinkedIn
+                  </a>
+                  <a 
+                    href="https://github.com/Amar3916" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://github.com/Amar3916" } }, "*");
+                    }}
+                    onPointerDown={(e) => e.stopPropagation()}
+                    className="text-[10px] uppercase tracking-[0.3em] font-sans font-bold text-white/40 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer"
+                  >
+                    GitHub
+                  </a>
+                </div>
           </div>
           <div className="mt-16">
             <p className="text-[9px] text-white/10 uppercase tracking-[0.6em] font-sans font-bold">Terminal Protocol — 2025</p>
