@@ -32,7 +32,7 @@ export function UIOverlay() {
           <h1 className="text-white font-serif text-2xl tracking-[0.2em] uppercase">B. AMARENDRA NADH</h1>
           <div className="flex items-center gap-3 mt-1">
             <div className="h-[1px] w-4 bg-[#d4af37]" />
-            <p className="text-[#d4af37] text-[10px] tracking-[0.4em] uppercase font-bold">Agentic AI Engineer</p>
+            <p className="text-[#d4af37] text-[12px] tracking-[0.2em] uppercase font-bold">Agentic AI Engineer</p>
           </div>
         </motion.div>
 
@@ -68,7 +68,7 @@ export function UIOverlay() {
                         exit={{ opacity: 0, y: 5, scale: 0.9 }}
                         className="absolute top-10 whitespace-nowrap bg-black/90 border border-[#d4af37]/30 px-3 py-1.5 rounded-sm"
                       >
-                        <span className="text-[9px] text-[#d4af37] tracking-[0.3em] uppercase font-bold">
+                        <span className="text-[11px] text-[#d4af37] tracking-[0.2em] uppercase font-bold">
                           {chapter}
                         </span>
                         <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-black border-l border-t border-[#d4af37]/30 rotate-45" />
@@ -86,25 +86,25 @@ export function UIOverlay() {
           <button
             onClick={prevPage}
             disabled={currentPage === 0}
-            className="group flex items-center gap-4 text-white/40 hover:text-white transition-all disabled:opacity-0"
+            className="group flex items-center gap-4 text-white/70 hover:text-white transition-all disabled:opacity-0"
           >
             <div className="p-4 rounded-full border border-white/10 group-hover:border-[#d4af37] transition-colors">
               <ChevronLeft size={20} />
             </div>
-            <span className="text-[10px] uppercase tracking-[0.3em] font-bold hidden sm:block">Previous Chapter</span>
+            <span className="text-[12px] uppercase tracking-[0.2em] font-bold hidden sm:block">Previous Chapter</span>
           </button>
 
               <div className="flex flex-col items-center gap-2">
                 <div className="h-12 w-[1px] bg-gradient-to-b from-transparent via-[#d4af37]/50 to-transparent" />
-                <div className="text-white/40 text-[10px] font-bold tracking-[0.6em] uppercase flex items-center gap-4">
+                <div className="text-white/70 text-[12px] font-bold tracking-[0.4em] uppercase flex items-center gap-4">
                   <div className="flex items-center gap-2">
                     <span>Chapter</span>
-                    <span className="text-[#d4af37] text-lg font-serif tracking-normal">{currentPage + 1}</span>
+                    <span className="text-[#d4af37] text-xl font-serif tracking-normal">{currentPage + 1}</span>
                   </div>
                   {currentPage === 0 && (
-                    <span className="text-[#d4af37]/60 text-[8px] tracking-[0.4em] border-l border-white/10 pl-4">Cover</span>
+                    <span className="text-[#d4af37]/80 text-[10px] tracking-[0.2em] border-l border-white/10 pl-4">Cover</span>
                   )}
-                  <span className="opacity-20">/</span>
+                  <span className="opacity-40">/</span>
                   <span>{totalPages}</span>
                 </div>
               </div>
@@ -112,9 +112,9 @@ export function UIOverlay() {
           <button
             onClick={nextPage}
             disabled={currentPage === totalPages - 1}
-            className="group flex items-center gap-4 text-white/40 hover:text-white transition-all disabled:opacity-0 text-right"
+            className="group flex items-center gap-4 text-white/70 hover:text-white transition-all disabled:opacity-0 text-right"
           >
-            <span className="text-[10px] uppercase tracking-[0.3em] font-bold hidden sm:block">Next Chapter</span>
+            <span className="text-[12px] uppercase tracking-[0.2em] font-bold hidden sm:block">Next Chapter</span>
             <div className="p-4 rounded-full border border-white/10 group-hover:border-[#d4af37] transition-colors">
               <ChevronRight size={20} />
             </div>
