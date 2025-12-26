@@ -1,0 +1,587 @@
+"use client";
+
+import { Html, Float, MeshDistortMaterial, MeshWobbleMaterial, PresentationControls } from "@react-three/drei";
+import * as THREE from "three";
+import { InteractiveElement } from "./InteractiveElement";
+import { AnimatedArtifact } from "./AnimatedArtifact";
+
+interface PageContentProps {
+  index: number;
+  side: "front" | "back";
+  nextPageIndex?: number;
+}
+
+export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
+  // BACK SIDE: The Left Page (Dioramas only)
+  if (side === "back") {
+    const dioramaIndex = nextPageIndex ?? index + 1;
+    return (
+      <group>
+        <mesh position={[0, 0, 0]}>
+          <planeGeometry args={[2.8, 3.8]} />
+          <meshStandardMaterial color="#0a0a0a" roughness={0.1} metalness={0.8} />
+        </mesh>
+        
+        {/* Decorative elements on the left page */}
+        <mesh position={[0, 0, 0.01]}>
+          <planeGeometry args={[2.4, 3.4]} />
+          <meshStandardMaterial color="#d4af37" transparent opacity={0.02} />
+        </mesh>
+
+        <group position={[0, 0, 0]} scale={2.2}>
+          <AnimatedArtifact pageIndex={dioramaIndex}>
+            {get3DElements(dioramaIndex)}
+          </AnimatedArtifact>
+        </group>
+      </group>
+    );
+  }
+
+  // FRONT SIDE: The Right Page (Text Content or Cover)
+  
+    // 1. Cover Page Special Case
+    if (index === 0 && side === "front") {
+      return (
+        <group>
+          <mesh position={[0, 0, 0]}>
+            <planeGeometry args={[2.8, 3.8]} />
+            <meshStandardMaterial color="#0c0c0c" roughness={0.1} metalness={0.9} />
+          </mesh>
+          
+          {/* Cover Title Glow */}
+          <mesh position={[0, 0.5, 0.01]}>
+            <planeGeometry args={[2.4, 1.2]} />
+            <meshStandardMaterial color="#d4af37" transparent opacity={0.1} emissive="#d4af37" emissiveIntensity={0.5} />
+          </mesh>
+  
+          <Html transform position={[0, 0, 0.025]} distanceFactor={1.8} className="pointer-events-none">
+            <div className="w-[600px] h-[800px] flex flex-col justify-center items-center text-[#d4af37] border-[25px] border-[#d4af37]/20 bg-gradient-to-br from-black/80 via-black/40 to-transparent backdrop-blur-md p-10">
+              <div className="border-[6px] border-[#d4af37]/40 p-10 flex flex-col items-center w-full h-full justify-center relative overflow-hidden">
+                {/* Decorative Corner */}
+                <div className="absolute top-6 left-6 w-12 h-12 border-t-2 border-l-2 border-[#d4af37]" />
+                <div className="absolute bottom-6 right-6 w-12 h-12 border-b-2 border-r-2 border-[#d4af37]" />
+                
+                  <h1 className="text-7xl font-serif font-black text-center leading-[1.05] tracking-tight uppercase mb-8 drop-shadow-[0_0_40px_rgba(212,175,55,0.7)] text-white">
+                    THE AI<br/><span className="text-[#d4af37]">ARCHITECT</span>
+                  </h1>
+                  <div className="w-48 h-[4px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-10" />
+                  <div className="space-y-6 text-center">
+                    <p className="text-[28px] tracking-[0.5em] uppercase font-sans font-black text-white drop-shadow-md mb-3">
+                      Amarendra Nadh
+                    </p>
+                    <p className="text-[14px] tracking-[0.3em] uppercase font-sans font-bold text-[#d4af37] bg-black/40 px-6 py-3 border border-[#d4af37]/30">
+                      Portfolio — Vol. 2025
+                    </p>
+                  </div>
+              </div>
+            </div>
+          </Html>
+        </group>
+      );
+    }
+  
+    // 2. Standard Content Page (Updated to Premium Dark Theme)
+    return (
+      <group>
+        <mesh position={[0, 0, 0]}>
+          <planeGeometry args={[2.8, 3.8]} />
+          <meshStandardMaterial color="#0a0a0a" roughness={0.1} metalness={0.8} />
+        </mesh>
+  
+        {/* Page Highlight */}
+        <mesh position={[0, 0, 0.005]}>
+          <planeGeometry args={[2.6, 3.6]} />
+          <meshStandardMaterial color="#d4af37" transparent opacity={0.02} />
+        </mesh>
+  
+        {/* Professional Summary Page Special Layout */}
+        {index === 1 && side === "front" && (
+          <group position={[0.9, 1.0, 0.05]} scale={0.9}>
+             {get3DElements(1)}
+          </group>
+        )}
+  
+            <Html
+              transform
+              distanceFactor={1.8}
+              position={[0, 0, 0.015]}
+              className="pointer-events-auto"
+              pointerEvents="auto"
+            >
+              <div className="w-[600px] h-[800px] p-12 flex flex-col font-serif text-white bg-black/80 backdrop-blur-2xl border-l border-white/5 shadow-2xl overflow-y-auto custom-scrollbar">
+                {getContent(index)}
+              </div>
+            </Html>
+      </group>
+    );
+}
+
+function get3DElements(index: number) {
+  switch (index) {
+    case 1: // Professional Summary - Neural Core (Refined)
+      return (
+        <InteractiveElement position={[0, 0, 0]}>
+          <group>
+            {/* Inner Core: Pulsing geometric brain structure */}
+            <mesh>
+              <icosahedronGeometry args={[0.2, 1]} />
+              <meshStandardMaterial 
+                color="#d4af37" 
+                metalness={1} 
+                roughness={0} 
+                emissive="#d4af37"
+                emissiveIntensity={2}
+                wireframe
+              />
+            </mesh>
+            <mesh>
+              <sphereGeometry args={[0.12, 32, 32]} />
+              <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={5} />
+            </mesh>
+            {/* Dynamic Neural Connections */}
+            {[...Array(3)].map((_, i) => (
+              <mesh key={i} rotation={[Math.PI / (i+1), Math.PI / (i+2), 0]}>
+                <torusGeometry args={[0.3 + i * 0.05, 0.01, 16, 100]} />
+                <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={3} transparent opacity={0.4} />
+              </mesh>
+            ))}
+            <pointLight position={[0, 0, 0]} color="#d4af37" intensity={8} distance={2} />
+          </group>
+        </InteractiveElement>
+      );
+    case 2: // Skills - Crystalline Power
+      return (
+        <group>
+          {[-0.5, 0, 0.5].map((x, i) => (
+            <InteractiveElement key={i} position={[x, 0, 0]}>
+              <mesh rotation={[i * 0.5, i, 0]}>
+                <octahedronGeometry args={[0.22, 0]} />
+                <meshStandardMaterial 
+                  color={i === 0 ? "#00f2ff" : i === 1 ? "#d4af37" : "#ff00ea"} 
+                  metalness={1} 
+                  roughness={0.05}
+                  envMapIntensity={2}
+                  emissive={i === 0 ? "#00f2ff" : i === 1 ? "#d4af37" : "#ff00ea"}
+                  emissiveIntensity={2}
+                />
+              </mesh>
+              <pointLight color={i === 0 ? "#00f2ff" : i === 1 ? "#d4af37" : "#ff00ea"} intensity={2} distance={1} />
+            </InteractiveElement>
+          ))}
+        </group>
+      );
+    case 3: // Projects - Data Monoliths (Refined)
+      return (
+        <group>
+          {[-0.4, 0, 0.4].map((x, i) => (
+            <InteractiveElement key={i} position={[x, 0, i * -0.1]}>
+              <group scale={[0.8, 1, 0.8]}>
+                <mesh position={[0, 0, 0]}>
+                  <boxGeometry args={[0.3, 0.8, 0.05]} />
+                  <meshStandardMaterial color="#050505" metalness={1} roughness={0.1} />
+                </mesh>
+                {/* Floating Gold Code Bits */}
+                <mesh position={[0, 0, 0.026]}>
+                  <planeGeometry args={[0.25, 0.7]} />
+                  <meshStandardMaterial 
+                    color="#d4af37" 
+                    emissive="#d4af37" 
+                    emissiveIntensity={1} 
+                    transparent 
+                    opacity={0.8}
+                  />
+                </mesh>
+                {[...Array(5)].map((_, j) => (
+                   <mesh key={j} position={[0, (j - 2) * 0.15, 0.03]}>
+                     <boxGeometry args={[0.2, 0.01, 0.01]} />
+                     <meshStandardMaterial color="#000000" />
+                   </mesh>
+                ))}
+              </group>
+            </InteractiveElement>
+          ))}
+        </group>
+      );
+    case 4: // Experience - Orbital Spheres
+      return (
+        <InteractiveElement position={[0, 0, 0]}>
+          <group>
+            <mesh>
+              <sphereGeometry args={[0.25, 64, 64]} />
+              <meshStandardMaterial color="#d4af37" metalness={1} roughness={0} emissive="#d4af37" emissiveIntensity={0.5} />
+            </mesh>
+            {[0.4, 0.5, 0.6].map((radius, i) => (
+              <mesh key={i} rotation={[Math.PI / 2, i * 0.5, 0]}>
+                <torusGeometry args={[radius, 0.005, 32, 200]} />
+                <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={2} transparent opacity={0.4} />
+              </mesh>
+            ))}
+            <pointLight position={[0, 0, 0]} color="#d4af37" intensity={4} distance={2} />
+          </group>
+        </InteractiveElement>
+      );
+    case 5: // Education - Knowledge Stack (Refined: Shimmering Translucent Glass)
+      return (
+        <InteractiveElement position={[0, 0, 0]}>
+          <group>
+            {[...Array(6)].map((_, i) => (
+              <mesh key={i} position={[0, i * 0.1 - 0.25, 0]} rotation={[0, i * 0.2, 0]}>
+                <boxGeometry args={[0.7 - i * 0.05, 0.04, 0.5 - i * 0.05]} />
+                <meshStandardMaterial 
+                  color="#ffffff" 
+                  transparent 
+                  opacity={0.2} 
+                  metalness={1} 
+                  roughness={0}
+                  envMapIntensity={2}
+                />
+                <mesh position={[0, 0, 0]} scale={1.02}>
+                   <boxGeometry args={[0.7 - i * 0.05, 0.04, 0.5 - i * 0.05]} />
+                   <meshStandardMaterial color="#d4af37" wireframe transparent opacity={0.3} />
+                </mesh>
+              </mesh>
+            ))}
+          </group>
+        </InteractiveElement>
+      );
+    case 6: // Achievements - Golden Relic
+      return (
+        <InteractiveElement position={[0, 0, 0]}>
+          <group>
+            <mesh position={[0, 0.15, 0]}>
+              <octahedronGeometry args={[0.25, 0]} />
+              <meshStandardMaterial color="#d4af37" metalness={1} roughness={0} emissive="#d4af37" emissiveIntensity={1} />
+            </mesh>
+            <mesh position={[0, -0.15, 0]}>
+              <cylinderGeometry args={[0.2, 0.22, 0.1, 32]} />
+              <meshStandardMaterial color="#0a0a0a" metalness={1} roughness={0.1} />
+            </mesh>
+            <pointLight position={[0, 0.2, 0]} color="#d4af37" intensity={5} distance={1} />
+          </group>
+        </InteractiveElement>
+      );
+    case 7: // Certifications - Glass Slates
+      return (
+        <group>
+          {[-0.3, 0, 0.3].map((x, i) => (
+            <InteractiveElement key={i} position={[x, i * 0.1 - 0.1, i * -0.1]}>
+              <mesh rotation={[0.2, 0, 0]}>
+                <boxGeometry args={[0.4, 0.3, 0.01]} />
+                <meshStandardMaterial 
+                  color="#ffffff" 
+                  transparent 
+                  opacity={0.3} 
+                  metalness={1} 
+                  roughness={0}
+                  envMapIntensity={2}
+                />
+              </mesh>
+              <mesh position={[0, 0, 0.006]}>
+                <planeGeometry args={[0.35, 0.25]} />
+                <meshStandardMaterial color="#d4af37" transparent opacity={0.1} />
+              </mesh>
+            </InteractiveElement>
+          ))}
+        </group>
+      );
+    case 8: // Contact - Radiant Node
+      return (
+        <InteractiveElement position={[0, 0, 0]}>
+          <group>
+            <mesh>
+              <dodecahedronGeometry args={[0.35, 0]} />
+              <meshStandardMaterial 
+                color="#d4af37" 
+                emissive="#d4af37" 
+                emissiveIntensity={5} 
+                wireframe 
+                transparent 
+                opacity={0.8}
+              />
+            </mesh>
+            <mesh>
+              <sphereGeometry args={[0.12, 32, 32]} />
+              <meshStandardMaterial color="#d4af37" emissive="#d4af37" emissiveIntensity={15} metalness={1} roughness={0} />
+            </mesh>
+            <pointLight position={[0, 0, 0]} color="#d4af37" intensity={10} distance={3} />
+          </group>
+        </InteractiveElement>
+      );
+    default:
+      return null;
+  }
+}
+
+function getContent(index: number) {
+  switch (index) {
+    case 1:
+      return (
+        <div className="flex-1 flex flex-col">
+          <div className="mb-10">
+            <h2 className="text-[13px] uppercase tracking-[0.4em] text-[#d4af37] mb-3 font-sans font-bold">Genesis</h2>
+            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-6">Professional Summary</h3>
+          </div>
+          <div className="space-y-8">
+            <p className="text-[20px] leading-[1.6] text-justify text-white/90 first-letter:text-6xl first-letter:font-bold first-letter:mr-4 first-letter:float-left first-letter:text-[#d4af37] first-letter:font-serif">
+              Dynamic Agentic AI Engineer and Full-Stack Developer passionate about building intelligent, 
+              autonomous systems and scalable automation workflows. Adept at integrating AI reasoning 
+              with real-world tools to deliver production-ready applications that redefine human-machine interaction.
+            </p>
+            <div className="grid grid-cols-2 gap-y-6 pt-8 border-t border-white/5">
+              {["Agentic AI", "LangChain", "MERN Stack", "n8n Automation"].map(tag => (
+                <div key={tag} className="flex items-center gap-4">
+                  <div className="w-2 h-2 bg-[#d4af37] rotate-45" />
+                  <span className="text-[14px] uppercase tracking-[0.1em] font-sans font-bold text-white/80">{tag}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    case 2:
+      return (
+        <div className="flex-1">
+          <div className="mb-10">
+            <h2 className="text-[13px] uppercase tracking-[0.4em] text-[#d4af37] mb-3 font-sans font-bold">Arsenal</h2>
+            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-6">Core Skills</h3>
+          </div>
+          <div className="space-y-8 mt-8">
+            <div>
+              <h4 className="text-[13px] uppercase tracking-[0.2em] text-white/70 mb-3 font-sans font-bold">Languages</h4>
+              <p className="text-xl font-medium tracking-tight text-white/90">C, Python, Java (OOP)</p>
+            </div>
+            <div>
+              <h4 className="text-[13px] uppercase tracking-[0.2em] text-white/70 mb-3 font-sans font-bold">Web Development</h4>
+              <p className="text-xl font-medium tracking-tight text-white/90">HTML, CSS, React.js, Node.js, Express.js, MongoDB (MERN)</p>
+            </div>
+            <div>
+              <h4 className="text-[13px] uppercase tracking-[0.2em] text-[#d4af37] mb-3 font-sans font-bold">AI & Machine Learning</h4>
+              <p className="text-2xl font-bold tracking-tight text-[#d4af37]">Local LLMs, Agentic AI, LangChain, LangGraph, AI Automation</p>
+            </div>
+            <div>
+              <h4 className="text-[13px] uppercase tracking-[0.2em] text-white/70 mb-3 font-sans font-bold">Tools & Integrations</h4>
+              <p className="text-[17px] font-medium text-white/90 leading-relaxed">n8n, VS Code, Postman, Notion, LLM Studio, Canva, REST APIs, Webhooks</p>
+            </div>
+            <div>
+              <h4 className="text-[13px] uppercase tracking-[0.2em] text-white/70 mb-3 font-sans font-bold">Others</h4>
+              <p className="text-[17px] font-medium text-white/90 leading-relaxed">Digital Marketing, Workflow Automation, Cloud Deployment Basics</p>
+            </div>
+          </div>
+        </div>
+      );
+    case 3:
+      return (
+        <div className="flex-1">
+          <div className="mb-8">
+            <h2 className="text-[13px] uppercase tracking-[0.4em] text-[#d4af37] mb-3 font-sans font-bold">Artifacts</h2>
+            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-6">Key Projects</h3>
+          </div>
+          <div className="space-y-8 mt-6 pb-12">
+            {[
+              { title: "Automated YouTube Workflow", year: "2024", desc: "Devised content pipeline automating 70% of video prep using n8n and LLM agents; saved 10+ hours/week." },
+              { title: "Speech Emotion Recognition (AI)", year: "2024", desc: "Trained audio classification model (MFCC, SVM) to detect 6 emotions with 85%+ accuracy." },
+              { title: "Vignan Marketplace (MERN)", year: "2024", desc: "Student marketplace with secure JWT login and real-time chat (<300ms latency)." },
+              { title: "WebNavigator (AI Agent)", year: "2025", desc: "Autonomous web navigation agent using LangChain; reduced research time by 60%." },
+              { title: "Finance ERP Module (MERN)", year: "2023", desc: "Digitized paperwork workflows, reducing manual processes by 40%." },
+              { title: "Network Simulation", year: "2023", desc: "Configured enterprise network topologies with VLAN and OSPF using Packet Tracer." }
+            ].map((proj, i) => (
+              <div key={i} className="relative pl-8 border-l border-[#d4af37]/20 hover:border-[#d4af37] transition-colors pb-6">
+                <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full bg-[#d4af37]/30 border border-[#d4af37]" />
+                <div className="flex justify-between items-baseline mb-2">
+                  <h4 className="text-[18px] font-bold uppercase tracking-wide text-white/90">{proj.title}</h4>
+                  <span className="text-[13px] text-[#d4af37] font-bold font-sans">{proj.year}</span>
+                </div>
+                <p className="text-[16px] leading-relaxed text-white/80 font-medium">{proj.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    case 4:
+      return (
+        <div className="flex-1">
+          <div className="mb-10">
+            <h2 className="text-[13px] uppercase tracking-[0.4em] text-[#d4af37] mb-3 font-sans font-bold">Chronicles</h2>
+            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-6">Experience</h3>
+          </div>
+          <div className="space-y-10 mt-8">
+            <div className="relative pl-10 border-l-[3px] border-white/10 hover:border-[#d4af37] transition-colors">
+              <div className="absolute left-[-8px] top-2 w-3.5 h-3.5 rounded-full bg-[#d4af37] shadow-[0_0_12px_#d4af37]" />
+              <h4 className="text-[22px] font-bold text-white/90">Founder — Digital Marketing Startup</h4>
+              <p className="text-[13px] uppercase tracking-[0.2em] text-white/70 font-sans mt-3 mb-4 font-bold">Jan 2022 – Present</p>
+              <p className="text-[18px] leading-relaxed text-white/90 font-medium text-justify">Launched and scaled marketing operations; the content strategy led to a 60% increase in client engagement.</p>
+            </div>
+            <div className="relative pl-10 border-l-[3px] border-white/10 hover:border-[#d4af37] transition-colors">
+              <div className="absolute left-[-8px] top-2 w-3.5 h-3.5 rounded-full bg-[#d4af37] shadow-[0_0_12px_#d4af37]" />
+              <h4 className="text-[22px] font-bold text-white/90 uppercase leading-tight">Secretary, E-Cell — Vignan University</h4>
+              <p className="text-[13px] uppercase tracking-[0.2em] text-white/70 font-sans mt-3 mb-4 font-bold">Aug 2023 – Present</p>
+              <p className="text-[18px] leading-relaxed text-white/90 font-medium text-justify">Organized 20+ technical and outreach events. Spearheaded social media campaigns resulting in a 70% boost in reach.</p>
+            </div>
+            <div className="relative pl-10 border-l-[3px] border-white/10 hover:border-[#d4af37] transition-colors">
+              <div className="absolute left-[-8px] top-2 w-3.5 h-3.5 rounded-full bg-[#d4af37] shadow-[0_0_12px_#d4af37]" />
+              <h4 className="text-[22px] font-bold text-white/90 uppercase leading-tight">MERN & AI Automation Architect</h4>
+              <p className="text-[13px] uppercase tracking-[0.2em] text-white/70 font-sans mt-3 mb-4 font-bold">2023 – 2024</p>
+              <p className="text-[18px] leading-relaxed text-white/90 font-medium text-justify">Built and deployed full-stack apps in 24-hour hackathons. Led teams to build Farmer Support and University Admin portals.</p>
+            </div>
+          </div>
+        </div>
+      );
+    case 5:
+      return (
+        <div className="flex-1">
+          <div className="mb-10">
+            <h2 className="text-[13px] uppercase tracking-[0.4em] text-[#d4af37] mb-3 font-sans font-bold">Foundation</h2>
+            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-6">Education</h3>
+          </div>
+          <div className="space-y-12 mt-10">
+            <div>
+              <div className="flex justify-between items-start mb-3">
+                <h4 className="text-2xl font-bold uppercase tracking-tight text-white/90">B.Tech in CSE</h4>
+                <span className="text-[13px] text-white/70 uppercase tracking-[0.2em] font-sans font-bold">2022 – 2026</span>
+              </div>
+              <p className="text-[17px] text-white/80 mb-6 font-medium tracking-tight italic">Vignan's Foundation for Science, Technology and Research</p>
+              <span className="text-[15px] bg-white text-black px-6 py-2 font-sans font-bold border-l-4 border-[#d4af37]">CGPA: 8.0/10</span>
+            </div>
+            <div>
+              <div className="flex justify-between items-start mb-3">
+                <h4 className="text-2xl font-bold uppercase tracking-tight text-white/90">Intermediate (MPC)</h4>
+                <span className="text-[13px] text-white/70 uppercase tracking-[0.2em] font-sans font-bold">2020 – 2022</span>
+              </div>
+              <p className="text-[17px] text-white/80 mb-6 font-medium tracking-tight italic">NRI Junior College, Tenali</p>
+              <span className="text-[15px] bg-white text-black px-6 py-2 font-sans font-bold border-l-4 border-[#d4af37]">Percentage: 70.1%</span>
+            </div>
+            <div>
+              <div className="flex justify-between items-start mb-3">
+                <h4 className="text-2xl font-bold uppercase tracking-tight text-white/90">10th Grade (SSC)</h4>
+                <span className="text-[13px] text-white/70 uppercase tracking-[0.2em] font-sans font-bold">2019 – 2020</span>
+              </div>
+              <p className="text-[17px] text-white/80 mb-6 font-medium tracking-tight italic">Dr. KKR Gowtham School, Tenali</p>
+              <span className="text-[15px] bg-white text-black px-6 py-2 font-sans font-bold border-l-4 border-[#d4af37]">GPA: 10.0/10</span>
+            </div>
+          </div>
+        </div>
+      );
+    case 6:
+      return (
+        <div className="flex-1">
+          <div className="mb-10">
+            <h2 className="text-[13px] uppercase tracking-[0.4em] text-[#d4af37] mb-3 font-sans font-bold">Laurels</h2>
+            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-6">Achievements</h3>
+          </div>
+          <ul className="space-y-8 mt-8">
+            {[
+              { title: "2× Winner – Cisco ThingQbator", subtitle: "Excellence in technical innovation and design" },
+              { title: "Digital Marketing Startup Founder", subtitle: "Launched and scaled operational content strategy" },
+              { title: "Local LLM Orchestration", subtitle: "Hosted DeepSeek/OpenAI locally, cutting costs by 40%" },
+              { title: "Educational Platforms", subtitle: "Created solutions adopted by 150+ students" },
+              { title: "Open-Source Contributor", subtitle: "AI & ML projects and MERN stack web applications" }
+            ].map((item, i) => (
+              <li key={i} className="flex gap-8 items-start">
+                <span className="text-[#d4af37] text-3xl leading-none">✦</span>
+                <div>
+                  <p className="text-[20px] font-bold leading-tight text-white/90 mb-2">{item.title}</p>
+                  <p className="text-[13px] text-white/70 font-sans uppercase tracking-[0.1em] font-bold">{item.subtitle}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    case 7:
+      return (
+        <div className="flex-1">
+          <div className="mb-10">
+            <h2 className="text-[13px] uppercase tracking-[0.4em] text-[#d4af37] mb-3 font-sans font-bold">Credentials</h2>
+            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-6">Certifications</h3>
+          </div>
+          <div className="grid grid-cols-1 gap-4 mt-8">
+            {[
+              "Tata STRIVE: Visualization",
+              "Deloitte: Cybersecurity",
+              "Cisco: CCNA 1, 2, 3",
+              "NPTEL: Data Visualization",
+              "NPTEL: HR Analytics"
+            ].map((cert, i) => (
+              <div key={cert} className="p-6 bg-white/[0.03] border-l-4 border-[#d4af37]/20 hover:border-[#d4af37] hover:bg-[#d4af37]/10 transition-all group backdrop-blur-sm border border-white/5 flex flex-col justify-center">
+                <p className="text-[15px] font-bold leading-tight tracking-tight uppercase group-hover:text-[#d4af37] transition-colors text-white/90">{cert}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-12 pt-10 border-t border-white/5">
+             <h2 className="text-[13px] uppercase tracking-[0.4em] text-[#d4af37] mb-6 font-sans font-bold">Lexicon</h2>
+             <div className="space-y-6">
+               {[
+                 { lang: "English", level: "Intermediate (B1 Certified)" },
+                 { lang: "Telugu", level: "Native" },
+                 { lang: "Hindi", level: "Intermediate" }
+               ].map(l => (
+                 <div key={l.lang} className="flex justify-between items-center">
+                   <span className="text-[17px] font-bold text-white/90 uppercase tracking-wider">{l.lang}</span>
+                   <span className="text-[13px] text-[#d4af37] font-sans font-bold uppercase tracking-tight">{l.level}</span>
+                 </div>
+               ))}
+             </div>
+          </div>
+        </div>
+      );
+    case 8:
+      return (
+        <div className="flex-1 flex flex-col justify-center items-center text-center">
+          <div className="mb-12">
+            <h2 className="text-[13px] uppercase tracking-[0.5em] text-[#d4af37] mb-8 font-sans font-bold">Initiation</h2>
+            <h3 className="text-6xl font-bold tracking-tighter leading-[1] text-white/90">Let's build<br/>intelligence.</h3>
+          </div>
+          <div className="space-y-10 w-full max-w-[400px]">
+              <div className="space-y-4">
+                <p className="text-[13px] text-white/60 uppercase tracking-[0.2em] font-sans font-bold">Contact Sequence</p>
+                <a 
+                  href="mailto:221fa04394@gmail.com"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "mailto:221fa04394@gmail.com" } }, "*");
+                  }}
+                  onPointerDown={(e) => e.stopPropagation()}
+                  className="text-2xl font-bold tracking-tight text-white hover:text-[#d4af37] transition-colors cursor-pointer block"
+                >
+                  221fa04394@gmail.com
+                </a>
+                <p className="text-2xl font-bold tracking-tight text-white">+91 9618562549</p>
+              </div>
+                <div className="flex gap-10 justify-center pt-10 border-t border-white/10">
+                  <a 
+                    href="https://www.linkedin.com/in/amarendra-nadh-bollimuntha-99a171179/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://www.linkedin.com/in/amarendra-nadh-bollimuntha-99a171179/" } }, "*");
+                    }}
+                    onPointerDown={(e) => e.stopPropagation()}
+                    className="text-[13px] uppercase tracking-[0.2em] font-sans font-bold text-white/70 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer"
+                  >
+                    LinkedIn
+                  </a>
+                  <a 
+                    href="https://github.com/Amar3916" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://github.com/Amar3916" } }, "*");
+                    }}
+                    onPointerDown={(e) => e.stopPropagation()}
+                    className="text-[13px] uppercase tracking-[0.2em] font-sans font-bold text-white/70 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer"
+                  >
+                    GitHub
+                  </a>
+                </div>
+          </div>
+          <div className="mt-20">
+            <p className="text-[13px] text-white/30 uppercase tracking-[0.3em] font-sans font-bold">Terminal Protocol — 2025</p>
+          </div>
+        </div>
+      );
+    default:
+      return null;
+  }
+}
