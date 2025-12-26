@@ -1,7 +1,8 @@
 "use client";
 
-import { Html, Float } from "@react-three/drei";
+import { Html, Float, MeshDistortMaterial, MeshWobbleMaterial } from "@react-three/drei";
 import * as THREE from "three";
+import { InteractiveElement } from "./InteractiveElement";
 
 interface PageContentProps {
   index: number;
@@ -20,7 +21,12 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
           <meshStandardMaterial color="#f2f2f0" roughness={1} />
         </mesh>
         
-        {/* Large Cinematic 3D Element for the Left Page */}
+        {/* Glass Pedestal for the Left Page */}
+        <mesh position={[0, 0, 0.01]} rotation={[0, 0, 0]}>
+          <planeGeometry args={[1.8, 2.6]} />
+          <meshStandardMaterial color="#fff" transparent opacity={0.05} metalness={1} roughness={0} />
+        </mesh>
+
         <group position={[0, 0, 0.5]} scale={1.8}>
           {get3DElements(dioramaIndex)}
         </group>
