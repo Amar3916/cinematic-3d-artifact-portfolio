@@ -33,38 +33,53 @@ function CameraController() {
 export function Experience() {
   return (
     <div className="fixed inset-0 bg-[#050505]">
-      <Canvas
-        shadows
-        camera={{ position: [0, 0, 5], fov: 45 }}
-        dpr={[1, 2]}
-      >
-        <CameraController />
-        <color attach="background" args={["#050505"]} />
-        <fog attach="fog" args={["#050505", 5, 15]} />
-
-        <Suspense fallback={null}>
-          <Environment preset="city" />
-          <ambientLight intensity={0.1} />
+        <Canvas
+          shadows
+          camera={{ position: [0, 0, 5], fov: 45 }}
+          dpr={[1, 2]}
+          gl={{ antialias: true, stencil: false, depth: true }}
+        >
+          <CameraController />
+          <color attach="background" args={["#0a0a0a"]} />
+          <fog attach="fog" args={["#0a0a0a", 5, 12]} />
           
-          <spotLight
-            position={[5, 5, 5]}
-            angle={0.3}
-            penumbra={1}
-            intensity={2}
-            castShadow
-            color="#fffcf0"
-          />
-          
-          <pointLight position={[-5, -2, -5]} intensity={0.5} color="#4080ff" />
+          <Suspense fallback={null}>
+            <Environment preset="night" intensity={0.5} />
+            <ambientLight intensity={0.2} />
+            
+            <spotLight
+              position={[2, 5, 2]}
+              angle={0.4}
+              penumbra={1}
+              intensity={4}
+              castShadow
+              color="#fff"
+            />
+            
+            <pointLight position={[-3, 2, 4]} intensity={2} color="#d4af37" />
+            <pointLight position={[3, -2, 4]} intensity={1} color="#4080ff" />
 
-          <Float 
-            speed={1.2} 
-            rotationIntensity={0.2} 
-            floatIntensity={0.3}
-            floatingRange={[-0.1, 0.1]}
-          >
-            <PortfolioBook />
-          </Float>
+            <group position={[0, -0.2, 0]}>
+              <Float 
+                speed={1.5} 
+                rotationIntensity={0.1} 
+                floatIntensity={0.2}
+                floatingRange={[-0.05, 0.05]}
+              >
+                <PortfolioBook />
+              </Float>
+            </group>
+
+            {/* Premium Floor */}
+            <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2.5, 0]} receiveShadow>
+              <planeGeometry args={[50, 50]} />
+              <meshStandardMaterial 
+                color="#050505" 
+                roughness={0.1} 
+                metalness={0.8}
+              />
+            </mesh>
+
 
           <Stars 
             radius={50} 
