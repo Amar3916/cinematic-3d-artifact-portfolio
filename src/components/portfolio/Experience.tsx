@@ -21,20 +21,21 @@ function CameraController() {
   const { camera } = useThree();
   const currentPage = usePortfolioStore((state) => state.currentPage);
 
-  useEffect(() => {
-    // Cinematic camera movements
-    gsap.to(camera.position, {
-      x: 0,
-      y: 0,
-      z: currentPage === 0 ? 3.8 : 4.2,
-      duration: 2,
-      ease: "power3.inOut"
-    });
-    
-    // Always look at center
-    const target = new THREE.Vector3(0, 0, 0);
-    camera.lookAt(target);
-  }, [currentPage, camera]);
+    useEffect(() => {
+      // Cinematic camera movements
+      gsap.to(camera.position, {
+        x: 0,
+        y: 0,
+        z: currentPage === 0 ? 4.2 : 5.0,
+        duration: 2,
+        ease: "power3.inOut"
+      });
+      
+      // Always look at center
+      const target = new THREE.Vector3(0, 0, 0);
+      camera.lookAt(target);
+    }, [currentPage, camera]);
+
 
   return null;
 }
