@@ -20,7 +20,6 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
           <meshStandardMaterial color="#f2f2f0" roughness={1} />
         </mesh>
         
-        {/* Cinematic 3D Element for the Left Page */}
         <group position={[0, 0, 0.5]} scale={1.8}>
           {get3DElements(dioramaIndex)}
         </group>
@@ -29,8 +28,6 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
   }
 
   // FRONT SIDE: The Right Page (Text Content or Cover)
-  
-  // 1. Cover Page Special Case
   if (index === 0 && side === "front") {
     return (
       <group>
@@ -52,7 +49,6 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
     );
   }
 
-  // 2. Standard Content Page
   return (
     <group>
       <mesh position={[0, 0, 0]}>
@@ -127,7 +123,6 @@ function get3DElements(index: number) {
               <planeGeometry args={[0.45, 0.3]} />
               <meshStandardMaterial color="#ff0000" emissive="#ff0000" emissiveIntensity={3} />
             </mesh>
-            {/* Robot arm base */}
             <mesh position={[0, -0.2, 0]}>
               <cylinderGeometry args={[0.15, 0.2, 0.05, 32]} />
               <meshStandardMaterial color="#333" metalness={1} />
