@@ -23,45 +23,55 @@ export function BookPage({ index, currentPage }: BookPageProps) {
   // 2. It's the next page (front side visible on right)
   const isVisible = index === currentPage || index === currentPage + 1;
   
-  // Z-fighting prevention: slightly offset based on index, but keep visible pages on top
+  const isCover = index === 0;
+  
+  // Z-fighting prevention
   const zPos = isVisible ? 0.05 : index * 0.005;
 
   useEffect(() => {
     if (!group.current) return;
     
-    const targetRotation = isOpen ? -Math.PI : 0;
+    // Page 0 is the cover, it flips when currentPage > 0
+    const targetRotation = currentPage >= index && index !== 0 ? -Math.PI : (index === 0 && currentPage > 0 ? -Math.PI : 0);
     
     gsap.to(group.current.rotation, {
       y: targetRotation,
       duration: 1.5,
-      ease: "power4.inOut",
-      delay: Math.abs(index - currentPage) * 0.05
+      ease: "power2.inOut",
+      delay: Math.abs(index - currentPage) * 0.1
     });
-  }, [isOpen, index, currentPage]);
+  }, [index, currentPage]);
 
   return (
     <group ref={group} position={[0, 0, zPos]}>
-      {/* Page Base - Making it opaque and using multi-material for edges */}
+      {/* Page Base */}
       <mesh position={[1.1, 0, 0]} castShadow receiveShadow>
         <boxGeometry args={[2.2, 3, 0.02]} />
         <meshStandardMaterial 
-          color="#f5f5f0" 
-          roughness={1}
-          metalness={0}
+          color={isCover ? "#1a1a1a" : "#f5f5f0"} 
+          roughness={isCover ? 0.2 : 1}
+          metalness={isCover ? 0.8 : 0}
         />
+        {/* Cover Design */}
+        {isCover && (
+          <mesh position={[0, 0, 0.011]}>
+            <planeGeometry args={[2, 2.8]} />
+            <meshStandardMaterial color="#d4af37" transparent opacity={0.1} />
+          </mesh>
+        )}
       </mesh>
 
-      {/* Page Content (Front) - Only show if on the right side and visible */}
+      {/* Front Side: Show content if this page is on the right */}
       {isVisible && !isOpen && (
         <group position={[1.1, 0, 0.011]}>
           <PageContent index={index} side="front" />
         </group>
       )}
 
-      {/* Page Content (Back) - Only show if on the left side and visible */}
+      {/* Back Side: Show objects if this page is on the left */}
       {isVisible && isOpen && (
         <group position={[1.1, 0, -0.011]} rotation={[0, Math.PI, 0]}>
-          <PageContent index={index} side="back" />
+          <PageContent index={index} side="back" nextPageIndex={index + 1} />
         </group>
       )}
     </group>
