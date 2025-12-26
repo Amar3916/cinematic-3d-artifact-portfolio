@@ -103,7 +103,6 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
             distanceFactor={1.5}
             position={[0, 0, 0.015]}
             className="select-none pointer-events-none"
-            occlude="blending"
           >
             <div className="w-[440px] h-[600px] p-10 flex flex-col font-serif text-white bg-black/80 backdrop-blur-2xl border-l border-white/5 shadow-2xl">
               {getContent(index)}
