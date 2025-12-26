@@ -320,19 +320,19 @@ function getContent(index: number) {
         <div className="flex-1 flex flex-col">
           <div className="mb-14">
             <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-4 font-sans font-bold">Genesis</h2>
-            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-black/5 pb-8">Professional Summary</h3>
+            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-8">Professional Summary</h3>
           </div>
           <div className="space-y-10">
-            <p className="text-lg leading-[1.75] text-justify text-black/80 first-letter:text-6xl first-letter:font-bold first-letter:mr-4 first-letter:float-left first-letter:text-[#d4af37] first-letter:font-serif">
+            <p className="text-lg leading-[1.75] text-justify text-white/80 first-letter:text-6xl first-letter:font-bold first-letter:mr-4 first-letter:float-left first-letter:text-[#d4af37] first-letter:font-serif">
               Dynamic Agentic AI Engineer and Full-Stack Developer passionate about building intelligent, 
               autonomous systems and scalable automation workflows. Adept at integrating AI reasoning 
               with real-world tools to deliver production-ready applications that redefine human-machine interaction.
             </p>
-            <div className="grid grid-cols-2 gap-y-6 pt-10 border-t border-black/5">
+            <div className="grid grid-cols-2 gap-y-6 pt-10 border-t border-white/5">
               {["Agentic AI", "LangChain", "MERN Stack", "n8n Automation"].map(tag => (
                 <div key={tag} className="flex items-center gap-4">
                   <div className="w-2 h-2 bg-[#d4af37] rotate-45" />
-                  <span className="text-[11px] uppercase tracking-[0.2em] font-sans font-bold text-black/60">{tag}</span>
+                  <span className="text-[11px] uppercase tracking-[0.2em] font-sans font-bold text-white/60">{tag}</span>
                 </div>
               ))}
             </div>
@@ -344,16 +344,16 @@ function getContent(index: number) {
         <div className="flex-1">
           <div className="mb-14">
             <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-4 font-sans font-bold">Arsenal</h2>
-            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-black/5 pb-8">Core Skills</h3>
+            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-8">Core Skills</h3>
           </div>
           <div className="space-y-12 mt-10">
             <div className="group">
-              <h4 className="text-[10px] uppercase tracking-[0.4em] text-black/30 mb-5 font-sans font-bold">Foundations</h4>
-              <p className="text-xl font-medium tracking-tight text-black/90">Python, Java (OOP), C, JavaScript (ES6+)</p>
+              <h4 className="text-[10px] uppercase tracking-[0.4em] text-white/30 mb-5 font-sans font-bold">Foundations</h4>
+              <p className="text-xl font-medium tracking-tight text-white/90">Python, Java (OOP), C, JavaScript (ES6+)</p>
             </div>
             <div className="group">
-              <h4 className="text-[10px] uppercase tracking-[0.4em] text-black/30 mb-5 font-sans font-bold">Architecture</h4>
-              <p className="text-xl font-medium tracking-tight text-black/90">MERN Stack (React, Node.js, Express, MongoDB)</p>
+              <h4 className="text-[10px] uppercase tracking-[0.4em] text-white/30 mb-5 font-sans font-bold">Architecture</h4>
+              <p className="text-xl font-medium tracking-tight text-white/90">MERN Stack (React, Node.js, Express, MongoDB)</p>
             </div>
             <div className="group">
               <h4 className="text-[10px] uppercase tracking-[0.4em] text-[#d4af37] mb-5 font-sans font-bold">Intelligence</h4>
@@ -367,7 +367,7 @@ function getContent(index: number) {
         <div className="flex-1">
           <div className="mb-12">
             <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-4 font-sans font-bold">Artifacts</h2>
-            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-black/5 pb-8">Key Projects</h3>
+            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-8">Key Projects</h3>
           </div>
           <div className="space-y-12 mt-10">
             {[
@@ -377,8 +377,8 @@ function getContent(index: number) {
             ].map((proj, i) => (
               <div key={i} className="relative pl-10">
                 <div className="absolute left-0 top-1 w-3 h-3 bg-[#d4af37]/30 border border-[#d4af37]" />
-                <h4 className="text-lg font-bold uppercase tracking-wider mb-3 text-black/90">{proj.title}</h4>
-                <p className="text-[13px] leading-relaxed text-black/60 italic font-medium">{proj.desc}</p>
+                <h4 className="text-lg font-bold uppercase tracking-wider mb-3 text-white/90">{proj.title}</h4>
+                <p className="text-[13px] leading-relaxed text-white/60 italic font-medium">{proj.desc}</p>
               </div>
             ))}
           </div>
@@ -389,20 +389,20 @@ function getContent(index: number) {
         <div className="flex-1">
           <div className="mb-14">
             <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-4 font-sans font-bold">Chronicles</h2>
-            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-black/5 pb-8">Experience</h3>
+            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-8">Experience</h3>
           </div>
           <div className="space-y-14 mt-10">
-            <div className="relative pl-10 border-l-[3px] border-[#d4af37]/10 hover:border-[#d4af37] transition-colors">
+            <div className="relative pl-10 border-l-[3px] border-white/10 hover:border-[#d4af37] transition-colors">
               <div className="absolute left-[-7px] top-1.5 w-3 h-3 rounded-full bg-[#d4af37] shadow-[0_0_8px_#d4af37]" />
-              <h4 className="text-lg font-bold text-black/90">Founder — Digital Marketing Startup</h4>
-              <p className="text-[10px] uppercase tracking-[0.3em] text-black/40 font-sans mt-3 mb-4 font-bold">Jan 2022 – Present</p>
-              <p className="text-[13px] leading-relaxed text-black/70 font-medium">Scaled marketing operations; content strategy led to a 60% increase in client engagement and conversion.</p>
+              <h4 className="text-lg font-bold text-white/90">Founder — Digital Marketing Startup</h4>
+              <p className="text-[10px] uppercase tracking-[0.3em] text-white/40 font-sans mt-3 mb-4 font-bold">Jan 2022 – Present</p>
+              <p className="text-[13px] leading-relaxed text-white/70 font-medium">Scaled marketing operations; content strategy led to a 60% increase in client engagement and conversion.</p>
             </div>
-            <div className="relative pl-10 border-l-[3px] border-[#d4af37]/10 hover:border-[#d4af37] transition-colors">
+            <div className="relative pl-10 border-l-[3px] border-white/10 hover:border-[#d4af37] transition-colors">
               <div className="absolute left-[-7px] top-1.5 w-3 h-3 rounded-full bg-[#d4af37] shadow-[0_0_8px_#d4af37]" />
-              <h4 className="text-lg font-bold text-black/90 uppercase">Secretary, E-Cell</h4>
-              <p className="text-[10px] uppercase tracking-[0.3em] text-black/40 font-sans mt-3 mb-4 font-bold">Aug 2023 – Present</p>
-              <p className="text-[13px] leading-relaxed text-black/70 font-medium">Organized 20+ technical events. Spearheaded digital campaigns resulting in 70% boost in regional reach.</p>
+              <h4 className="text-lg font-bold text-white/90 uppercase">Secretary, E-Cell</h4>
+              <p className="text-[10px] uppercase tracking-[0.3em] text-white/40 font-sans mt-3 mb-4 font-bold">Aug 2023 – Present</p>
+              <p className="text-[13px] leading-relaxed text-white/70 font-medium">Organized 20+ technical events. Spearheaded digital campaigns resulting in 70% boost in regional reach.</p>
             </div>
           </div>
         </div>
@@ -412,23 +412,23 @@ function getContent(index: number) {
         <div className="flex-1">
           <div className="mb-14">
             <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-4 font-sans font-bold">Foundation</h2>
-            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-black/5 pb-8">Education</h3>
+            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-8">Education</h3>
           </div>
           <div className="space-y-16 mt-14">
             <div>
-              <h4 className="text-xl font-bold uppercase tracking-widest mb-3 text-black/90">B.Tech in CSE</h4>
-              <p className="text-sm text-black/50 mb-6 font-medium tracking-tight">Vignan's Foundation for Science & Tech</p>
+              <h4 className="text-xl font-bold uppercase tracking-widest mb-3 text-white/90">B.Tech in CSE</h4>
+              <p className="text-sm text-white/50 mb-6 font-medium tracking-tight">Vignan's Foundation for Science & Tech</p>
               <div className="flex items-center gap-6">
-                <span className="text-[12px] bg-black text-white px-4 py-1.5 font-sans font-bold">CGPA: 8.0</span>
-                <span className="text-[11px] text-black/40 uppercase tracking-[0.3em] font-sans font-bold">2022 – 2026</span>
+                <span className="text-[12px] bg-white text-black px-4 py-1.5 font-sans font-bold">CGPA: 8.0</span>
+                <span className="text-[11px] text-white/40 uppercase tracking-[0.3em] font-sans font-bold">2022 – 2026</span>
               </div>
             </div>
             <div>
-              <h4 className="text-xl font-bold uppercase tracking-widest mb-3 text-black/90">Intermediate (MPC)</h4>
-              <p className="text-sm text-black/50 mb-6 font-medium tracking-tight">NRI Junior College, Tenali</p>
+              <h4 className="text-xl font-bold uppercase tracking-widest mb-3 text-white/90">Intermediate (MPC)</h4>
+              <p className="text-sm text-white/50 mb-6 font-medium tracking-tight">NRI Junior College, Tenali</p>
               <div className="flex items-center gap-6">
-                <span className="text-[12px] bg-black text-white px-4 py-1.5 font-sans font-bold">70.1%</span>
-                <span className="text-[11px] text-black/40 uppercase tracking-[0.3em] font-sans font-bold">2020 – 2022</span>
+                <span className="text-[12px] bg-white text-black px-4 py-1.5 font-sans font-bold">70.1%</span>
+                <span className="text-[11px] text-white/40 uppercase tracking-[0.3em] font-sans font-bold">2020 – 2022</span>
               </div>
             </div>
           </div>
@@ -439,7 +439,7 @@ function getContent(index: number) {
         <div className="flex-1">
           <div className="mb-14">
             <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-4 font-sans font-bold">Laurels</h2>
-            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-black/5 pb-8">Achievements</h3>
+            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-8">Achievements</h3>
           </div>
           <ul className="space-y-10 mt-10">
             {[
@@ -450,8 +450,8 @@ function getContent(index: number) {
               <li key={i} className="flex gap-8 items-start">
                 <span className="text-[#d4af37] text-3xl leading-none">✦</span>
                 <div>
-                  <p className="text-xl font-bold leading-tight text-black/90 mb-2">{item.title}</p>
-                  <p className="text-[11px] text-black/40 font-sans uppercase tracking-[0.25em] font-bold">{item.subtitle}</p>
+                  <p className="text-xl font-bold leading-tight text-white/90 mb-2">{item.title}</p>
+                  <p className="text-[11px] text-white/40 font-sans uppercase tracking-[0.25em] font-bold">{item.subtitle}</p>
                 </div>
               </li>
             ))}
@@ -463,13 +463,13 @@ function getContent(index: number) {
         <div className="flex-1">
           <div className="mb-12">
             <h2 className="text-[11px] uppercase tracking-[0.6em] text-[#d4af37] mb-4 font-sans font-bold">Credentials</h2>
-            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-black/5 pb-8">Certifications</h3>
+            <h3 className="text-5xl font-bold tracking-tighter border-b-2 border-white/5 pb-8">Certifications</h3>
           </div>
           <div className="grid grid-cols-2 gap-6 mt-10">
             {["CCNA 1, 2, 3", "Cybersecurity", "Data Visualization", "HR Analytics"].map((cert, i) => (
-              <div key={cert} className="p-7 bg-black/[0.03] border-l-4 border-black/5 hover:border-[#d4af37] hover:bg-[#d4af37]/5 transition-all group aspect-square flex flex-col justify-between">
-                <span className="text-[10px] text-black/20 font-sans font-bold tracking-tight uppercase">License_00{i+1}</span>
-                <p className="text-[14px] font-bold leading-tight tracking-tight uppercase group-hover:text-[#d4af37] transition-colors text-black/80">{cert}</p>
+              <div key={cert} className="p-7 bg-white/[0.03] border-l-4 border-white/5 hover:border-[#d4af37] hover:bg-[#d4af37]/10 transition-all group aspect-square flex flex-col justify-between backdrop-blur-sm border border-white/5">
+                <span className="text-[10px] text-white/20 font-sans font-bold tracking-tight uppercase">License_00{i+1}</span>
+                <p className="text-[14px] font-bold leading-tight tracking-tight uppercase group-hover:text-[#d4af37] transition-colors text-white/80">{cert}</p>
                 <div className="w-8 h-[2px] bg-[#d4af37] opacity-20 group-hover:opacity-100 group-hover:w-full transition-all" />
               </div>
             ))}
@@ -481,24 +481,24 @@ function getContent(index: number) {
         <div className="flex-1 flex flex-col justify-center items-center text-center">
           <div className="mb-16">
             <h2 className="text-[11px] uppercase tracking-[1em] text-[#d4af37] mb-8 font-sans font-bold">Initiation</h2>
-            <h3 className="text-6xl font-bold tracking-tighter leading-[1] text-black/90">Let's build<br/>intelligence.</h3>
+            <h3 className="text-6xl font-bold tracking-tighter leading-[1] text-white/90">Let's build<br/>intelligence.</h3>
           </div>
           <div className="space-y-10 w-full max-w-[320px]">
             <div className="space-y-4">
-              <p className="text-[10px] text-black/30 uppercase tracking-[0.4em] font-sans font-bold">Contact Sequence</p>
-              <p className="text-xl font-bold tracking-tight text-black">221fa04394@gmail.com</p>
-              <p className="text-xl font-bold tracking-tight text-black">+91 9618562549</p>
+              <p className="text-[10px] text-white/30 uppercase tracking-[0.4em] font-sans font-bold">Contact Sequence</p>
+              <p className="text-xl font-bold tracking-tight text-white">221fa04394@gmail.com</p>
+              <p className="text-xl font-bold tracking-tight text-white">+91 9618562549</p>
             </div>
-            <div className="flex gap-10 justify-center pt-10 border-t border-black/10">
+            <div className="flex gap-10 justify-center pt-10 border-t border-white/10">
               {["LinkedIn", "GitHub"].map(link => (
-                <span key={link} className="text-[11px] uppercase tracking-[0.3em] font-sans font-bold text-black/40 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer">
+                <span key={link} className="text-[11px] uppercase tracking-[0.3em] font-sans font-bold text-white/40 hover:text-[#d4af37] hover:scale-110 transition-all cursor-pointer">
                   {link}
                 </span>
               ))}
             </div>
           </div>
           <div className="mt-24">
-            <p className="text-[10px] text-black/10 uppercase tracking-[0.8em] font-sans font-bold">Terminal Protocol — 2025</p>
+            <p className="text-[10px] text-white/10 uppercase tracking-[0.8em] font-sans font-bold">Terminal Protocol — 2025</p>
           </div>
         </div>
       );
