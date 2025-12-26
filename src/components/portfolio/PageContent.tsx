@@ -105,7 +105,7 @@ export function PageContent({ index, side, nextPageIndex }: PageContentProps) {
           className="select-none pointer-events-none"
           occlude="blending"
         >
-          <div className="w-[440px] h-[600px] p-16 flex flex-col font-serif text-white bg-black/80 backdrop-blur-2xl border-l border-white/5 shadow-2xl">
+          <div className="w-[440px] h-[600px] p-12 flex flex-col font-serif text-white bg-black/80 backdrop-blur-2xl border-l border-white/5 shadow-2xl">
             {getContent(index)}
           </div>
         </Html>
