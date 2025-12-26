@@ -65,6 +65,8 @@ function CameraController() {
 }
 
 export function Experience() {
+  const [bookScale, setBookScale] = useState(1);
+  
   return (
     <div className="fixed inset-0 bg-[#020202]">
         <Canvas
@@ -72,6 +74,11 @@ export function Experience() {
           camera={{ position: [0, 0, 5], fov: 45 }}
           dpr={[1, 2]}
           performance={{ min: 0.5 }}
+          onCreated={({ size }) => {
+            const isPortrait = size.width < size.height;
+            const scale = isPortrait ? (size.width / 4) : Math.min(size.width / 1100, 1.2);
+            setBookScale(scale);
+          }}
           gl={{ 
             antialias: true, 
             stencil: false, 
@@ -81,6 +88,7 @@ export function Experience() {
             powerPreference: "high-performance"
           }}
         >
+          <AdaptiveScale setScale={setBookScale} />
           <SoftShadows size={25} samples={10} focus={0.5} />
           <CameraController />
           <color attach="background" args={["#000000"]} />
@@ -107,7 +115,7 @@ export function Experience() {
             {/* Rim Light (Right Side) */}
             <pointLight position={[4, 1, 3]} intensity={50} color="#4080ff" decay={2} />
 
-            <group position={[0, -0.1, 0]}>
+            <group position={[0, -0.1, 0]} scale={bookScale}>
               <Float 
                 speed={2} 
                 rotationIntensity={0.05} 
@@ -151,3 +159,28 @@ export function Experience() {
     </div>
   );
 }
+
+function AdaptiveScale({ setScale }: { setScale: (s: number) => void }) {
+  const { size } = useThree();
+  
+  useEffect(() => {
+    const isPortrait = size.width < size.height;
+    // Calculate a scale that makes the book feel responsive to window size
+    // In landscape, we want it to be a bit larger on big screens
+    // In portrait, we want it to fit the width
+    let scale = 1;
+    if (isPortrait) {
+      // Scale based on width for mobile, capped to prevent it being too huge
+      scale = Math.min(size.width / 3.5, 1.2); 
+    } else {
+      // Scale based on both dimensions for desktop
+      scale = Math.min(size.width / 1100, size.height / 800) * 1.1;
+      scale = Math.max(0.7, Math.min(scale, 1.4));
+    }
+    
+    setScale(scale);
+  }, [size, setScale]);
+  
+  return null;
+}
+
