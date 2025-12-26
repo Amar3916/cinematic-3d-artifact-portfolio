@@ -14,33 +14,17 @@ function CameraController() {
 
   useEffect(() => {
     // Cinematic camera movements
-    if (currentPage === 0) {
-      // Cover view
-      gsap.to(camera.position, {
-        x: 0,
-        y: 0,
-        z: 5,
-        duration: 2,
-        ease: "power3.inOut"
-      });
-    } else {
-      // Open book view (slightly to the left to see the pages better)
-      gsap.to(camera.position, {
-        x: -1,
-        y: 0,
-        z: 4,
-        duration: 1.5,
-        ease: "power2.inOut"
-      });
-    }
-    
-    // Slight look-at adjustment
-    const target = new THREE.Vector3(currentPage === 0 ? 0 : 0.5, 0, 0);
-    gsap.to(camera.rotation, {
-      y: currentPage === 0 ? 0 : 0.1,
-      duration: 1.5,
-      ease: "power2.inOut"
+    gsap.to(camera.position, {
+      x: 0,
+      y: 0,
+      z: currentPage === 0 ? 4 : 4.5,
+      duration: 2,
+      ease: "power3.inOut"
     });
+    
+    // Always look at center
+    const target = new THREE.Vector3(0, 0, 0);
+    camera.lookAt(target);
   }, [currentPage, camera]);
 
   return null;
