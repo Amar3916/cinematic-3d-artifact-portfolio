@@ -24,64 +24,65 @@ export function InteractiveElement({ children, position, scale = 1 }: Interactiv
   const lastMousePos = useRef(new THREE.Vector2());
   const dragPlane = useRef(new THREE.Plane());
 
-  useFrame((state) => {
-    if (!meshRef.current) return;
-
-    if (isDragging) {
-      // Create a plane at the object's depth facing the camera
-      const normal = new THREE.Vector3(0, 0, 1).applyQuaternion(camera.quaternion);
-      dragPlane.current.setFromNormalAndCoplanarPoint(normal, meshRef.current.position);
-
-      const raycaster = state.raycaster;
-      raycaster.setFromCamera(mouse, camera);
-      
-      const intersection = new THREE.Vector3();
-      if (raycaster.ray.intersectPlane(dragPlane.current, intersection)) {
-        // Calculate translation velocity based on movement
-        const currentPos = meshRef.current.position.clone();
-        velocity.current.subVectors(intersection, currentPos).multiplyScalar(0.6);
-        meshRef.current.position.copy(intersection);
+    useFrame((state) => {
+      if (!meshRef.current) return;
+  
+      if (isDragging) {
+        // Create a plane at the object's depth facing the camera
+        const normal = new THREE.Vector3(0, 0, 1).applyQuaternion(camera.quaternion);
+        dragPlane.current.setFromNormalAndCoplanarPoint(normal, meshRef.current.position);
+  
+        const raycaster = state.raycaster;
+        raycaster.setFromCamera(mouse, camera);
+        
+        const intersection = new THREE.Vector3();
+        if (raycaster.ray.intersectPlane(dragPlane.current, intersection)) {
+          // Calculate translation velocity based on movement
+          const currentPos = meshRef.current.position.clone();
+          velocity.current.subVectors(intersection, currentPos).multiplyScalar(0.4);
+          meshRef.current.position.copy(intersection);
+        }
+  
+        // 360 Rotation logic (Globe-like with momentum)
+        const deltaX = mouse.x - lastMousePos.current.x;
+        const deltaY = mouse.y - lastMousePos.current.y;
+        
+        // Apply rotation - use a slightly smaller multiplier for smoother feel
+        meshRef.current.rotation.y += deltaX * 8;
+        meshRef.current.rotation.x -= deltaY * 8;
+  
+        // Update angular velocity for the "throw" with smoothing
+        angularVelocity.current.y = THREE.MathUtils.lerp(angularVelocity.current.y, deltaX * 12, 0.2);
+        angularVelocity.current.x = THREE.MathUtils.lerp(angularVelocity.current.x, -deltaY * 12, 0.2);
+        
+        lastMousePos.current.set(mouse.x, mouse.y);
+      } else if (!isReturning) {
+        // Apply translation velocity and friction
+        meshRef.current.position.add(velocity.current);
+        velocity.current.multiplyScalar(0.95);
+        
+        // Apply angular velocity and friction
+        meshRef.current.rotation.x += angularVelocity.current.x;
+        meshRef.current.rotation.y += angularVelocity.current.y;
+        
+        angularVelocity.current.x *= 0.97;
+        angularVelocity.current.y *= 0.97;
+        angularVelocity.current.z *= 0.97;
+  
+        // Subtle ambient rotation when stationary
+        if (angularVelocity.current.lengthSq() < 0.0001) {
+          meshRef.current.rotation.y += 0.003;
+        }
+  
+        // If it goes too far or stops moving, return home
+        const dist = meshRef.current.position.distanceTo(homePosition);
+        const speed = velocity.current.length();
+        
+        if (dist > 10 || (speed < 0.001 && dist > 0.05)) {
+          returnHome();
+        }
       }
-
-      // 360 Rotation logic (Globe-like)
-      const deltaX = mouse.x - lastMousePos.current.x;
-      const deltaY = mouse.y - lastMousePos.current.y;
-      
-      // Apply rotation based on mouse movement
-      meshRef.current.rotation.y += deltaX * 5;
-      meshRef.current.rotation.x -= deltaY * 5;
-
-      // Update angular velocity for the "throw"
-      angularVelocity.current.y = deltaX * 10;
-      angularVelocity.current.x = -deltaY * 10;
-      
-      lastMousePos.current.set(mouse.x, mouse.y);
-    } else if (!isReturning) {
-      // Apply translation velocity and friction
-      meshRef.current.position.add(velocity.current);
-      velocity.current.multiplyScalar(0.96);
-      
-      // Apply angular velocity and friction
-      meshRef.current.rotation.x += angularVelocity.current.x;
-      meshRef.current.rotation.y += angularVelocity.current.y;
-      meshRef.current.rotation.z += angularVelocity.current.z;
-      
-      angularVelocity.current.x *= 0.96;
-      angularVelocity.current.y *= 0.96;
-      angularVelocity.current.z *= 0.96;
-
-      // Subtle ambient rotation
-      meshRef.current.rotation.y += 0.005;
-
-      // If it goes too far or stops moving, return home
-      const dist = meshRef.current.position.distanceTo(homePosition);
-      const speed = velocity.current.length();
-      
-      if (dist > 8 || (speed < 0.001 && dist > 0.05)) {
-        returnHome();
-      }
-    }
-  });
+    });
 
   const returnHome = () => {
     if (isReturning || !meshRef.current) return;
