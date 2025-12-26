@@ -21,7 +21,7 @@ export function InteractiveElement({ children, position, scale = 1 }: Interactiv
   const homePosition = new THREE.Vector3(...position);
   const velocity = useRef(new THREE.Vector3(0, 0, 0));
   const angularVelocity = useRef(new THREE.Euler(0, 0, 0));
-  const lastPos = useRef(new THREE.Vector3());
+  const lastMousePos = useRef(new THREE.Vector2());
   const dragPlane = useRef(new THREE.Plane());
 
   useFrame((state) => {
@@ -37,15 +37,25 @@ export function InteractiveElement({ children, position, scale = 1 }: Interactiv
       
       const intersection = new THREE.Vector3();
       if (raycaster.ray.intersectPlane(dragPlane.current, intersection)) {
-        // Calculate velocity based on movement
+        // Calculate translation velocity based on movement
         const currentPos = meshRef.current.position.clone();
-        velocity.current.subVectors(intersection, currentPos).multiplyScalar(0.8);
+        velocity.current.subVectors(intersection, currentPos).multiplyScalar(0.6);
         meshRef.current.position.copy(intersection);
-        
-        // Update angular velocity based on movement
-        angularVelocity.current.x = -velocity.current.y * 2;
-        angularVelocity.current.y = velocity.current.x * 2;
       }
+
+      // 360 Rotation logic (Globe-like)
+      const deltaX = mouse.x - lastMousePos.current.x;
+      const deltaY = mouse.y - lastMousePos.current.y;
+      
+      // Apply rotation based on mouse movement
+      meshRef.current.rotation.y += deltaX * 5;
+      meshRef.current.rotation.x -= deltaY * 5;
+
+      // Update angular velocity for the "throw"
+      angularVelocity.current.y = deltaX * 10;
+      angularVelocity.current.x = -deltaY * 10;
+      
+      lastMousePos.current.set(mouse.x, mouse.y);
     } else if (!isReturning) {
       // Apply translation velocity and friction
       meshRef.current.position.add(velocity.current);
