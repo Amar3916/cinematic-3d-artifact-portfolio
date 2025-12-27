@@ -31,7 +31,18 @@ const nextConfig: NextConfig = {
         }
       }
     }
-  }
+  },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.(jsx|tsx)$/,
+      use: [
+        {
+          loader: LOADER,
+        },
+      ],
+    });
+    return config;
+  },
 };
 
 export default nextConfig;
