@@ -19,15 +19,15 @@ const nextConfig: NextConfig = {
     eslint: {
 ignoreDuringBuilds: true,
 },
-  experimental: {
-    turbopack: {
-      rules: {
-        "*.{jsx,tsx}": {
-          loaders: [LOADER]
+    experimental: {
+      turbo: {
+        rules: {
+          "*.{jsx,tsx}": {
+            loaders: [LOADER]
+          }
         }
       }
     }
-  }
 };
 
 export default nextConfig;
