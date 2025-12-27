@@ -28,6 +28,9 @@ ignoreDuringBuilds: true,
         }
       }
     }
+        }
+      }
+    }
 };
 
 export default nextConfig;
