@@ -26,36 +26,35 @@ function CameraController() {
       const aspect = size.width / size.height;
       
       // Target position
-      let targetZ = currentPage === 0 ? 4.5 : 5.2;
+      let targetZ = currentPage === 0 ? 4.8 : 5.5;
       let targetX = 0;
       let targetY = 0;
       
       if (isPortrait) {
-        // In portrait, we need much more distance to see the book
-        // Adjust based on aspect to keep it centered and visible
-        targetZ = (currentPage === 0 ? 5.5 : 6.5) / Math.min(1, aspect * 1.2);
-        // Slightly tilt for better mobile viewing
-        targetY = 0.2;
-      } else if (aspect < 1.5) {
-        // Squarer screens (tablets in landscape)
-        targetZ = 5.5 / aspect;
+        // In portrait, move closer if it's the cover, further for pages
+        // But adjust for the very narrow aspect ratios
+        const fovCorrection = Math.max(1, 0.8 / aspect);
+        targetZ = (currentPage === 0 ? 5.0 : 6.2) * fovCorrection;
+        targetY = 0.1;
+      } else if (aspect < 1.4) {
+        // Tablets / Square screens
+        targetZ = 5.5 / Math.min(1, aspect * 0.9);
       }
 
-      // Cinematic camera movements
       gsap.to(camera.position, {
         x: targetX,
         y: targetY,
         z: targetZ,
-        duration: 1.5,
-        ease: "power3.inOut"
+        duration: 1.2,
+        ease: "power2.out"
       });
       
-      // Dynamic FOV adjustment for narrow screens
       if (camera instanceof THREE.PerspectiveCamera) {
-        const targetFov = isPortrait ? 50 : 45;
+        // Wider FOV on mobile helps the "zoom" feel and perspective
+        const targetFov = isPortrait ? 60 : 45;
         gsap.to(camera, {
           fov: targetFov,
-          duration: 1.5,
+          duration: 1.2,
           onUpdate: () => camera.updateProjectionMatrix()
         });
       }
@@ -72,13 +71,8 @@ export function Experience() {
         <Canvas
           shadows
           camera={{ position: [0, 0, 5], fov: 45 }}
-          dpr={[1, 2]}
+          dpr={[1, 2]} // Support high-DPI screens and browser zoom
           performance={{ min: 0.5 }}
-          onCreated={({ size }) => {
-            const isPortrait = size.width < size.height;
-            const scale = isPortrait ? (size.width / 4) : Math.min(size.width / 1100, 1.2);
-            setBookScale(scale);
-          }}
           gl={{ 
             antialias: true, 
             stencil: false, 
@@ -98,7 +92,6 @@ export function Experience() {
             <Environment preset="night" intensity={0.4} />
             <ambientLight intensity={0.15} />
             
-            {/* Dramatic Key Light */}
             <spotLight
               position={[5, 10, 5]}
               angle={0.2}
@@ -109,13 +102,10 @@ export function Experience() {
               shadow-mapSize={[1024, 1024]}
             />
             
-            {/* Artifact Highlight Light (Left Side) */}
             <pointLight position={[-3, 0.5, 3]} intensity={100} color="#d4af37" decay={2} />
-            
-            {/* Rim Light (Right Side) */}
             <pointLight position={[4, 1, 3]} intensity={50} color="#4080ff" decay={2} />
 
-            <group position={[0, -0.1, 0]} scale={bookScale}>
+            <group position={[0, -0.1, 0]} scale={[bookScale, bookScale, bookScale]}>
               <Float 
                 speed={2} 
                 rotationIntensity={0.05} 
@@ -126,7 +116,6 @@ export function Experience() {
               </Float>
             </group>
 
-            {/* Premium Obsidian Floor with Reflection (Simulated) */}
             <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3, 0]} receiveShadow>
               <planeGeometry args={[100, 100]} />
               <meshStandardMaterial 
@@ -161,25 +150,31 @@ export function Experience() {
 }
 
 function AdaptiveScale({ setScale }: { setScale: (s: number) => void }) {
-  const { size } = useThree();
+  const { size, viewport } = useThree();
   
   useEffect(() => {
     const isPortrait = size.width < size.height;
-    // Calculate a scale that makes the book feel responsive to window size
-    // In landscape, we want it to be a bit larger on big screens
-    // In portrait, we want it to fit the width
+    
+    // We want the book to stay a relatively consistent size relative to the viewport height
+    // on desktop, and fill width on mobile.
+    // By using viewport dimensions (which are in Three.js units), we get more stability.
+    
     let scale = 1;
     if (isPortrait) {
-      // Scale based on width for mobile, capped to prevent it being too huge
-      scale = Math.min(size.width / 3.5, 1.2); 
+      // On mobile, scale so it fills about 85% of viewport width
+      // The book's width is roughly 4 units (when open)
+      // viewport.width is the width in 3D units at distance 0
+      scale = (viewport.width * 0.85) / 4;
+      scale = Math.max(0.6, Math.min(scale, 1.2));
     } else {
-      // Scale based on both dimensions for desktop
-      scale = Math.min(size.width / 1100, size.height / 800) * 1.1;
-      scale = Math.max(0.7, Math.min(scale, 1.4));
+      // On desktop, keep it a good size relative to viewport height
+      // The book's height is roughly 4 units
+      scale = (viewport.height * 0.7) / 4;
+      scale = Math.max(0.8, Math.min(scale, 1.3));
     }
     
     setScale(scale);
-  }, [size, setScale]);
+  }, [size, viewport, setScale]);
   
   return null;
 }
