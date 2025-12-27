@@ -24,16 +24,16 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   experimental: {
-    turbo: {
-      rules: {
-        // Disabling the custom loader in Turbopack for now to prevent crashes.
-        // It is still active in Webpack mode below.
-        /*
-        "*.{jsx,tsx}": {
-          loaders: [LOADER]
-        }
-        */
+  },
+  turbopack: {
+    rules: {
+      // Disabling the custom loader in Turbopack for now to prevent crashes.
+      // It is still active in Webpack mode below.
+      /*
+      "*.{jsx,tsx}": {
+        loaders: [LOADER]
       }
+      */
     }
   },
   webpack(config) {
