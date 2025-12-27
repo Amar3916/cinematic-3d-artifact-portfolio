@@ -88,9 +88,9 @@ export function Experience() {
           <color attach="background" args={["#000000"]} />
           <fog attach="fog" args={["#000000", 4, 15]} />
           
-          <Suspense fallback={<Loader />}>
-            <Environment preset="night" intensity={0.4} />
-            <ambientLight intensity={0.15} />
+            <Suspense fallback={<Loader />}>
+              <Environment preset="night" />
+              <ambientLight intensity={0.15} />
             
             <spotLight
               position={[5, 10, 5]}
