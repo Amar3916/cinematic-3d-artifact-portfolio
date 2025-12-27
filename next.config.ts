@@ -23,7 +23,6 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  /*
   experimental: {
     turbo: {
       rules: {
@@ -33,7 +32,6 @@ const nextConfig: NextConfig = {
       }
     }
   }
-  */
 };
 
 export default nextConfig;
