@@ -129,11 +129,13 @@ export function InteractiveElement({ children, position, scale = 1 }: Interactiv
   const handleWheel = (e: any) => {
     e.stopPropagation();
     
-    if (isReturning) {
-      setIsReturning(false);
-      gsap.killTweensOf(meshRef.current?.position);
-      gsap.killTweensOf(meshRef.current?.rotation);
-    }
+      if (isReturning) {
+        setIsReturning(false);
+        if (meshRef.current) {
+          gsap.killTweensOf(meshRef.current.position);
+          gsap.killTweensOf(meshRef.current.rotation);
+        }
+      }
 
     // Apply scroll to angular velocity for a smooth spin
     // Increase sensitivity for a more responsive feel
