@@ -26,9 +26,13 @@ const nextConfig: NextConfig = {
   experimental: {
     turbo: {
       rules: {
+        // Disabling the custom loader in Turbopack for now to prevent crashes.
+        // It is still active in Webpack mode below.
+        /*
         "*.{jsx,tsx}": {
           loaders: [LOADER]
         }
+        */
       }
     }
   },
